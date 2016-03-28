@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor">
+    <actor base="{Application}.Resolver" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ UrlResolver/
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="UrlResolver_Assembly_SegmentCount" actor="~#Runtime" code="7001">
+        <description>An assembly URN must have at least two segmenents, which value '{0}' does not.</description>
+    </error>
+
+    <error id="UrlResolver_Assembly_ResourceNotFound" actor="~#Runtime" code="7002">
+        <description>Assembly '{0}' does not contain a resource '{1}'.</description>
+    </error>
+
+    <error id="UrlResolver_InvalidCustomResolver" actor="~#Runtime" code="7003">
+        <description>Custom URL resolver for scheme '{0}' is invalid, with type moniker '{1}'.</description>
+    </error>
+
+</errors>

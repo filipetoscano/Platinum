@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor">
+    <actor base="{Application}" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Activator/
+    ~ Errors thrown by Activator.
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Activator_Create" actor="~.Activator#Runtime" code="1001">
+        <description>Could not create instance of type '{1}' from assembly '{0}'.</description>
+    </error>
+
+    <error id="Activator_Cast" actor="~.Activator#Development" code="1002">
+        <description>Could not cast '{0}' to '{1}'.</description>
+    </error>
+
+    <error id="Activator_MonikerInvalid" actor="~.Activator#Runtime" code="1003">
+        <description>Value '{0}' is not a valid type moniker, which must have at least two parts: type-name and assembly.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Enumerate/
+    ~ Errors thrown by Enumerate class.
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Enumerate_TypeNotEnum" actor="~.Enumerate#Development" code="1101">
+        <description>Type '{0}' is not an enumerate.</description>
+    </error>
+
+    <error id="Enumerate_Parse" actor="~.Enumerate#Runtime" code="1102">
+        <description>Value '{1}' is not valid for enumerate '{1}'.</description>
+    </error>
+
+    <error id="Enumerate_ParseCaseInsensitive" actor="~.Enumerate#Runtime" code="1102">
+        <description>Value '{1}' is not valid for enumerate '{1}'.</description>
+    </error>
+
+</errors>

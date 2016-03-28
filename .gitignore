@@ -1,0 +1,7 @@
+*.suo
+*.csproj.user
+src/**/ER.resx
+src/**/Errors.cs
+src/**/Exceptions.cs
+src/**/bin/
+src/**/obj/

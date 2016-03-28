@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor">
+    <actor base="{Application}.Algorithm" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Luhn/
+    ~ Errors thrown by Luhn class.
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Luhn_DuplicateCharacterInSet" actor="~#Runtime" code="7001">
+        <description>Character '{1}' is declared twice in character set '{0}'.</description>
+    </error>
+
+    <error id="Luhn_CodeCharacterNotInSet" actor="~#Development" code="7002">
+        <description>Character '{1}' is not valid for character set '{0}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ NumericEncoder/
+    ~ Errors thrown by NumericEncoder class.
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="NumericEncoder_DuplicateCharacterInSet" actor="~#Runtime" code="7001">
+        <description>Character '{1}' is declared twice in character set '{0}'.</description>
+    </error>
+
+    <error id="NumericEncoder_CodeCharacterNotInSet" actor="~#Runtime" code="7003">
+        <description>Character '{1}' is not valid for character set '{0}'.</description>
+    </error>
+
+</errors>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="urn:yttrium/vs/config">
+
+    <section name="platinum/cultureFactory" type="CultureFactoryConfiguration">
+        <repeater name="cultures">
+            <item type="CultureOverrideDefinition">
+                <string name="culture" key="true" />
+
+                <element name="dateTimeFormat" type="DateTimeFormatDefinition">
+                    <string name="shortDatePattern" optional="true" />
+                    <string name="dateSeparator" optional="true" />
+                    <string name="timeSeparator" optional="true" />
+                    <enum name="firstDayOfWeek" type="DayOfWeek" optional="true" />
+                </element>
+
+                <element name="numberFormat" type="NumberFormatDefinition">
+                    <string name="numberDecimalSeparator" optional="true" />
+                    <string name="currencyGroupSeparator" optional="true" />
+                </element>
+            </item>
+        </repeater>
+    </section>
+
+</configuration>
