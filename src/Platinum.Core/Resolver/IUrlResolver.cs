@@ -16,5 +16,3 @@ namespace Platinum.Resolver
         Uri ResolveUri( Uri baseUri, string relativeUri );
     }
 }
-
-/* eof */

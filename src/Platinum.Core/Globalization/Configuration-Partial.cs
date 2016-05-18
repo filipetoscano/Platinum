@@ -1,5 +1,4 @@
-﻿
-namespace Platinum.Globalization
+﻿namespace Platinum.Globalization
 {
     public partial class CultureFactoryConfiguration
     {

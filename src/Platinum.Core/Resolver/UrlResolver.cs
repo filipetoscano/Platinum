@@ -145,7 +145,7 @@ namespace Platinum.Resolver
              * 
              */
             ResolverDefinition rc = ResolverConfiguration.Current.CustomResolvers
-                .FirstOrDefault( i => i.Scheme == baseUri.Scheme );
+                .SingleOrDefault( i => i.Scheme == baseUri.Scheme );
 
             if ( rc == null )
                 return null;

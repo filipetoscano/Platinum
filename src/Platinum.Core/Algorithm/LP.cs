@@ -1,5 +1,4 @@
-﻿
-namespace Platinum.Algorithm
+﻿namespace Platinum.Algorithm
 {
     internal class LP
     {
