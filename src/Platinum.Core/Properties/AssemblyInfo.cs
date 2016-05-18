@@ -19,7 +19,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid( "8aad0f38-6757-4562-acfd-a1cefdcb1e24" )]
 [assembly: NeutralResourcesLanguage( "en-GB" )]
 
-// Version information
-[assembly: AssemblyVersion( "0.0.0.1" )]
-
 /* eof */

@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Core", "src\Platinum.Core\Platinum.Core.csproj", "{46FFE5B4-E434-4088-A2EC-96B617CAD072}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Global", "Global", "{64D1A348-6173-4FC4-AD12-0707F0D39935}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{64D1A348-6173-4FC4-AD12-0707F0D39935}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		automation.proj = automation.proj

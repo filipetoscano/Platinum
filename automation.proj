@@ -36,7 +36,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <Target Name="build">
         <PropertyGroup>
-            <versionInfo>[assembly: System.Relection.AssemblyVersion( "$(version)" )]</versionInfo>
+            <versionInfo>[assembly: System.Reflection.AssemblyVersion( "$(version)" )]</versionInfo>
         </PropertyGroup>
         
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
