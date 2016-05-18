@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: automation.proj 58 2015-07-16 20:13:27Z lft $ -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+    DefaultTargets="help">
+    <PropertyGroup>
+        <version>1.0.0.0</version>
+
+        <nugetSource>http://localhost:5000/</nugetSource>
+        <nugetPushKey></nugetPushKey>
+    </PropertyGroup>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ help/
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="help">
+    </Target>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ clean/
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="clean">
+    </Target>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ build/
+    ~ Compile and produce the nuget packages.
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="build">
+        <PropertyGroup>
+            <versionInfo>[assembly: System.Relection.AssemblyVersion( "$(version)" )]</versionInfo>
+        </PropertyGroup>
+        
+        <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
+
+        <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
+        <Exec Command=" nuget pack Platinum.Core.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Core" />
+        <Exec Command=" nuget pack Platinum.Data.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Data" />
+    </Target>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ push/
+    ~ Pushes the recently built packages to Nuget server.
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="push">
+        <Error Condition=" $(nugetPushKey) == '' " Text="Must specify 'nugetPushKey' when pushing to nuget source." />
+        <Exec Command=" nuget push Platinum.Core.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Core" />
+        <Exec Command=" nuget push Platinum.Data.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Data" />
+    </Target>
+
+</Project>

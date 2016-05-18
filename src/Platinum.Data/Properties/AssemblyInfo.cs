@@ -4,10 +4,10 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 // Assembly information
-[assembly: AssemblyTitle( "" )]
-[assembly: AssemblyDescription( "" )]
+[assembly: AssemblyTitle( "Platinum Data" )]
+[assembly: AssemblyDescription( "Data access." )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "" )]
+[assembly: AssemblyCompany( "Transition" )]
 [assembly: AssemblyProduct( "Platinum" )]
 [assembly: AssemblyCopyright( "" )]
 [assembly: AssemblyTrademark( "" )]
@@ -20,7 +20,6 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage( "en-GB" )]
 
 // Version information
-[assembly: AssemblyVersion( "1.0.0.0" )]
-[assembly: AssemblyFileVersion( "1.0.0.0" )]
+[assembly: AssemblyVersion( "0.0.0.1" )]
 
 /* eof */
