@@ -160,6 +160,10 @@ namespace Platinum
                     _description = description + " | ex:" + ex.Message; 
                 }
             }
+            else
+            {
+                _description = description;
+            }
         }
 
 
