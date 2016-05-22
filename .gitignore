@@ -1,6 +1,7 @@
 *.suo
 *.csproj.user
 *.nupkg
+.vs/
 src/**/ER.resx
 src/**/Errors.cs
 src/**/Exceptions.cs

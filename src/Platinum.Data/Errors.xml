@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor">
+    <actor base="{Application}" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Connection
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Connection_NotFound" actor="~.Data.Configuration" code="1001">
+        <description>No settings for database '{0}' found.</description>
+    </error>
+
+    <error id="Connection_NoProviderName" actor="~.Data.Configuration" code="1002">
+        <description>Settings for database '{0}' have no defined provider.</description>
+    </error>
+
+    <error id="Connection_NoConnection" actor="~.Data.Configuration" code="1003">
+        <description>Settings for database '{0}' have no defined connection string.</description>
+    </error>
+
+    <error id="Connection_NoFactory" actor="~.Data.Configuration" code="1004">
+        <description>Settings for database '{0}' have no defined connection string.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Open
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Open_ConnectFailed" actor="~.Data" code="2001">
+        <description>Failed to connect to '{0}'.</description>
+    </error>
+
+    <error id="Open_LoginFailed" actor="~.Data" code="2002">
+        <description>Failed to connect to '{0}', invalid login.</description>
+    </error>
+
+    <error id="Open_DatabaseInvalid" actor="~.Data" code="2003">
+        <description>Failed to connect to '{0}', invalid database.</description>
+    </error>
+
+    <error id="Open_Failed" actor="~.Data" code="2004">
+        <description>Failed to connect to '{0}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Sql
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Sql_CommandNotFound" actor="~.Data.Internal" code="3001">
+        <description>Command '{0}' in assembly '{1}' not found: no embedded resource with name '{2}'.</description>
+    </error>
+
+</errors>

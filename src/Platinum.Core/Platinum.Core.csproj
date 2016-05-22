@@ -175,11 +175,11 @@
       <LastGenOutput>Configuration.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Resolver\Exceptions.xml">
+    <None Include="Resolver\Exceptions.xml">
       <Generator>YResxExceptionTool</Generator>
       <LastGenOutput>Exceptions.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <None Include="Xml\Errors.xml">
       <Generator>YResxErrorTool</Generator>
       <LastGenOutput>Errors.cs</LastGenOutput>

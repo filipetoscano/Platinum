@@ -3,42 +3,58 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Platinum.Data.Tests
 {
     [TestClass]
-    public class BasicTest
+    public class NoServerTest
     {
         [TestMethod]
         public async Task QuerySingleAsync()
         {
-            DataConnection conn = Db.Connection( "TestDb" );
+            DataConnection conn = Db.Connection( "NoServerDb" );
 
-            var x = await conn.QuerySingleAsync<dynamic>( Db.Sql( "Sql/Single" ), new { } );
-        }
+            try
+            {
+                var x = await conn.QuerySingleAsync<dynamic>( Db.Sql( "Sql/Single" ), new { } );
 
-
-        [TestMethod]
-        public async Task QuerySingleAsync5()
-        {
-            for ( int i = 0; i < 5; i++ )
-                await QuerySingleAsync();
+                Assert.Fail( "Expected exception" );
+            }
+            catch ( DbException )
+            {
+                Assert.Fail( "Expected DataException" );
+            }
+            catch ( DataException ex )
+            {
+                Assert.AreEqual( ex.Message, ER.Open_ConnectFailed );
+            }
         }
 
 
         [TestMethod]
         public async Task QueryAsync()
         {
-            DbConnection conn = Db.Connection( "TestDb" );
+            DbConnection conn = Db.Connection( "NoServerDb" );
 
-            var x = await conn.QueryAsync<dynamic>( Db.Sql( "Sql/Query" ), new { } );
+            try
+            {
+                var x = await conn.QueryAsync<dynamic>( Db.Sql( "Sql/Query" ), new { } );
+            }
+            catch ( DbException )
+            {
+                Assert.Fail( "Expected DataException" );
+            }
+            catch ( DataException ex )
+            {
+                Assert.AreEqual( ex.Message, ER.Open_ConnectFailed );
+            }
         }
 
 
 
-        [TestMethod]
         public async Task QueryMultipleAsync()
         {
             DbConnection conn = null;
