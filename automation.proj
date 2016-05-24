@@ -41,6 +41,7 @@
         
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
 
+        <Exec Command=" nuget restore " />
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
         <Exec Command=" nuget pack Platinum.Core.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Core" />
         <Exec Command=" nuget pack Platinum.Data.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Data" />
