@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0B4C9C65-061
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Data.Tests", "tests\Platinum.Data.Tests\Platinum.Data.Tests.csproj", "{39E1E4CA-BB63-484D-B736-A08B7A83BAD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Core.Tests", "tests\Platinum.Core.Tests\Platinum.Core.Tests.csproj", "{940897D4-7EE5-4261-9B5F-93A9C30D2E62}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{39E1E4CA-BB63-484D-B736-A08B7A83BAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E1E4CA-BB63-484D-B736-A08B7A83BAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E1E4CA-BB63-484D-B736-A08B7A83BAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940897D4-7EE5-4261-9B5F-93A9C30D2E62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940897D4-7EE5-4261-9B5F-93A9C30D2E62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940897D4-7EE5-4261-9B5F-93A9C30D2E62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940897D4-7EE5-4261-9B5F-93A9C30D2E62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{46FFE5B4-E434-4088-A2EC-96B617CAD072} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{28886CB6-AA57-43C1-BBCD-362C522063FE} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{39E1E4CA-BB63-484D-B736-A08B7A83BAD2} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
+		{940897D4-7EE5-4261-9B5F-93A9C30D2E62} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

@@ -72,11 +72,19 @@ namespace Platinum.Resolver
 
             if ( absoluteUri.Scheme == "assembly" )
             {
-                if ( absoluteUri.Segments.Length != 2 )
-                    throw new ResolverException( ER.UrlResolver_Assembly_SegmentCount, absoluteUri.OriginalString );
+                //if ( absoluteUri.Segments.Length != 2 )
+                //    throw new ResolverException( ER.UrlResolver_Assembly_SegmentCount, absoluteUri.OriginalString );
 
-                string assemblyName = absoluteUri.Segments[ 0 ].TrimEnd( '/' );
-                string resourceName = absoluteUri.Segments[ 1 ].TrimEnd( '/' );
+                string assemblyName = absoluteUri.Segments[ 1 ].TrimEnd( '/' );
+                string resourceName;
+
+                if ( absoluteUri.Segments[ 2 ] == "~/" )
+                    resourceName = assemblyName;
+                else
+                    resourceName = absoluteUri.Segments[ 2 ].TrimEnd( '/' );
+
+                for ( int i=3; i< absoluteUri.Segments.Length; i++ )
+                    resourceName = resourceName + "." + absoluteUri.Segments[ i ].TrimEnd( '/' );
 
                 Assembly assembly = Assembly.Load( assemblyName );
                 Stream stream = assembly.GetManifestResourceStream( resourceName );
@@ -127,7 +135,8 @@ namespace Platinum.Resolver
             {
                 lock ( this )
                 {
-                    _uri.Add( uri );
+                    if ( _uri.Contains( uri ) == false )
+                        _uri.Add( uri );
                 }
             }
 
@@ -137,15 +146,17 @@ namespace Platinum.Resolver
 
         private static IUrlResolver GetResolver( Uri baseUri, string relativeUri )
         {
+            Uri theUri = baseUri;
+
             if ( baseUri == null )
-                return null;
+                theUri = new Uri( relativeUri );
 
 
             /*
              * 
              */
             ResolverDefinition rc = ResolverConfiguration.Current.CustomResolvers
-                .SingleOrDefault( i => i.Scheme == baseUri.Scheme );
+                .SingleOrDefault( i => i.Scheme == theUri.Scheme );
 
             if ( rc == null )
                 return null;
