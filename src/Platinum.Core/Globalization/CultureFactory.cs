@@ -15,7 +15,7 @@ namespace Platinum.Globalization
             #region Validations
 
             if ( cultureName == null )
-                throw new ArgumentNullException( "cultureName" );
+                throw new ArgumentNullException( nameof( cultureName ) );
 
             #endregion
 
@@ -55,7 +55,7 @@ namespace Platinum.Globalization
             #region Validations
 
             if ( cultureName == null )
-                throw new ArgumentNullException( "cultureName" );
+                throw new ArgumentNullException( nameof( cultureName ) );
 
             #endregion
 

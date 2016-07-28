@@ -32,7 +32,7 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( characterSet == null )
-                throw new ArgumentNullException( "characterSet" );
+                throw new ArgumentNullException( nameof( characterSet ) );
 
             #endregion
 
@@ -90,7 +90,7 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( code == null )
-                throw new ArgumentNullException( "code" );
+                throw new ArgumentNullException( nameof( code ) );
 
             #endregion
 
@@ -131,7 +131,7 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 
@@ -185,7 +185,7 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( characterSet == null )
-                throw new ArgumentNullException( "characterSet" );
+                throw new ArgumentNullException( nameof( characterSet ) );
 
             #endregion
 

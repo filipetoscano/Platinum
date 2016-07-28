@@ -191,7 +191,7 @@ namespace Platinum
             #region Validations
 
             if ( info == null )
-                throw new ArgumentNullException( "info" );
+                throw new ArgumentNullException( nameof( info ) );
 
             #endregion
 
@@ -207,7 +207,7 @@ namespace Platinum
             #region Validations
 
             if ( info == null )
-                throw new ArgumentNullException( "info" );
+                throw new ArgumentNullException( nameof( info ) );
 
             #endregion
 

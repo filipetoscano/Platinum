@@ -29,7 +29,7 @@ namespace Platinum.Xml
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 
@@ -102,10 +102,10 @@ namespace Platinum.Xml
             #region Validations
 
             if ( schema == null )
-                throw new ArgumentNullException( "schema" );
+                throw new ArgumentNullException( nameof( schema ) );
 
             if ( xml == null )
-                throw new ArgumentNullException( "xml" );
+                throw new ArgumentNullException( nameof( xml ) );
 
             #endregion
 
@@ -166,7 +166,7 @@ namespace Platinum.Xml
             #region Validations
 
             if ( type == null )
-                throw new ArgumentNullException( "type" );
+                throw new ArgumentNullException( nameof( type ) );
 
             #endregion
 

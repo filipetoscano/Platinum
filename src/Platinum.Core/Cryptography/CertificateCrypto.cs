@@ -17,7 +17,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( name == null )
-                throw new ArgumentNullException( "name" );
+                throw new ArgumentNullException( nameof( name ) );
 
             #endregion
 
@@ -41,7 +41,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( buffer == null )
-                throw new ArgumentNullException( "buffer" );
+                throw new ArgumentNullException( nameof( buffer ) );
 
             #endregion
 
@@ -80,7 +80,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 
@@ -96,7 +96,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( buffer == null )
-                throw new ArgumentNullException( "buffer" );
+                throw new ArgumentNullException( nameof( buffer ) );
 
             #endregion
 
@@ -139,7 +139,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 

@@ -63,7 +63,7 @@ namespace Platinum
             #region Validations
 
             if ( item == null )
-                throw new ArgumentNullException( "item" );
+                throw new ArgumentNullException( nameof( item ) );
 
             #endregion
 
@@ -89,7 +89,7 @@ namespace Platinum
             #region Validations
 
             if ( info == null )
-                throw new ArgumentNullException( "info" );
+                throw new ArgumentNullException( nameof( info ) );
 
             #endregion
 
@@ -103,7 +103,7 @@ namespace Platinum
             #region Validations
 
             if ( info == null )
-                throw new ArgumentNullException( "info" );
+                throw new ArgumentNullException( nameof( info ) );
 
             #endregion
 

@@ -18,7 +18,7 @@ namespace Platinum.Configuration
             #region Validations
 
             if ( key == null )
-                throw new ArgumentNullException( "key" );
+                throw new ArgumentNullException( nameof( key ) );
 
             #endregion
 
@@ -44,7 +44,7 @@ namespace Platinum.Configuration
             #region Validations
 
             if ( key == null )
-                throw new ArgumentNullException( "key" );
+                throw new ArgumentNullException( nameof( key ) );
 
             #endregion
 
@@ -62,10 +62,10 @@ namespace Platinum.Configuration
             #region Validations
 
             if ( key == null )
-                throw new ArgumentNullException( "key" );
+                throw new ArgumentNullException( nameof( key ) );
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 
@@ -141,7 +141,7 @@ namespace Platinum.Configuration
             #region Validations
 
             if ( sectionName == null )
-                throw new ArgumentNullException( "sectionName" );
+                throw new ArgumentNullException( nameof( sectionName ) );
 
             #endregion
 

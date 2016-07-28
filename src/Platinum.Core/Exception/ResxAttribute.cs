@@ -17,7 +17,7 @@ namespace Platinum
             #region Validations
 
             if ( resourceName == null )
-                throw new ArgumentNullException( "resourceName" );
+                throw new ArgumentNullException( nameof( resourceName ) );
 
             #endregion
 

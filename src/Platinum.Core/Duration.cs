@@ -134,25 +134,25 @@ namespace Platinum
             #region Validations
 
             if ( years < 0 )
-                throw new ArgumentOutOfRangeException( "years", years, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( years ), years, "Value must be non-negative" );
 
             if ( months < 0 )
-                throw new ArgumentOutOfRangeException( "months", months, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( months ), months, "Value must be non-negative" );
 
             if ( days < 0 )
-                throw new ArgumentOutOfRangeException( "days", days, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( days ), days, "Value must be non-negative" );
 
             if ( hours < 0 )
-                throw new ArgumentOutOfRangeException( "hours", hours, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( hours ), hours, "Value must be non-negative" );
 
             if ( minutes < 0 )
-                throw new ArgumentOutOfRangeException( "minutes", minutes, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( minutes ), minutes, "Value must be non-negative" );
 
             if ( seconds < 0 )
-                throw new ArgumentOutOfRangeException( "seconds", seconds, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( seconds ), seconds, "Value must be non-negative" );
 
             if ( milliseconds < 0 )
-                throw new ArgumentOutOfRangeException( "milliseconds", milliseconds, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( milliseconds ), milliseconds, "Value must be non-negative" );
 
             #endregion
 
@@ -293,10 +293,10 @@ namespace Platinum
             #region Validations
 
             if ( yearLength < 0 )
-                throw new ArgumentOutOfRangeException( "yearLength", yearLength, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( yearLength ), yearLength, "Value must be non-negative" );
 
             if ( monthLength < 0 )
-                throw new ArgumentOutOfRangeException( "monthLength", monthLength, "Value must be non-negative" );
+                throw new ArgumentOutOfRangeException( nameof( monthLength ), monthLength, "Value must be non-negative" );
 
             #endregion
 
@@ -320,7 +320,7 @@ namespace Platinum
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 

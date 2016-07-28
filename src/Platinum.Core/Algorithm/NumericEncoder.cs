@@ -22,15 +22,15 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( characterSet == null )
-                throw new ArgumentNullException( "characterSet" );
+                throw new ArgumentNullException( nameof( characterSet ) );
 
             if ( length < 1 )
-                throw new ArgumentOutOfRangeException( "length", length, "Value must be strictly positive." );
+                throw new ArgumentOutOfRangeException( nameof( length ), length, "Value must be strictly positive." );
 
             #endregion
 
             var r = characterSet.ToCharArray().GroupBy( c => c ).Where( g => g.Count() > 1 );
-            
+
             if ( r.Count() > 0 )
                 throw new AlgorithmException( ER.NumericEncoder_DuplicateCharacterInSet, characterSet, r.ElementAt( 0 ).Key );
 
@@ -69,10 +69,10 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value", "Value must be a non-empty string" );
+                throw new ArgumentOutOfRangeException( nameof( value ), "Value must be a non-empty string" );
 
             #endregion
 
@@ -107,7 +107,7 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( number < 0 )
-                throw new ArgumentOutOfRangeException( "number", number, "Value must be non-negative." );
+                throw new ArgumentOutOfRangeException( nameof( number ), number, "Value must be non-negative." );
 
             #endregion
 
@@ -120,7 +120,7 @@ namespace Platinum.Algorithm
 
             while ( index < this.EncodedLength )
             {
-                int res = ( (int) Math.Floor( number / Math.Pow( this.CharacterSet.Length, index ) ) % this.CharacterSet.Length );
+                int res = ((int) Math.Floor( number / Math.Pow( this.CharacterSet.Length, index ) ) % this.CharacterSet.Length);
                 list.Add( this.CharacterSet[ res ].ToString() );
 
                 index++;
@@ -142,7 +142,7 @@ namespace Platinum.Algorithm
             #region Validations
 
             if ( characterSet == null )
-                throw new ArgumentNullException( "characterSet" );
+                throw new ArgumentNullException( nameof( characterSet ) );
 
             #endregion
 

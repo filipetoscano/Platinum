@@ -72,9 +72,6 @@ namespace Platinum.Resolver
 
             if ( absoluteUri.Scheme == "assembly" )
             {
-                //if ( absoluteUri.Segments.Length != 2 )
-                //    throw new ResolverException( ER.UrlResolver_Assembly_SegmentCount, absoluteUri.OriginalString );
-
                 string assemblyName = absoluteUri.Segments[ 1 ].TrimEnd( '/' );
                 string resourceName;
 

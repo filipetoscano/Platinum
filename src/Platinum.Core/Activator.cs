@@ -17,7 +17,7 @@ namespace Platinum
             #region Validations
 
             if ( type == null )
-                throw new ArgumentNullException( "type" );
+                throw new ArgumentNullException( nameof( type ) );
 
             #endregion
 
@@ -50,7 +50,7 @@ namespace Platinum
             #region Validations
 
             if ( moniker == null )
-                throw new ArgumentNullException( "moniker" );
+                throw new ArgumentNullException( nameof( moniker ) );
 
             #endregion
 
@@ -82,10 +82,10 @@ namespace Platinum
             #region Validations
 
             if ( assemblyName == null )
-                throw new ArgumentNullException( "assemblyName" );
+                throw new ArgumentNullException( nameof( assemblyName ) );
 
             if ( typeName == null )
-                throw new ArgumentNullException( "typeName" );
+                throw new ArgumentNullException( nameof( typeName ) );
 
             #endregion
 

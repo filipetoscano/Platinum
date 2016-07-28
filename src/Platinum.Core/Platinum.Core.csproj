@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Resolver\Configuration-Partial.cs" />
+    <Compile Include="Resolver\RelfileResolver.cs" />
     <Compile Include="Resolver\IUrlResolver.cs" />
     <Compile Include="Web\MimeTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

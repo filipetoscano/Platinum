@@ -14,10 +14,10 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value", "String must not be empty." );
+                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
 
             #endregion
 
@@ -38,10 +38,10 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value", "String must not be empty." );
+                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
 
             #endregion
 
@@ -69,10 +69,10 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value", "String must not be empty." );
+                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
 
             #endregion
 
@@ -98,10 +98,10 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value", "String must not be empty." );
+                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
 
             #endregion
 

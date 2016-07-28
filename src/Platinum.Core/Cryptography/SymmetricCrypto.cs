@@ -17,7 +17,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( name == null )
-                throw new ArgumentNullException( "name" );
+                throw new ArgumentNullException( nameof( name ) );
 
             #endregion
 
@@ -30,10 +30,10 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( key == null )
-                throw new ArgumentNullException( "key" );
+                throw new ArgumentNullException( nameof( key ) );
 
             if ( iv == null )
-                throw new ArgumentNullException( "iv" );
+                throw new ArgumentNullException( nameof( iv ) );
 
             #endregion
 
@@ -69,7 +69,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 
@@ -120,7 +120,7 @@ namespace Platinum.Cryptography
             #region Validations
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             #endregion
 
@@ -190,7 +190,7 @@ namespace Platinum.Cryptography
                 }
                 catch ( FormatException )
                 {
-                    throw new CryptographicException( ER.SymmetricCrypto_Config_InvalidKey, keyName );
+                    throw new CryptographyException( ER.SymmetricCrypto_Config_InvalidKey, keyName );
                 }
 
                 try
@@ -199,7 +199,7 @@ namespace Platinum.Cryptography
                 }
                 catch ( FormatException )
                 {
-                    throw new CryptographicException( ER.SymmetricCrypto_Config_InvalidIv, ivName );
+                    throw new CryptographyException( ER.SymmetricCrypto_Config_InvalidIv, ivName );
                 }
 
 

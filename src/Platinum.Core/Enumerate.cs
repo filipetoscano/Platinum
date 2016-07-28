@@ -17,10 +17,10 @@ namespace Platinum
             #region Validation
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value" );
+                throw new ArgumentOutOfRangeException( nameof( value ) );
 
             #endregion
 
@@ -55,10 +55,10 @@ namespace Platinum
             #region Validation
 
             if ( value == null )
-                throw new ArgumentNullException( "value" );
+                throw new ArgumentNullException( nameof( value ) );
 
             if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( "value" );
+                throw new ArgumentOutOfRangeException( nameof( value ) );
 
             #endregion
 
