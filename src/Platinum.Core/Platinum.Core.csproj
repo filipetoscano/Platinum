@@ -82,6 +82,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Cryptography\CertificateCrypto.cs" />
+    <Compile Include="Cryptography\HashFormat.cs" />
     <Compile Include="Cryptography\HashAlgorithm.cs" />
     <Compile Include="Cryptography\SymmetricCryptoAlgorithm.cs" />
     <Compile Include="Cryptography\Errors.cs">

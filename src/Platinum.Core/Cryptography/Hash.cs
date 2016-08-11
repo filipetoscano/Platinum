@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using HA = System.Security.Cryptography.HashAlgorithm;
@@ -9,68 +8,85 @@ namespace Platinum.Cryptography
 {
     public static class Hash
     {
+        private static readonly uint[] _lookup32 = CreateLookup32();
+
+
         /// <summary>
-        /// Computes the SHA1 hash of the string value.
+        /// Computes the hash of a string value, using the given hashing
+        /// algorithm.
         /// </summary>
-        /// <param name="value">String value.</param>
-        /// <returns>SHA1 hash.</returns>
-        [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha" )]
-        public static string Sha1( string value )
+        /// <param name="algorithm">
+        /// Hashing algorithm.
+        /// </param>
+        /// <param name="value">
+        /// String value.
+        /// </param>
+        /// <param name="format">
+        /// Format in which the hash should be returned.
+        /// </param>
+        /// <returns>
+        /// The computed hash, in the desired format.
+        /// </returns>
+        public static string Compute( HashAlgorithm algorithm, string value, HashFormat format = HashFormat.Hex )
         {
             #region Validations
 
             if ( value == null )
                 throw new ArgumentNullException( nameof( value ) );
 
-            if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
-
             #endregion
 
-            using ( HA sha1 = new SHA1Managed() )
+            using ( HA ha = For( algorithm ) )
             {
                 byte[] plainTextBytes = Encoding.UTF8.GetBytes( value );
 
-                byte[] hashBytes = sha1.ComputeHash( plainTextBytes );
+                byte[] hashBytes = ha.ComputeHash( plainTextBytes );
 
-                return Convert.ToBase64String( hashBytes );
+                if ( format == HashFormat.Base64 )
+                    return Convert.ToBase64String( hashBytes );
+                else
+                    return ByteArrayToHex( hashBytes );
             }
         }
 
 
         /// <summary>
-        /// Computes the SHA1 hash of the string value.
+        /// Computes the hash value for the specified byte array,
+        /// using the given algorithm.
         /// </summary>
-        /// <param name="value">String value.</param>
-        /// <returns>SHA1 hash.</returns>
-        [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha" )]
-        public static string Sha1Hex( string value )
+        /// <param name="algorithm">
+        /// Hashing algorithm.
+        /// </param>
+        /// <param name="bytes">
+        /// The input to compute the hash code for.
+        /// </param>
+        /// <param name="format">
+        /// Format in which the hash should be returned.
+        /// </param>
+        /// <returns>
+        /// The computed hash, in the desired format.
+        /// </returns>
+        public static string Compute( HashAlgorithm algorithm, byte[] bytes, HashFormat format = HashFormat.Hex )
         {
             #region Validations
 
-            if ( value == null )
-                throw new ArgumentNullException( nameof( value ) );
+            if ( bytes == null )
+                throw new ArgumentNullException( nameof( bytes ) );
 
-            if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
+            if ( bytes.Length == 0 )
+                throw new ArgumentOutOfRangeException( nameof( bytes ), "Byte array must be non-empty." );
 
             #endregion
 
-            StringBuilder hash = new StringBuilder();
-
-            using ( HA sha1 = new SHA1Managed() )
+            using ( HA ha = For( algorithm ) )
             {
-                byte[] plainTextBytes = Encoding.UTF8.GetBytes( value );
+                byte[] hashBytes = ha.ComputeHash( bytes );
 
-                byte[] hashBytes = sha1.ComputeHash( plainTextBytes );
-
-                for ( int i = 0; i < hashBytes.Length; i++ )
-                {
-                    hash.Append( hashBytes[ i ].ToString( "x2", CultureInfo.InvariantCulture ) );
-                }
+                if ( format == HashFormat.Base64 )
+                    return Convert.ToBase64String( hashBytes );
+                else
+                    return ByteArrayToHex( hashBytes );
             }
-
-            return hash.ToString();
         }
 
 
@@ -78,34 +94,34 @@ namespace Platinum.Cryptography
         /// Computes the MD5 hash of the string value.
         /// </summary>
         /// <param name="value">String value.</param>
-        /// <returns>SHA1 hash.</returns>
-        [SuppressMessage( "Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Md" )]
-        public static string Md5( string value )
+        /// <returns>MD5 hash, in hex format.</returns>
+        public static string MD5( string value )
         {
-            #region Validations
-
-            if ( value == null )
-                throw new ArgumentNullException( nameof( value ) );
-
-            if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( nameof( value ), "String must not be empty." );
-
-            #endregion
-
-            StringBuilder hash = new StringBuilder();
-
-            using ( MD5 md5 = MD5.Create() )
-            {
-                byte[] data = md5.ComputeHash( Encoding.UTF8.GetBytes( value ) );
-
-                for ( int i = 0; i < data.Length; i++ )
-                {
-                    hash.Append( data[ i ].ToString( "x2", CultureInfo.InvariantCulture ) );
-                }
-            }
-
-            return hash.ToString();
+            return Compute( HashAlgorithm.MD5, value, HashFormat.Hex );
         }
+
+
+        /// <summary>
+        /// Computes the SHA1 hash of the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>SHA1 hash, in hex format.</returns>
+        public static string SHA1( string value )
+        {
+            return Compute( HashAlgorithm.SHA1, value, HashFormat.Hex );
+        }
+
+
+        /// <summary>
+        /// Computes the SHA512 hash of the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>SHA512 hash, in hex format.</returns>
+        public static string SHA512( string value )
+        {
+            return Compute( HashAlgorithm.SHA512, value, HashFormat.Hex );
+        }
+
 
 
         [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha" )]
@@ -183,6 +199,66 @@ namespace Platinum.Cryptography
             }
 
             return base64String;
+        }
+
+
+        private static HA For( HashAlgorithm algorithm )
+        {
+            switch ( algorithm )
+            {
+                case HashAlgorithm.MD5:
+                    return System.Security.Cryptography.MD5.Create();
+
+                case HashAlgorithm.SHA1:
+                    return new SHA1Managed();
+
+                case HashAlgorithm.SHA256:
+                    return new SHA256Managed();
+
+                case HashAlgorithm.SHA384:
+                    return new SHA384Managed();
+
+                case HashAlgorithm.SHA512:
+                    return new SHA512Managed();
+            }
+
+            throw new NotSupportedException();
+        }
+
+
+        private static uint[] CreateLookup32()
+        {
+            var result = new uint[ 256 ];
+            for ( int i = 0; i < 256; i++ )
+            {
+                string s = i.ToString( "x2" );
+                result[ i ] = ((uint) s[ 0 ]) + ((uint) s[ 1 ] << 16);
+            }
+
+            return result;
+        }
+
+
+        private static string ByteArrayToHex( byte[] bytes )
+        {
+            #region Validation
+
+            if ( bytes == null )
+                throw new ArgumentNullException( nameof( bytes ) );
+
+            #endregion
+
+            var lookup32 = _lookup32;
+            var result = new char[ bytes.Length * 2 ];
+
+            for ( int i = 0; i < bytes.Length; i++ )
+            {
+                var val = lookup32[ bytes[ i ] ];
+                result[ 2 * i ] = (char) val;
+                result[ 2 * i + 1 ] = (char) (val >> 16);
+            }
+
+            return new string( result );
         }
     }
 }

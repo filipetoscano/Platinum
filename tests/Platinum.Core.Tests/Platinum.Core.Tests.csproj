@@ -51,6 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Cryptography\SymmetricCryptoTest.cs" />
+    <Compile Include="Cryptography\HashTest.cs" />
     <Compile Include="Custom2Resolver.cs" />
     <Compile Include="ResolverTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
