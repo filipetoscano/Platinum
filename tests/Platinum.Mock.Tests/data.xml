@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <set name="type/byte[]">
+        <v>~/path.gif</v>
+        <v>base64:A==</v>
+    </set>
+
+    <set name="type/bool">
+        <v>true</v>
+    </set>
+
+    <set name="type/byte">
+        <v>a</v>
+        <v>b</v>
+        <v>c</v>
+    </set>
+
+    <set name="type/char">
+        <v>a</v>
+        <v>b</v>
+        <v>c</v>
+    </set>
+
+    <set name="type/date">
+        <v>2001-01-01</v>
+        <v>2002-02-02</v>
+        <v>2003-03-03</v>
+    </set>
+
+    <set name="type/dateTime">
+        <v>2001-01-01T01:01:01</v>
+        <v>2002-02-02T02:02:02</v>
+        <v>2003-03-03T03:03:03</v>
+    </set>
+
+    <set name="type/decimal">
+        <v>1.11</v>
+        <v>2.22</v>
+        <v>3.33</v>
+    </set>
+
+    <set name="type/double">
+        <v>4.44</v>
+        <v>5.55</v>
+        <v>6.66</v>
+    </set>
+
+    <set name="type/integer">
+        <v>1</v>
+        <v>2</v>
+        <v>3</v>
+    </set>
+
+    <set name="type/long">
+        <v>4</v>
+        <v>5</v>
+        <v>6</v>
+    </set>
+
+    <set name="type/short">
+        <v>7</v>
+        <v>8</v>
+        <v>9</v>
+    </set>
+
+    <set name="type/single">
+        <v>7.77</v>
+        <v>8.88</v>
+        <v>9.99</v>
+    </set>
+
+    <set name="type/string">
+        <v>Black</v>
+        <v>Smith</v>
+        <v>White</v>
+    </set>
+
+    <set name="type/time">
+        <v>01:01:01</v>
+        <v>02:02:02</v>
+        <v>03:03:03</v>
+    </set>
+</data>

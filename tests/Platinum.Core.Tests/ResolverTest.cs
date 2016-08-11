@@ -12,6 +12,28 @@ namespace Platinum.Core.Tests
     public class ResolverTest
     {
         [TestMethod]
+        public void SchemeRelfile()
+        {
+            UrlResolver resolver = new UrlResolver();
+
+            XmlReaderSettings xrs = new XmlReaderSettings();
+            xrs.XmlResolver = resolver;
+
+            XmlDocument doc = new XmlDocument();
+
+            using ( XmlReader xr = XmlReader.Create( "relfile:///Resolver/hello.xml", xrs ) )
+            {
+                doc.Load( xr );
+            }
+
+            Assert.IsNotNull( doc );
+            Assert.IsNotNull( doc.DocumentElement );
+            Assert.IsNotNull( doc.DocumentElement.LocalName );
+            Assert.AreEqual( "hi", doc.DocumentElement.LocalName );
+        }
+
+
+        [TestMethod]
         public void SchemeAssembly1()
         {
             UrlResolver resolver = new UrlResolver();

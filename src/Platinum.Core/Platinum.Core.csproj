@@ -82,6 +82,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Cryptography\CertificateCrypto.cs" />
+    <Compile Include="Cryptography\HashAlgorithm.cs" />
     <Compile Include="Cryptography\SymmetricCryptoAlgorithm.cs" />
     <Compile Include="Cryptography\Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>
@@ -118,6 +119,7 @@
     <Compile Include="Configuration\KeyValueConfigurationElement.cs" />
     <Compile Include="Exception\ResxActorException.cs" />
     <Compile Include="Exception\ResxAttribute.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Globalization\Configuration.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -135,7 +137,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Mirror.cs" />
     <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="Resolver\Configuration-Partial.cs" />
     <Compile Include="Resolver\RelfileResolver.cs" />
     <Compile Include="Resolver\IUrlResolver.cs" />

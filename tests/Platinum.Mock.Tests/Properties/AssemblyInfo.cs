@@ -4,7 +4,7 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 // Assembly information
-[assembly: AssemblyTitle( "Data Tests" )]
+[assembly: AssemblyTitle( "Mock Tests" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 // Additional information
 [assembly: CLSCompliant( true )]
 [assembly: ComVisible( false )]
-[assembly: Guid( "39e1e4ca-bb63-484d-b736-a08b7a83bad2" )]
+[assembly: Guid( "2a988ae7-6634-461d-93e8-c7e5c0bcbba4" )]
 [assembly: NeutralResourcesLanguage( "en-GB" )]
 
 // Version information

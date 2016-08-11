@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- $Id: automation.proj 58 2015-07-16 20:13:27Z lft $ -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
     DefaultTargets="help">
     <PropertyGroup>
@@ -25,6 +24,8 @@
     ~ 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <Target Name="clean">
+        <MSBuild Projects="Platinum.sln" Properties="Configuration=Debug"  Targets="Clean" />
+        <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" Targets="Clean" />
     </Target>
 
 
@@ -45,6 +46,7 @@
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
         <Exec Command=" nuget pack Platinum.Core.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Core" />
         <Exec Command=" nuget pack Platinum.Data.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Data" />
+        <Exec Command=" nuget pack Platinum.Mock.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Mock" />
     </Target>
 
 
@@ -58,6 +60,7 @@
         <Error Condition=" $(nugetPushKey) == '' " Text="Must specify 'nugetPushKey' when pushing to nuget source." />
         <Exec Command=" nuget push Platinum.Core.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Core" />
         <Exec Command=" nuget push Platinum.Data.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Data" />
+        <Exec Command=" nuget push Platinum.Mock.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Mock" />
     </Target>
 
 </Project>

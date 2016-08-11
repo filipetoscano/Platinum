@@ -4,7 +4,7 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 // Assembly information
-[assembly: AssemblyTitle( "" )]
+[assembly: AssemblyTitle( "Core Tests" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]

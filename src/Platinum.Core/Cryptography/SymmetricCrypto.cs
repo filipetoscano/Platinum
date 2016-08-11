@@ -1,5 +1,6 @@
 ﻿using Platinum.Configuration;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,6 +13,12 @@ namespace Platinum.Cryptography
         private SymmetricAlgorithm _algo;
 
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="SymmetricCrypto" />, which will
+        /// be initialized by reading configuration values directly from application
+        /// configuration file.
+        /// </summary>
+        /// <param name="name">Name of values set.</param>
         public SymmetricCrypto( string name )
         {
             #region Validations
@@ -61,9 +68,12 @@ namespace Platinum.Cryptography
             SymmetricAlgorithm algo = For( algorithm );
             algo.Key = bkey;
             algo.IV = biv;
+
+            _algo = algo;
         }
 
 
+        [SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
         public string Decrypt( string value )
         {
             #region Validations
@@ -78,11 +88,11 @@ namespace Platinum.Cryptography
              * 
              */
             EnsureInitialize();
-            ICryptoTransform c;
+            ICryptoTransform decryptor;
 
             try
             {
-                c = _algo.CreateDecryptor();
+                decryptor = _algo.CreateDecryptor();
             }
             catch ( CryptographicException ex )
             {
@@ -93,28 +103,27 @@ namespace Platinum.Cryptography
             /*
              * 
              */
-            string r;
+            byte[] crypted = Convert.FromBase64String( value );
+            byte[] raw;
 
-            using ( c )
+            using ( decryptor )
             {
-                MemoryStream ms = new MemoryStream( Convert.FromBase64String( value ) );
-                CryptoStream cs = new CryptoStream( ms, c, CryptoStreamMode.Read );
-                StreamReader sr = new StreamReader( cs, Encoding.UTF8 );
+                using ( MemoryStream ms = new MemoryStream() )
+                {
+                    using ( CryptoStream cs = new CryptoStream( ms, decryptor, CryptoStreamMode.Write ) )
+                    {
+                        cs.Write( crypted, 0, crypted.Length );
+                    }
 
-                try
-                {
-                    r = sr.ReadToEnd();
-                }
-                catch ( CryptographicException ex )
-                {
-                    throw new CryptographyException( ER.SymmetricCrypto_Decrypt_Fail, ex, _algo.GetType().FullName );
+                    raw = ms.ToArray();
                 }
             }
 
-            return r;
+            return Encoding.UTF8.GetString( raw );
         }
 
 
+        [SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
         public string Encrypt( string value )
         {
             #region Validations
@@ -129,11 +138,11 @@ namespace Platinum.Cryptography
              * 
              */
             EnsureInitialize();
-            ICryptoTransform c;
+            ICryptoTransform encryptor;
 
             try
             {
-                c = _algo.CreateEncryptor();
+                encryptor = _algo.CreateEncryptor();
             }
             catch ( CryptographicException ex )
             {
@@ -144,19 +153,23 @@ namespace Platinum.Cryptography
             /*
              * 
              */
-            MemoryStream ms;
+            byte[] raw = Encoding.UTF8.GetBytes( value );
+            byte[] crypted;
 
-            using ( c )
+            using ( encryptor )
             {
-                ms = new MemoryStream();
+                using ( MemoryStream ms = new MemoryStream() )
+                {
+                    using ( CryptoStream cs = new CryptoStream( ms, encryptor, CryptoStreamMode.Write ) )
+                    {
+                        cs.Write( raw, 0, raw.Length );
+                    }
 
-                CryptoStream cs = new CryptoStream( ms, c, CryptoStreamMode.Write );
-                StreamWriter sw = new StreamWriter( cs, Encoding.UTF8 );
-
-                sw.Write( value );
+                    crypted = ms.ToArray();
+                }
             }
 
-            return Convert.ToBase64String( ms.ToArray() );
+            return Convert.ToBase64String( crypted );
         }
 
 

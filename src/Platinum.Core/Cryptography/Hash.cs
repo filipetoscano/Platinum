@@ -3,11 +3,17 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
+using HA = System.Security.Cryptography.HashAlgorithm;
 
 namespace Platinum.Cryptography
 {
     public static class Hash
     {
+        /// <summary>
+        /// Computes the SHA1 hash of the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>SHA1 hash.</returns>
         [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha" )]
         public static string Sha1( string value )
         {
@@ -21,7 +27,7 @@ namespace Platinum.Cryptography
 
             #endregion
 
-            using ( HashAlgorithm sha1 = new SHA1Managed() )
+            using ( HA sha1 = new SHA1Managed() )
             {
                 byte[] plainTextBytes = Encoding.UTF8.GetBytes( value );
 
@@ -32,6 +38,11 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Computes the SHA1 hash of the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>SHA1 hash.</returns>
         [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha" )]
         public static string Sha1Hex( string value )
         {
@@ -47,7 +58,7 @@ namespace Platinum.Cryptography
 
             StringBuilder hash = new StringBuilder();
 
-            using ( HashAlgorithm sha1 = new SHA1Managed() )
+            using ( HA sha1 = new SHA1Managed() )
             {
                 byte[] plainTextBytes = Encoding.UTF8.GetBytes( value );
 
@@ -63,6 +74,11 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Computes the MD5 hash of the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>SHA1 hash.</returns>
         [SuppressMessage( "Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "Md" )]
         public static string Md5( string value )
         {
