@@ -1,11 +1,7 @@
 ﻿using Platinum.Resolver;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Platinum.Core.Tests
+namespace Platinum.Core.Tests.Resolver
 {
     public class Custom2Resolver : IUrlResolver
     {

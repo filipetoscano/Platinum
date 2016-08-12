@@ -32,6 +32,13 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="SymmetricCrypto" /> by
+        /// explicitly specifying the parameters.
+        /// </summary>
+        /// <param name="algorithm">Symmetric encryption algorithm.</param>
+        /// <param name="key">Secret key, in base 64.</param>
+        /// <param name="iv">Initialization vector, in base 64.</param>
         public SymmetricCrypto( SymmetricCryptoAlgorithm algorithm, string key, string iv )
         {
             #region Validations
@@ -73,6 +80,38 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="SymmetricCrypto" /> by
+        /// explicitly specifying the parameters.
+        /// </summary>
+        /// <param name="algorithm">Symmetric encryption algorithm.</param>
+        /// <param name="key">Secret key.</param>
+        /// <param name="iv">Initialization vector.</param>
+        public SymmetricCrypto( SymmetricCryptoAlgorithm algorithm, byte[] key, byte[] iv )
+        {
+            #region Validations
+
+            if ( key == null )
+                throw new ArgumentNullException( nameof( key ) );
+
+            if ( iv == null )
+                throw new ArgumentNullException( nameof( iv ) );
+
+            #endregion
+
+            SymmetricAlgorithm algo = For( algorithm );
+            algo.Key = key;
+            algo.IV = iv;
+
+            _algo = algo;
+        }
+
+
+        /// <summary>
+        /// Decrypts the string value.
+        /// </summary>
+        /// <param name="value">Encrypted value, in base64.</param>
+        /// <returns>Decrypted value.</returns>
         [SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
         public string Decrypt( string value )
         {
@@ -123,6 +162,11 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Encrypts the string value.
+        /// </summary>
+        /// <param name="value">Value.</param>
+        /// <returns>Encrypted value.</returns>
         [SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
         public string Encrypt( string value )
         {
@@ -184,7 +228,7 @@ namespace Platinum.Cryptography
                     return;
 
                 string keyName = _name + ":Key";
-                string ivName = _name = ":Iv";
+                string ivName = _name + ":Iv";
 
                 SymmetricCryptoAlgorithm name = AppConfiguration.Get<SymmetricCryptoAlgorithm>( _name + ":Algorithm" );
                 string key = AppConfiguration.Get<string>( keyName );
@@ -228,6 +272,12 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Returns an instance of <see cref="SymmetricAlgorithm"/> for the given
+        /// symmetric encryption algorithm.
+        /// </summary>
+        /// <param name="algorithm">Algorithm.</param>
+        /// <returns>Instance of <see cref="SymmetricAlgorithm"/>.</returns>
         private static SymmetricAlgorithm For( SymmetricCryptoAlgorithm algorithm )
         {
             SymmetricAlgorithm obj;

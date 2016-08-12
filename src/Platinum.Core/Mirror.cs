@@ -13,7 +13,7 @@ namespace Platinum
         /// <typeparam name="T">Type of object to be mirrored to.</typeparam>
         /// <param name="obj">Instance to be mirrored from.</param>
         /// <returns>Instance of type T.</returns>
-        public static T To<T>( this object obj ) where T : class
+        public static T To<T>( object obj ) where T : class
         {
             if ( obj == null )
                 return null;

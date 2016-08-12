@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Platinum.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace Platinum.Algorithm
         /// character set and encoding length.
         /// </summary>
         /// <param name="characterSet">String containing all valid characters.</param>
-        /// <param name="length"></param>
+        /// <param name="length">Minimal encoded length.</param>
         public NumericEncoder( string characterSet, int length )
         {
             #region Validations
@@ -50,7 +51,7 @@ namespace Platinum.Algorithm
 
 
         /// <summary>
-        /// Gets the .
+        /// Gets the minimum length of the encoded string.
         /// </summary>
         public int EncodedLength
         {
@@ -133,18 +134,27 @@ namespace Platinum.Algorithm
              * 
              */
             string code = string.Join( "", list.ToArray() );
-            return code.PadLeft( this.EncodedLength, '0' );
+            return code.PadLeft( this.EncodedLength, this.CharacterSet[ 0 ] );
         }
 
 
-        public static NumericEncoder Build( string characterSet, int length )
+        /// <summary>
+        /// Builds a numeric encoder, reading the values from the
+        /// application configuration file.
+        /// </summary>
+        /// <param name="name">Logical name of numeric encoder.</param>
+        /// <returns>Instance of <see cref="NumericEncoder" />.</returns>
+        public static NumericEncoder Build( string name )
         {
             #region Validations
 
-            if ( characterSet == null )
-                throw new ArgumentNullException( nameof( characterSet ) );
+            if ( name == null )
+                throw new ArgumentNullException( nameof( name ) );
 
             #endregion
+
+            string characterSet = AppConfiguration.Get<string>( name + ":CharacterSet" );
+            int length = AppConfiguration.Get<int>( name + ":Length" );
 
             return new NumericEncoder( characterSet, length );
         }

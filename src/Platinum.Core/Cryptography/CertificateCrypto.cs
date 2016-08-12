@@ -12,6 +12,17 @@ namespace Platinum.Cryptography
         private string _name;
         private X509Certificate2 _certificate;
 
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="SymmetricCrypto" />, which will
+        /// be initialized by reading configuration values directly from application
+        /// configuration file.
+        /// </summary>
+        /// <param name="name">Logical name of the certificate.</param>
+        /// <remarks>
+        /// The logical name of the certificate will be used as key to load the
+        /// X509 certificate from the (local) certificate store.
+        /// </remarks>
         public CertificateCrypto( string name )
         {
             #region Validations
@@ -36,6 +47,11 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Encrypts the byte array.
+        /// </summary>
+        /// <param name="buffer">Raw byte array.</param>
+        /// <returns>Encrypted byte array.</returns>
         public byte[] EncryptBuffer( byte[] buffer )
         {
             #region Validations
@@ -75,7 +91,12 @@ namespace Platinum.Cryptography
         }
 
 
-        public string EncryptValue( string value )
+        /// <summary>
+        /// Encrypts the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>Encrypted value, in base 64.</returns>
+        public string Encrypt( string value )
         {
             #region Validations
 
@@ -91,6 +112,11 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Decrypts the byte array.
+        /// </summary>
+        /// <param name="buffer">Encrypted byte array.</param>
+        /// <returns>Decrypted byte array.</returns>
         public byte[] DecryptBuffer( byte[] buffer )
         {
             #region Validations
@@ -134,7 +160,12 @@ namespace Platinum.Cryptography
         }
 
 
-        public string DecryptValue( string value )
+        /// <summary>
+        /// Decrypts the string value.
+        /// </summary>
+        /// <param name="value">Encrypted value, in base 64.</param>
+        /// <returns>Decrypted value.</returns>
+        public string Decrypt( string value )
         {
             #region Validations
 

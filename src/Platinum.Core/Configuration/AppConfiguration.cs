@@ -72,7 +72,7 @@ namespace Platinum.Configuration
             Type tt = typeof( T );
             T t;
 
-            if ( tt.IsEnum )
+            if ( tt.IsEnum == true )
             {
                 try
                 {

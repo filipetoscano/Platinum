@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace Platinum.Core.Tests
+namespace Platinum.Core.Tests.Resolver
 {
     public class Custom1Resolver : IUrlResolver
     {

@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Xml;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Platinum.Resolver;
-using System.Xml.XPath;
-using System.Xml.Xsl;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Xsl;
 
-namespace Platinum.Core.Tests
+namespace Platinum.Core.Tests.Resolver
 {
     [TestClass]
     public class ResolverTest
