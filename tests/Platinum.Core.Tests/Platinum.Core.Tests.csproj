@@ -54,6 +54,7 @@
     <Compile Include="Algorithm\NumericEncoderTest.cs" />
     <Compile Include="Cryptography\SymmetricCryptoTest.cs" />
     <Compile Include="Cryptography\HashTest.cs" />
+    <Compile Include="IO\FsPathTest.cs" />
     <Compile Include="Resolver\Custom2Resolver.cs" />
     <Compile Include="Resolver\ResolverTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
