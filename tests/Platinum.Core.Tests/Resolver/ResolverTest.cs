@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Platinum.Resolver;
+using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Xml;
 using System.Xml.Xsl;
 
@@ -12,6 +14,26 @@ namespace Platinum.Core.Tests.Resolver
         [TestMethod]
         public void SchemeRelfile()
         {
+            /*
+             * We won't bother supporting running MSTest, since that would
+             * require a change to RelfileResolver.
+             */
+            if ( Assembly.GetExecutingAssembly().Location.Contains( @"\TestResults\" ) == true )
+                return;
+
+
+            /*
+             * 
+             */
+            string p = "";
+
+            if ( AppDomain.CurrentDomain.FriendlyName.StartsWith( "UnitTestAdapter" ) == true )
+                p = "../../";
+
+
+            /*
+             * 
+             */
             UrlResolver resolver = new UrlResolver();
 
             XmlReaderSettings xrs = new XmlReaderSettings();
@@ -19,7 +41,7 @@ namespace Platinum.Core.Tests.Resolver
 
             XmlDocument doc = new XmlDocument();
 
-            using ( XmlReader xr = XmlReader.Create( "relfile:///Resolver/hello.xml", xrs ) )
+            using ( XmlReader xr = XmlReader.Create( $"relfile:///{ p }Resolver/hello.xml", xrs ) )
             {
                 doc.Load( xr );
             }

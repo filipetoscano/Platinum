@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 
 namespace Platinum.Resolver
 {
@@ -10,14 +9,19 @@ namespace Platinum.Resolver
         {
             if ( baseUri == null )
             {
+                /*
+                 * Not a magic number :P
+                 * 
+                 * relfile:///
+                 * 0123456789A
+                 */
+                string path = relativeUri.Substring( 11 );
+
+
+                /*
+                 * 
+                 */
                 string rel = AppDomain.CurrentDomain.BaseDirectory;
-                string path = new Uri( relativeUri ).LocalPath;
-
-                if ( AppDomain.CurrentDomain.FriendlyName.StartsWith( "UnitTestAdapter" ) == true )
-                    path = "../.." + path;
-                else
-                    path = "." + path;
-
                 string file = Path.Combine( rel, path );
 
                 return new Uri( file, UriKind.Absolute );
