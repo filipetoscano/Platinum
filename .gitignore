@@ -5,10 +5,13 @@
 src/**/ER.resx
 src/**/Errors.cs
 src/**/Exceptions.cs
+src/**/Configuration.cs
 src/**/bin/
 src/**/obj/
 tests/**/bin/
 tests/**/obj/
+tests/Platinum.Core.Tests/Configuration/Configuration.cs
 push.bat
 packages/
 TestResults/
+
