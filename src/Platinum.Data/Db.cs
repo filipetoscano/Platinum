@@ -53,7 +53,7 @@ namespace Platinum.Data
         }
 
 
-        public static string Sql( string commandName )
+        public static string Command( string commandName )
         {
             #region Validations
 
@@ -66,11 +66,12 @@ namespace Platinum.Data
              * 
              */
             Assembly assembly = Assembly.GetCallingAssembly();
-            string resourceName = assembly.FullName.Split( ',' )[ 0 ] + "." + commandName.Replace( "/", "." ) + ".sql";
+            string fqName = assembly.FullName.Split( ',' )[ 0 ] + "." + commandName.Replace( "/", "." );
+            string resourceName = fqName + ".sql";
             Stream stream = assembly.GetManifestResourceStream( resourceName );
 
             if ( stream == null )
-                throw new DataException( ER.Sql_CommandNotFound, assembly.FullName, commandName, resourceName );
+                throw new DataException( ER.Command_CommandNotFound, assembly.FullName, commandName, resourceName );
 
             /*
              * 
@@ -82,15 +83,22 @@ namespace Platinum.Data
                 sql = reader.ReadToEnd();
             }
 
+
+            /*
+             * 
+             */
+            string prefix = $"/*# { fqName } #*/";
+
+
             /*
              * 
              */
             int ix = sql.IndexOf( "--//" );
 
             if ( ix > -1 )
-                return sql.Substring( ix + 4 );
+                return prefix + sql.Substring( ix + 4 );
             else
-                return sql;
+                return prefix + sql;
         }
     }
 }

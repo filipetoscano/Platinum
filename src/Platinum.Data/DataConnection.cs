@@ -38,6 +38,7 @@ namespace Platinum.Data
             this._connection = conn;
         }
 
+
         /// <summary>
         /// Gets the name of the connection.
         /// </summary>
@@ -45,6 +46,7 @@ namespace Platinum.Data
         {
             get { return _name; }
         }
+
 
         /// <summary>
         /// Gets or sets the string used to open the connection.
@@ -55,6 +57,7 @@ namespace Platinum.Data
             set { _connection.ConnectionString = value; }
         }
 
+
         /// <summary>
         /// Gets the name of the current database after a connection is opened, or the database
         /// name specified in the connection string before the connection is opened.
@@ -64,6 +67,7 @@ namespace Platinum.Data
             get { return _connection.Database; }
         }
 
+
         /// <summary>
         /// Gets the name of the database server to which to connect.
         /// </summary>
@@ -71,6 +75,7 @@ namespace Platinum.Data
         {
             get { return _connection.DataSource; }
         }
+
 
         /// <summary>
         /// Gets a string that represents the version of the server to which the object is
@@ -81,6 +86,7 @@ namespace Platinum.Data
             get { return _connection.ServerVersion; }
         }
 
+
         /// <summary>
         /// Gets a string that describes the state of the connection.
         /// </summary>
@@ -88,6 +94,7 @@ namespace Platinum.Data
         {
             get { return _connection.State; }
         }
+
 
         /// <summary>
         /// Changes the current database for an open connection.
@@ -100,6 +107,7 @@ namespace Platinum.Data
             _connection.ChangeDatabase( databaseName );
         }
 
+
         /// <summary>
         /// Closes the connection to the database. This is the preferred method of closing
         /// any open connection.
@@ -108,6 +116,7 @@ namespace Platinum.Data
         {
             _connection.Close();
         }
+
 
         /// <summary>
         /// Opens a database connection with the settings specified by the System.Data.Common.DbConnection.ConnectionString.
@@ -137,6 +146,7 @@ namespace Platinum.Data
             }
         }
 
+
         /// <summary>
         /// Starts a database transaction.
         /// </summary>
@@ -147,6 +157,7 @@ namespace Platinum.Data
             return _connection.BeginTransaction( isolationLevel );
         }
 
+
         /// <summary>
         /// Creates and returns a <see cref="DbCommand"/> object associated with the
         /// current connection.
@@ -154,7 +165,8 @@ namespace Platinum.Data
         /// <returns>A <see cref="DbCommand"/> object.</returns>
         protected override DbCommand CreateDbCommand()
         {
-            return _connection.CreateCommand();
+            var cmd = _connection.CreateCommand();
+            return new DataCommand( this.Name, cmd );
         }
     }
 }

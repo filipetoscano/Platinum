@@ -142,6 +142,18 @@ namespace Platinum
              */
             _actor = actor.Replace( "{Application}", App.SafeName );
 
+            if ( args != null && args.Length > 0 && _actor.IndexOf( '{' ) > -1 )
+            {
+                try
+                {
+                    _actor = string.Format( CultureInfo.InvariantCulture, _actor, args );
+                }
+                catch ( FormatException ex )
+                {
+                    _actor = _actor + " | ex:" + ex.Message;
+                }
+            }
+
 
             /*
              * .Description
@@ -157,7 +169,7 @@ namespace Platinum
                 }
                 catch ( FormatException ex )
                 {
-                    _description = description + " | ex:" + ex.Message; 
+                    _description = description + " | ex:" + ex.Message;
                 }
             }
             else

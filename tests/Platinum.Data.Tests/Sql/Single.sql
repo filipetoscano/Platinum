@@ -1,6 +1,4 @@
 ﻿
-select top 1 ActivityId, ExecutionId, Action, Step, XmlMessage, Moment
-from WCF_JOURNAL
-order by Moment desc
+select 1 as Column1, 'hello' as Column2
 
 /* eof */

@@ -19,7 +19,7 @@ namespace Platinum.Data.Tests
 
             try
             {
-                var x = await conn.QuerySingleAsync<dynamic>( Db.Sql( "Sql/Single" ), new { } );
+                var x = await conn.QuerySingleAsync<dynamic>( Q.Single, new { } );
 
                 Assert.Fail( "Expected exception" );
             }
@@ -41,7 +41,7 @@ namespace Platinum.Data.Tests
 
             try
             {
-                var x = await conn.QueryAsync<dynamic>( Db.Sql( "Sql/Query" ), new { } );
+                var x = await conn.QueryAsync<dynamic>( Q.Query, new { } );
             }
             catch ( DbException )
             {
@@ -51,76 +51,6 @@ namespace Platinum.Data.Tests
             {
                 Assert.AreEqual( ex.Message, ER.Open_ConnectFailed );
             }
-        }
-
-
-
-        public async Task QueryMultipleAsync()
-        {
-            DbConnection conn = null;
-            DbTransaction tx = null;
-
-            try
-            {
-                conn = Db.Connection( "TestDb" );
-                await conn.OpenAsync();
-
-                tx = conn.BeginTransaction( IsolationLevel.RepeatableRead );
-
-                using ( var rows = await conn.QueryMultipleAsync( Db.Sql( "Sql/Multi1" ), new
-                {
-                    a = 1,
-                    b = 2
-                }, tx ) )
-                {
-                    dynamic head;
-                    List<dynamic> body;
-                    List<dynamic> more = null;
-
-                    head = rows.Read().Single();
-                    body = rows.Read().ToList();
-
-                    if ( rows.IsConsumed == false )
-                        more = rows.Read().ToList();
-                }
-
-
-                using ( var rows = await conn.QueryMultipleAsync( Db.Sql( "Sql/Multi2" ), new
-                {
-                    a = 1,
-                    b = 2
-                }, tx ) )
-                {
-                    dynamic head;
-                    List<dynamic> body;
-                    List<dynamic> more = null;
-
-                    head = rows.Read().Single();
-                    body = rows.Read().ToList();
-
-                    if ( rows.IsConsumed == false )
-                        more = rows.Read().ToList();
-                }
-
-                tx.Commit();
-            }
-            catch
-            {
-                tx?.Rollback();
-                throw;
-            }
-            finally
-            {
-                conn?.Close();
-            }
-        }
-
-
-        [TestMethod]
-        public async Task QueryMultipleAsync5()
-        {
-            for ( int i = 0; i < 5; i++ )
-                await QueryMultipleAsync();
         }
     }
 }

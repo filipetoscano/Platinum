@@ -29,19 +29,19 @@
     ~ Open
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Open_ConnectFailed" actor="~.Data" code="2001">
+    <error id="Open_ConnectFailed" actor="~.Data.{0}" code="2001">
         <description>Failed to connect to '{0}'.</description>
     </error>
 
-    <error id="Open_LoginFailed" actor="~.Data" code="2002">
+    <error id="Open_LoginFailed" actor="~.Data.{0}" code="2002">
         <description>Failed to connect to '{0}', invalid login.</description>
     </error>
 
-    <error id="Open_DatabaseInvalid" actor="~.Data" code="2003">
+    <error id="Open_DatabaseInvalid" actor="~.Data.{0}" code="2003">
         <description>Failed to connect to '{0}', invalid database.</description>
     </error>
 
-    <error id="Open_Failed" actor="~.Data" code="2004">
+    <error id="Open_Failed" actor="~.Data.{0}" code="2004">
         <description>Failed to connect to '{0}'.</description>
     </error>
 
@@ -51,8 +51,26 @@
     ~ Sql
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Sql_CommandNotFound" actor="~.Data.Internal" code="3001">
+    <error id="Command_CommandNotFound" actor="~.Data.Development" code="3001">
         <description>Command '{0}' in assembly '{1}' not found: no embedded resource with name '{2}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Command
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="ExecuteNonQuery" actor="~.Data.{0}" code="4001">
+        <description>Command '{0}'/'{1}' failed.</description>
+    </error>
+
+    <error id="ExecuteScalar" actor="~.Data.{0}" code="4002">
+        <description>Command '{0}'/'{1}' failed.</description>
+    </error>
+
+    <error id="ExecuteDbDataReader" actor="~.Data.{0}" code="4003">
+        <description>Command '{0}'/'{1}' failed.</description>
     </error>
 
 </errors>

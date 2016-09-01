@@ -16,15 +16,11 @@ namespace Platinum.Data.Tests
         {
             DataConnection conn = Db.Connection( "TestDb" );
 
-            var x = await conn.QuerySingleAsync<dynamic>( Db.Sql( "Sql/Single" ), new { } );
-        }
+            var row = await conn.QuerySingleAsync<dynamic>( Q.Single, new { } );
 
-
-        [TestMethod]
-        public async Task QuerySingleAsync5()
-        {
-            for ( int i = 0; i < 5; i++ )
-                await QuerySingleAsync();
+            Assert.IsNotNull( row );
+            Assert.AreEqual( 1, row.Column1 );
+            Assert.AreEqual( "hello", row.Column2 );
         }
 
 
@@ -33,9 +29,19 @@ namespace Platinum.Data.Tests
         {
             DbConnection conn = Db.Connection( "TestDb" );
 
-            var x = await conn.QueryAsync<dynamic>( Db.Sql( "Sql/Query" ), new { } );
-        }
+            var rows = await conn.QueryAsync<dynamic>( Q.Query, new { } );
 
+            Assert.IsNotNull( rows );
+            Assert.AreEqual( 2, rows.Count() );
+
+            var r1 = rows.First();
+            Assert.AreEqual( 1, r1.Column1 );
+            Assert.AreEqual( "hello", r1.Column2 );
+
+            var r2 = rows.Skip( 1 ).First();
+            Assert.AreEqual( 2, r2.Column1 );
+            Assert.AreEqual( "world", r2.Column2 );
+        }
 
 
         [TestMethod]
@@ -51,7 +57,7 @@ namespace Platinum.Data.Tests
 
                 tx = conn.BeginTransaction( IsolationLevel.RepeatableRead );
 
-                using ( var rows = await conn.QueryMultipleAsync( Db.Sql( "Sql/Multi1" ), new
+                using ( var rows = await conn.QueryMultipleAsync( Q.Multi1, new
                 {
                     a = 1,
                     b = 2
@@ -69,7 +75,7 @@ namespace Platinum.Data.Tests
                 }
 
 
-                using ( var rows = await conn.QueryMultipleAsync( Db.Sql( "Sql/Multi2" ), new
+                using ( var rows = await conn.QueryMultipleAsync( Q.Multi2, new
                 {
                     a = 1,
                     b = 2
@@ -97,14 +103,6 @@ namespace Platinum.Data.Tests
             {
                 conn?.Close();
             }
-        }
-
-
-        [TestMethod]
-        public async Task QueryMultipleAsync5()
-        {
-            for ( int i = 0; i < 5; i++ )
-                await QueryMultipleAsync();
         }
     }
 }

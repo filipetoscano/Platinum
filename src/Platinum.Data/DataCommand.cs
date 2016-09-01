@@ -5,26 +5,55 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Platinum.Data
 {
+    /// <summary>
+    /// Wrapper around concrete <see cref="DbCommand" /> implementation, which
+    /// preserves a link to the logical command-name.
+    /// </summary>
     public class DataCommand : DbCommand
     {
         private string _conn;
+        private string _name;
         private DbCommand _command;
 
 
-        public DataCommand( DataConnection conn, DbCommand command )
+        /// <summary>
+        /// Initializes a new instance of 
+        /// </summary>
+        /// <param name="connection">Logical name of the connection.</param>
+        /// <param name="command"></param>
+        internal DataCommand( string connection, DbCommand command )
         {
             #region Validations
 
-            if ( conn == null )
-                throw new ArgumentNullException( nameof( conn ) );
+            if ( connection == null )
+                throw new ArgumentNullException( nameof( connection ) );
 
             if ( command == null )
                 throw new ArgumentNullException( nameof( command ) );
 
             #endregion
 
-            _conn = conn.Name;
+            _conn = connection;
+            _name = PeekCommandName( command.CommandText );
             _command = command;
+        }
+
+
+        /// <summary>
+        /// Gets the logical name of the connection.
+        /// </summary>
+        public string ConnectionName
+        {
+            get { return _conn; }
+        }
+
+
+        /// <summary>
+        /// Gets the logical name of the command.
+        /// </summary>
+        public string CommandName
+        {
+            get { return _name; }
         }
 
 
@@ -35,7 +64,34 @@ namespace Platinum.Data
         public override string CommandText
         {
             get { return _command.CommandText; }
-            set { _command.CommandText = value; }
+
+            set
+            {
+                _name = PeekCommandName( value );
+                _command.CommandText = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Extracts the command-name from the command-text.
+        /// </summary>
+        /// <param name="commandText">Command text.</param>
+        /// <returns>Logical name of the command.</returns>
+        private static string PeekCommandName( string commandText )
+        {
+            if ( string.IsNullOrEmpty( commandText ) == true )
+                return "(undef)";
+
+            if ( commandText.StartsWith( "/*#", StringComparison.Ordinal ) == false )
+                return "(undef)";
+
+            int ix = commandText.IndexOf( " #*/", StringComparison.Ordinal );
+
+            if ( ix == -1 )
+                return "(undef)";
+
+            return commandText.Substring( 4, ix - 4 );
         }
 
 
@@ -130,7 +186,14 @@ namespace Platinum.Data
         /// </returns>
         public override int ExecuteNonQuery()
         {
-            return _command.ExecuteNonQuery();
+            try
+            {
+                return _command.ExecuteNonQuery();
+            }
+            catch ( DbException ex )
+            {
+                throw new DataException( ER.ExecuteNonQuery, ex, _conn, _name );
+            }
         }
 
 
@@ -143,7 +206,36 @@ namespace Platinum.Data
         /// </returns>
         public override object ExecuteScalar()
         {
-            return _command.ExecuteScalar();
+            try
+            {
+                return _command.ExecuteScalar();
+            }
+            catch ( DbException ex )
+            {
+                throw new DataException( ER.ExecuteScalar, ex, _conn, _name );
+            }
+        }
+
+
+        /// <summary>
+        /// Executes the command text against the connection.
+        /// </summary>
+        /// <param name="behavior">
+        /// An instance of <see cref="CommandBehavior" />.
+        /// </param>
+        /// <returns>
+        /// A task representing the operation.
+        /// </returns>
+        protected override DbDataReader ExecuteDbDataReader( CommandBehavior behavior )
+        {
+            try
+            {
+                return _command.ExecuteReader( behavior );
+            }
+            catch ( DbException ex )
+            {
+                throw new DataException( ER.ExecuteDbDataReader, ex, _conn, _name );
+            }
         }
 
 
@@ -165,21 +257,6 @@ namespace Platinum.Data
         protected override DbParameter CreateDbParameter()
         {
             return _command.CreateParameter();
-        }
-
-
-        /// <summary>
-        /// Executes the command text against the connection.
-        /// </summary>
-        /// <param name="behavior">
-        /// An instance of <see cref="CommandBehavior" />.
-        /// </param>
-        /// <returns>
-        /// A task representing the operation.
-        /// </returns>
-        protected override DbDataReader ExecuteDbDataReader( CommandBehavior behavior )
-        {
-            return _command.ExecuteReader( behavior );
         }
     }
 }
