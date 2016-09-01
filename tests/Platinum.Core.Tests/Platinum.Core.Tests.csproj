@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <Choose>
@@ -52,8 +53,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Algorithm\NumericEncoderTest.cs" />
+    <Compile Include="Configuration\Configuration.cs">
+      <DependentUpon>Configuration.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Configuration\ConfigurationTest.cs" />
+    <Compile Include="Configuration\TheEnum.cs" />
     <Compile Include="Cryptography\SymmetricCryptoTest.cs" />
     <Compile Include="Cryptography\HashTest.cs" />
+    <Compile Include="Globalization\GlobalizationTest.cs" />
     <Compile Include="IO\FsPathTest.cs" />
     <Compile Include="Resolver\Custom2Resolver.cs" />
     <Compile Include="Resolver\ResolverTest.cs" />
@@ -74,7 +83,13 @@
     <EmbeddedResource Include="Resolver\hello.xslt" />
     <EmbeddedResource Include="Resolver\hello.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Configuration\Configuration.xml">
+      <Generator>YConfigGenTool</Generator>
+      <LastGenOutput>Configuration.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

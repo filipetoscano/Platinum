@@ -3,6 +3,10 @@ using System.Configuration;
 
 namespace Platinum.Configuration
 {
+    /// <summary>
+    /// Generic collection for configuration elements.
+    /// </summary>
+    /// <typeparam name="T">Type of the repeated element.</typeparam>
     public class ConfigurationElementCollection<T>
         : ConfigurationElementCollection, IEnumerable<T> where T : ConfigurationElement, new()
     {
@@ -23,6 +27,29 @@ namespace Platinum.Configuration
         }
 
 
+        /// <summary>
+        /// Gets the element at the specified index.
+        /// </summary>
+        /// <param name="index">
+        /// The zero-based index of the element to get or set.
+        /// </param>
+        /// <returns>
+        /// The element at the specified index.
+        /// </returns>
+        public T this[ int index ]
+        {
+            get { return _elements[ index ]; }
+            set { _elements[ index ] = value; }
+        }
+
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the properties
+        /// list.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="IEnumerator<T>" /> over the list of elements.
+        /// </returns>
         public new IEnumerator<T> GetEnumerator()
         {
             return _elements.GetEnumerator();

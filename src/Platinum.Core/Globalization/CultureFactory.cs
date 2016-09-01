@@ -63,11 +63,21 @@ namespace Platinum.Globalization
             /*
              * 
              */
+            CultureOverrideDefinition def = CultureFactoryConfiguration.Current
+                .Cultures.FirstOrDefault( v => v.Culture.ToLowerInvariant() == cultureName );
+
+
+            /*
+             * 
+             */
             CultureInfo ci;
 
             try
             {
-                ci = new CultureInfo( cultureName );
+                if ( def != null && def.FromNeutral == true )
+                    ci = (CultureInfo) CultureInfo.InvariantCulture.Clone();
+                else
+                    ci = new CultureInfo( cultureName );
             }
             catch ( CultureNotFoundException ex )
             {
@@ -78,9 +88,6 @@ namespace Platinum.Globalization
             /*
              * 
              */
-            CultureOverrideDefinition def = CultureFactoryConfiguration.Current
-                .Cultures.First( v => v.Culture.ToLowerInvariant() == cultureName );
-
             if ( def == null )
                 return ci;
 

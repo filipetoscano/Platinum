@@ -3,17 +3,18 @@
 
     <section name="platinum/cultureFactory" type="CultureFactoryConfiguration">
         <repeater name="cultures">
-            <item type="CultureOverrideDefinition">
+            <item name="add" type="CultureOverrideDefinition">
                 <string name="culture" key="true" />
+                <bool name="fromNeutral" optional="true" default="false" />
 
-                <element name="dateTimeFormat" type="DateTimeFormatDefinition">
+                <element name="dateTimeFormat" type="DateTimeFormatDefinition" optional="true">
                     <string name="shortDatePattern" optional="true" />
                     <string name="dateSeparator" optional="true" />
                     <string name="timeSeparator" optional="true" />
                     <enum name="firstDayOfWeek" type="DayOfWeek" optional="true" />
                 </element>
 
-                <element name="numberFormat" type="NumberFormatDefinition">
+                <element name="numberFormat" type="NumberFormatDefinition" optional="true">
                     <string name="numberDecimalSeparator" optional="true" />
                     <string name="currencyGroupSeparator" optional="true" />
                 </element>

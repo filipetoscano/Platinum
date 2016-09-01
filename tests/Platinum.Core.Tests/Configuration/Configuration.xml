@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="urn:yttrium/vs/config">
+
+    <section name="platinum.test" type="ConfigurationTestConfiguration">
+        <bool name="boolean" as="Bool">
+            <summary>aaa</summary>
+        </bool>
+
+        <enum name="enum" as="Enum" type="TheEnum">
+            <summary>bbb</summary>
+            <remarks>ccc</remarks>
+        </enum>
+
+        <int name="int" as="Int">
+            <remarks>ddd</remarks>
+        </int>
+
+        <string name="string" as="String" />
+
+        <element name="element" as="SingleChild" type="SingleChildConfiguration">
+            <summary>Summary</summary>
+            <remarks>Remarks</remarks>
+            
+            <string name="prop" as="Property" />
+        </element>
+
+        <repeater name="repeat" as="MultipleChildren">
+            <item name="zzz" type="MultipleChildConfiguration">
+                <string name="name" key="true" />
+                <keyValue />
+            </item>
+        </repeater>
+    </section>
+
+</configuration>

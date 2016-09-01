@@ -4,6 +4,9 @@ namespace Platinum.Configuration
 {
     public class KeyValueConfigurationElement : ConfigurationElement
     {
+        /// <summary>
+        /// Gets or sets the K/V key.
+        /// </summary>
         [ConfigurationProperty( "key", IsKey = true, IsRequired = true )]
         public string Key
         {
@@ -12,6 +15,9 @@ namespace Platinum.Configuration
         }
 
 
+        /// <summary>
+        /// Gets or sets the K/V value.
+        /// </summary>
         [ConfigurationProperty( "value", IsRequired = true )]
         public string Value
         {
