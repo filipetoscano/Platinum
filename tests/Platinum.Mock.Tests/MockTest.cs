@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace Platinum.Mock.Tests
 {
     [TestClass]
-    public class MockTest
+    public class MockTest : TestBase
     {
         [TestMethod]
         public void BasicClass()
@@ -15,9 +15,34 @@ namespace Platinum.Mock.Tests
 
             // Where possible :)
             Assert.IsNotNull( instance );
+
             Assert.IsTrue( instance.DateTimeProperty != DateTime.MinValue );
-            Assert.IsTrue( instance.CharProperty != ' ' );
-            Assert.IsTrue( instance.StringProperty != null );
+            Assert.AreEqual( DateTimeKind.Utc, instance.DateTimeProperty.Kind );
+
+            Assert.AreNotEqual( ' ', instance.CharProperty );
+
+            Assert.IsNotNull( instance.StringProperty );
+        }
+
+
+        [TestMethod]
+        public void DateAndTimeClass()
+        {
+            var instance = Mocker.Mock<DateAndTimeClass>();
+            Debug.WriteLine( ObjectDumper.Dump( instance ) );
+
+            // Where possible :)
+            Assert.IsNotNull( instance );
+
+            Assert.AreEqual( 0, instance.DateProperty.Hour );
+            Assert.AreEqual( 0, instance.DateProperty.Minute );
+            Assert.AreEqual( 0, instance.DateProperty.Second );
+            Assert.AreEqual( DateTimeKind.Utc, instance.DateProperty.Kind );
+
+            Assert.AreEqual( 1970, instance.TimeProperty.Year );
+            Assert.AreEqual( 1, instance.TimeProperty.Month );
+            Assert.AreEqual( 1, instance.TimeProperty.Day );
+            Assert.AreEqual( DateTimeKind.Utc, instance.TimeProperty.Kind );
         }
 
 
@@ -27,7 +52,7 @@ namespace Platinum.Mock.Tests
             var instance = Mocker.Mock<BasicNullableClass>();
             Debug.WriteLine( ObjectDumper.Dump( instance ) );
 
-            // All most be set
+            // All must be set
             Assert.IsNotNull( instance );
             Assert.IsNotNull( instance.BooleanProperty );
             Assert.IsNotNull( instance.ByteProperty );

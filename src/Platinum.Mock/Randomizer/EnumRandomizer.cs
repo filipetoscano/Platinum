@@ -7,7 +7,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class EnumRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             Array values = Enum.GetValues( type );
 

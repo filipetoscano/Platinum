@@ -7,7 +7,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class CharRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             string s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             char c = s[ R.Next( s.Length ) ];
@@ -18,7 +18,17 @@ namespace Platinum.Mock.Randomizer
 
         public object Parse( Type type, string value )
         {
-            return null;
+            #region Validations
+
+            if ( value == null )
+                throw new ArgumentNullException( nameof( value ) );
+
+            #endregion
+
+            if ( value.Length == 0 )
+                return null;
+
+            return value[ 0 ];
         }
     }
 }

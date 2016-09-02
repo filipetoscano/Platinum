@@ -51,7 +51,7 @@ namespace Platinum.Mock.Tests
     /// <summary>
     /// Variations of the DateTime.
     /// </summary>
-    public class DateAndtimeClass
+    public class DateAndTimeClass
     {
         public DateTime DateTimeProperty { get; set; }
 

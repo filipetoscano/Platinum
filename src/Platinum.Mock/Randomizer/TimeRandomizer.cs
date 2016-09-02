@@ -8,9 +8,9 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class TimeRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
-            DateTime d = new DateTime( 1, 1, 1, 0, 0, 0, DateTimeKind.Utc );
+            DateTime d = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc );
             d = d.AddMinutes( R.NextDouble( 24 * 60 ) );
 
             return d;
@@ -26,7 +26,10 @@ namespace Platinum.Mock.Randomizer
 
             #endregion
 
-            return DateTime.Parse( "hh:mm:ss", CultureInfo.InvariantCulture );
+            DateTime v1 = DateTime.ParseExact( value, "HH:mm:ss", CultureInfo.InvariantCulture );
+            DateTime v2 = new DateTime( 1970, 1, 1, v1.Hour, v1.Minute, v1.Second, DateTimeKind.Utc );
+
+            return v2;
         }
     }
 

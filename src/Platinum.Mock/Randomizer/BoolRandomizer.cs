@@ -7,7 +7,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class BoolRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             bool b = R.NextDouble() > 0.5;
 

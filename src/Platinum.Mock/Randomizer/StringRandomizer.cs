@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 
 namespace Platinum.Mock.Randomizer
 {
@@ -8,9 +7,9 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class StringRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
-            return propertyName + " #" + R.Next( 100 );
+            return "STRING #" + R.Next( 100 );
         }
 
 

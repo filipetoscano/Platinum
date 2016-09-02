@@ -14,7 +14,7 @@ namespace Platinum.Mock
         private const int TypeRecurse = 2;
 
 
-        public static T Mock<T>()
+        public static T Mock<T>() where T : class
         {
             T instance = (T) Mock( new Stack<Type>(), typeof( T ) );
             return instance;
@@ -161,55 +161,38 @@ namespace Platinum.Mock
 
 
             /*
-             * 
+             * Fake types of randomizers, so that they can have different code
+             * even though they return the same .NET type return.
              */
-            Type theType = type;
+            Type randomizerType = type;
 
             if ( xsdType == "date" )
-                theType = typeof( Date );
+                randomizerType = typeof( Date );
 
             if ( xsdType == "time" )
-                theType = typeof( Time );
+                randomizerType = typeof( Time );
 
             if ( type.IsEnum == true )
-                theType = typeof( Enum );
+                randomizerType = typeof( Enum );
 
 
             /*
              * 
              */
-            Dictionary<Type, IRandomizer> r = new Dictionary<Type, IRandomizer>();
-            r.Add( typeof( byte[] ), new BinaryRandomizer() );
-            r.Add( typeof( Enum ), new EnumRandomizer() );
+            if ( mockData != null )
+            {
+                if ( mockData.LikelihoodNull < 0 || mockData.LikelihoodNull > 99 )
+                    return null;
 
-            r.Add( typeof( bool ), new BoolRandomizer() );
-
-            r.Add( typeof( byte ), new ByteRandomizer() );
-            r.Add( typeof( short ), new ShortRandomizer() );
-            r.Add( typeof( int ), new IntegerRandomizer() );
-            r.Add( typeof( long ), new LongRandomizer() );
-
-            r.Add( typeof( float ), new SingleRandomizer() );
-            r.Add( typeof( double ), new DoubleRandomizer() );
-            r.Add( typeof( decimal ), new DecimalRandomizer() );
-
-            r.Add( typeof( DateTime ), new DateTimeRandomizer() );
-            r.Add( typeof( Date ), new DateRandomizer() );
-            r.Add( typeof( Time ), new TimeRandomizer() );
-
-            r.Add( typeof( char ), new CharRandomizer() );
-            r.Add( typeof( string ), new StringRandomizer() );
+                if ( R.Next( 100 ) > mockData.LikelihoodNull )
+                    return null;
+            }
 
 
             /*
              * 
              */
-            IRandomizer rnd;
-
-            if ( r.TryGetValue( theType, out rnd ) == false )
-                return null;
-
-            return rnd.Random( propertyName, type );
+            return MockData.Current.Random( randomizerType, type, mockData?.Name );
         }
     }
 }

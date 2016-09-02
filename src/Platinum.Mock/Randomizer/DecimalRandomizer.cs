@@ -8,7 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class DecimalRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             decimal d = (decimal) R.NextDouble( 100000 );
 

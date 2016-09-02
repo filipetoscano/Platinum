@@ -8,7 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class LongRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             long s = (long) R.Next( 32767 );
 

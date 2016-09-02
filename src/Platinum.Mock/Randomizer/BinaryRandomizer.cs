@@ -8,7 +8,9 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class BinaryRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        const string Base64Marker = "base64:";
+
+        public object Random( Type type )
         {
             return null;
         }
@@ -22,6 +24,11 @@ namespace Platinum.Mock.Randomizer
                 throw new ArgumentNullException( nameof( value ) );
 
             #endregion
+
+            if ( value.StartsWith( Base64Marker, StringComparison.Ordinal ) == true )
+                return Convert.FromBase64String( value.Substring( Base64Marker.Length ) );
+
+            // TODO: load from FS
 
             return null;
         }

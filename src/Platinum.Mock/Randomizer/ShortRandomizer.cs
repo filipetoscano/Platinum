@@ -8,7 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class ShortRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             short s = (short) R.Next( 32767 );
 

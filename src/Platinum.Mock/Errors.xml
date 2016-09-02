@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor">
+    <actor base="{Application}" />
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Mocker
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ MockData
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="MockData_DataSetNotFound" actor="~.Mock" code="2001">
+        <description>Data set '{0}' not found.</description>
+    </error>
+
+    <error id="MockData_FunctionNotFound" actor="~.Mock" code="2002">
+        <description>Function '{0}' not found.</description>
+    </error>
+
+    <error id="MockData_FunctionNoMoniker" actor="~.Mock" code="2003">
+        <description>Function '{0}' does not have mandatory 'Moniker' property.</description>
+    </error>
+
+    <error id="MockData_FunctionCreateFail" actor="~.Mock" code="2004">
+        <description>Function '{0}' has invalid moniker.</description>
+    </error>
+
+    <error id="MockData_FunctionFail" actor="~.Mock" code="2005">
+        <description>Function '{0}' failed to execute.</description>
+    </error>
+
+    <error id="MockData_FunctionReturn" actor="~.Mock" code="2006">
+        <description>Function '{0}' returned '{2}', which is not assignable to '{1}'.</description>
+    </error>
+
+</errors>

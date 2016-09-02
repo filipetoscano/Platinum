@@ -8,7 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class DateTimeRandomizer : IRandomizer
     {
-        public object Random( string propertyName, Type type )
+        public object Random( Type type )
         {
             DateTime d = DateTime.UtcNow;
             d = d.AddMinutes( R.NextDouble( 10 * 24 * 60 ) );
