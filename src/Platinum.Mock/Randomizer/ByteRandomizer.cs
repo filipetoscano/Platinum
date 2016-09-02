@@ -25,7 +25,7 @@ namespace Platinum.Mock.Randomizer
 
             #endregion
 
-            return byte.Parse( value, CultureInfo.InvariantCulture );
+            return byte.Parse( value, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture );
         }
     }
 }

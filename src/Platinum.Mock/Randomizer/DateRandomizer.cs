@@ -27,7 +27,8 @@ namespace Platinum.Mock.Randomizer
 
             #endregion
 
-            return DateTime.ParseExact( value, "yyyy-MM-dd", CultureInfo.InvariantCulture );
+            DateTime d = DateTime.ParseExact( value, "yyyy-MM-dd", CultureInfo.InvariantCulture );
+            return DateTime.SpecifyKind( d, DateTimeKind.Utc );
         }
 
 

@@ -16,20 +16,22 @@ namespace Platinum.Mock.Tests
             // Where possible :)
             Assert.IsNotNull( instance );
 
-            Assert.AreEqual( true, instance.BooleanProperty );
-            Assert.AreEqual( 'b', instance.ByteProperty );
-            Assert.AreEqual( 'c', instance.CharProperty );
+            decimal d;
+
+            Assert.AreEqual<bool>( true, instance.BooleanProperty );
+            Assert.AreEqual<byte>( 11, instance.ByteProperty );
+            Assert.AreEqual<char>( 'c', instance.CharProperty );
             Assert_AreEqual( 2003, 3, 3, 0, 0, 0, instance.DateProperty );
             Assert_AreEqual( 2003, 3, 3, 3, 3, 3, instance.DateTimeProperty );
-            Assert.AreEqual( 42.42, instance.DecimalProperty );
-            Assert.AreEqual( 42.42, instance.DoubleProperty );
+            Assert.AreEqual<decimal>( 42.42m, instance.DecimalProperty );
+            Assert.AreEqual<double>( 42.42, instance.DoubleProperty );
             Assert.AreEqual( EnumEnumerate.Value2, instance.EnumProperty );
-            Assert.AreEqual( 42, instance.IntegerProperty );
-            Assert.AreEqual( 42, instance.LongProperty );
-            Assert.AreEqual( 42, instance.ShortProperty );
-            Assert.AreEqual( 42.42, instance.SingleProperty );
+            Assert.AreEqual<int>( 42, instance.IntegerProperty );
+            Assert.AreEqual<long>( 42, instance.LongProperty );
+            Assert.AreEqual<short>( 42, instance.ShortProperty );
+            Assert.AreEqual<float>( 42.42f, instance.SingleProperty );
             Assert.AreEqual( "hhgg", instance.StringProperty );
-            Assert_AreEqual( 1970, 1, 1, 3, 3, 3, instance.DateTimeProperty );
+            Assert_AreEqual( 1970, 1, 1, 4, 4, 4, instance.TimeProperty );
         }
 
 
