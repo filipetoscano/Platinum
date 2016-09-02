@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Platinum.Mock.Randomizer
@@ -31,7 +31,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
-        public object Random( NameValueCollection settings )
+        public object Random( Dictionary<string,string> settings )
         {
             #region Validations
 
@@ -40,13 +40,40 @@ namespace Platinum.Mock.Randomizer
 
             #endregion
 
-            int yyMin = 0;
-            int yyMax = 0;
 
-            double yearDelta = R.NextDouble( yyMin, yyMax );
+            /*
+             * 
+             */
+            DateTime today = DateTime.UtcNow;
+
+            int yearMin;
+            int yearMax;
+
+            if ( settings.Get<string>( "absolute" ) == "true" )
+            {
+                yearMin = settings.Get<int>( "yearFrom", today.Year );
+                yearMax = settings.Get<int>( "yearTo", today.Year );
+
+                if ( yearMax <= yearMin )
+                    throw new MockException( ER.DateRandomizer_YearAbsRange, yearMin, yearMax );
+            }
+            else
+            {
+                yearMin = settings.Get<int>( "yearFrom" ) + today.Year;
+                yearMax = settings.Get<int>( "yearTo" ) + today.Year;
+
+                if ( yearMax <= yearMin )
+                    throw new MockException( ER.DateRandomizer_YearRelRange, yearMin, yearMax );
+            }
+
+
+            /*
+             * 
+             */
+            double yearDelta = R.NextDouble( yearMin, yearMax );
             double daysDelta = yearDelta * 365;
 
-            DateTime d = DateTime.UtcNow;
+            DateTime d = new DateTime( 1, 1, 1, 0, 0, 0, DateTimeKind.Utc );
             d = d.AddDays( daysDelta );
 
             return d.Date;

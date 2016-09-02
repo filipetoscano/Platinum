@@ -2,6 +2,10 @@
 
 namespace Platinum.Mock
 {
+    /// <summary>
+    /// Markup, indicating that a property is subject to random
+    /// data being generated
+    /// </summary>
     [AttributeUsage( AttributeTargets.Class | AttributeTargets.Property )]
     public class MockDataAttribute : Attribute
     {

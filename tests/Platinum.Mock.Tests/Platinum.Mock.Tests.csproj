@@ -73,7 +73,8 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data.xml" />
+    <EmbeddedResource Include="data02.xml" />
+    <EmbeddedResource Include="data01.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

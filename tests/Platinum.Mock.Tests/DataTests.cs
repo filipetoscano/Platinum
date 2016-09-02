@@ -31,5 +31,17 @@ namespace Platinum.Mock.Tests
             Assert.AreEqual( "hhgg", instance.StringProperty );
             Assert_AreEqual( 1970, 1, 1, 3, 3, 3, instance.DateTimeProperty );
         }
+
+
+        [TestMethod]
+        public void MatrixCharacter()
+        {
+            var instance = Mocker.Mock<MatrixCharacter>();
+            Debug.WriteLine( ObjectDumper.Dump( instance ) );
+
+            Assert.IsNotNull( instance );
+            Assert.IsNotNull( instance.Name );
+            Assert.IsTrue( instance.Name.StartsWith( "string", StringComparison.OrdinalIgnoreCase ) == false );
+        }
     }
 }

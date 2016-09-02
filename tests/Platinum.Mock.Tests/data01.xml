@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<data>
+<data xmlns="urn:platinum/mock">
     <set name="type/byte[]">
         <v>base64:A==</v>
     </set>

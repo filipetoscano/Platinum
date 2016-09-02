@@ -55,4 +55,18 @@ namespace Platinum.Mock.Tests
         [MockData( "type/enum" )]
         public FlagEnumerate FlagProperty { get; set; }
     }
+
+
+    /// <summary>
+    /// Basic .NET types.
+    /// </summary>
+    public class MatrixCharacter
+    {
+        [MockData( "matrix/name" )]
+        public string Name { get; set; }
+
+        [MockData( "matrix/thisDecade" )]
+        [XmlElement( DataType = "date" )]
+        public DateTime DateOfBirth { get; set; }
+    }
 }

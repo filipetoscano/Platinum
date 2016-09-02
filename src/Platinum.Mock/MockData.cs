@@ -29,16 +29,62 @@ namespace Platinum.Mock
         }
 
 
-        private Dictionary<string, NameValueCollection> _functions = new Dictionary<string, NameValueCollection>();
+        private Dictionary<string, Dictionary<string,string>> _functions = new Dictionary<string, Dictionary<string, string>>();
         private Dictionary<string, List<string>> _sets = new Dictionary<string, List<string>>();
 
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="MockData" /> interface.
+        /// </summary>
         public MockData()
         {
+            LoadData();
         }
 
 
+        private void LoadData()
+        {
+            foreach ( var loader in MockConfiguration.Current.Loaders )
+            {
+                var l = Activator.Create<DataLoader.IDataLoader>( loader.Type );
+                var d = l.Load( loader.Settings.AsDictionary() );
 
+                // Merge
+                Merge( _functions, d.Functions );
+                Merge( _sets, d.Sets );
+            }
+        }
+
+
+        private void Merge<T>( Dictionary<string,T> into, Dictionary<string,T> from )
+        {
+            #region Validations
+
+            if ( into == null )
+                throw new ArgumentNullException( nameof( into ) );
+
+            if ( from == null )
+                throw new ArgumentNullException( nameof( from ) );
+
+            #endregion
+
+            foreach ( var k in from.Keys )
+            {
+                if ( into.ContainsKey( k ) == true )
+                    into[ k ] = from[ k ];
+                else
+                    into.Add( k, from[ k ] );
+            }
+        }
+
+
+        /// <summary>
+        /// Randomizes a value.
+        /// </summary>
+        /// <typeparam name="T">Expected return-type.</typeparam>
+        /// <param name="randomizer">Which randomizer to use.</param>
+        /// <param name="name">Expected return-type.</param>
+        /// <returns>Random value.</returns>
         public T Random<T>( Type randomizer, string name )
         {
             Type type = typeof( T );
@@ -47,6 +93,13 @@ namespace Platinum.Mock
         }
 
 
+        /// <summary>
+        /// Randomizes a value.
+        /// </summary>
+        /// <param name="randomizer">Which randomizer to use.</param>
+        /// <param name="type">Expected return-type.</param>
+        /// <param name="name">Name of mock data.</param>
+        /// <returnsRandom value.></returns>
         public object Random( Type randomizer, Type type, string name )
         {
             #region Validations
@@ -61,11 +114,15 @@ namespace Platinum.Mock
 
             if ( name != null )
             {
-                if ( _sets.ContainsKey( name ) == true )
-                    return DataPoint( randomizer, type, name );
+                object v = null;
 
-                if ( _functions.ContainsKey( name ) == true )
-                    return FunctionPoint( type, name );
+                if ( _sets.ContainsKey( name ) == true )
+                    v = DataPoint( randomizer, type, name );
+                else if ( _functions.ContainsKey( name ) == true )
+                    v = FunctionPoint( type, name );
+
+                if ( v != null )
+                    return v;
             }
 
             if ( Randomizers.All.ContainsKey( randomizer ) == true )
@@ -80,7 +137,7 @@ namespace Platinum.Mock
         /// </summary>
         /// <param name="type">Expected return type.</param>
         /// <param name="name">Name of data-point set.</param>
-        /// <returns></returns>
+        /// <returns>Random data-point.</returns>
         private object DataPoint( Type randomizer, Type type, string name )
         {
             #region Validations
@@ -96,6 +153,10 @@ namespace Platinum.Mock
 
             #endregion
 
+
+            /*
+             * 
+             */
             List<string> values;
 
             if ( _sets.TryGetValue( name, out values ) == false )
@@ -103,11 +164,21 @@ namespace Platinum.Mock
 
             string v = values[ R.Next( values.Count ) ];
 
+
+            /*
+             * 
+             */
             return Randomizers.All[ randomizer ].Parse( type, v );
         }
 
 
-
+        /// <summary>
+        /// Gets a data-point, as a result of evaluating a mocking
+        /// function.
+        /// </summary>
+        /// <param name="type">Expected return type.</param>
+        /// <param name="name">Name of function.</param>
+        /// <returns>Random data-point.</returns>
         private object FunctionPoint( Type type, string name )
         {
             #region Validations
@@ -124,12 +195,12 @@ namespace Platinum.Mock
             /*
              * 
              */
-            NameValueCollection nvc;
+            Dictionary<string,string> dict;
 
-            if ( _functions.TryGetValue( name, out nvc ) == false )
+            if ( _functions.TryGetValue( name, out dict ) == false )
                 throw new MockException( ER.MockData_FunctionNotFound, name );
 
-            if ( string.IsNullOrEmpty( nvc[ "Moniker" ] ) == true )
+            if ( string.IsNullOrEmpty( dict[ "type" ] ) == true )
                 throw new MockException( ER.MockData_FunctionNoMoniker, name );
 
 
@@ -140,7 +211,7 @@ namespace Platinum.Mock
 
             try
             {
-                fn = Activator.Create<IMockFunction>( nvc[ "Moniker" ] );
+                fn = Activator.Create<IMockFunction>( dict[ "type" ] );
             }
             catch ( ActorException ex )
             {
@@ -155,7 +226,7 @@ namespace Platinum.Mock
 
             try
             {
-                value = fn.Random( nvc );
+                value = fn.Random( dict );
             }
             catch ( Exception ex )
             {

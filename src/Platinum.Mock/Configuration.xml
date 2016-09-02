@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration xmlns="urn:yttrium/vs/config">
+
+    <section name="platinum/mock" type="MockConfiguration">
+        <repeater name="loaders">
+            <item name="loader" type="MockLoaderConfiguration">
+                <string name="name" key="true" />
+                <string name="type" />
+                <keyValue />
+            </item>
+        </repeater>
+    </section>
+
+</configuration>

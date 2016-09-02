@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data xmlns="urn:platinum/mock">
+
+    <set name="matrix/name">
+        <v>Apoc</v>
+        <v>Cypher</v>
+        <v>Dozer</v>
+        <v>Morpheus</v>
+        <v>Mouse</v>
+        <v>Neo</v>
+        <v>Switch</v>
+        <v>Tank</v>
+        <v>Trinity</v>
+    </set>
+
+    <function name="matrix/thisDecade">
+        <type>Platinum.Mock.Randomizer.DateRandomizer,Platinum.Mock</type>
+        <absolute>true</absolute>
+        <yearFrom>2010</yearFrom>
+        <yearTo>2020</yearTo>
+    </function>
+
+</data>

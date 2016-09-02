@@ -184,7 +184,7 @@ namespace Platinum.Mock
                 if ( mockData.LikelihoodNull < 0 || mockData.LikelihoodNull > 99 )
                     return null;
 
-                if ( R.Next( 100 ) > mockData.LikelihoodNull )
+                if ( R.Next( 100 ) < mockData.LikelihoodNull )
                     return null;
             }
 

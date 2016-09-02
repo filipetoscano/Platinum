@@ -1,9 +1,9 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 
 namespace Platinum.Mock
 {
     public interface IMockFunction
     {
-        object Random( NameValueCollection settings );
+        object Random( Dictionary<string,string> settings );
     }
 }

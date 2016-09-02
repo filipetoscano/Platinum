@@ -25,7 +25,7 @@
     </error>
 
     <error id="MockData_FunctionNoMoniker" actor="~.Mock" code="2003">
-        <description>Function '{0}' does not have mandatory 'Moniker' property.</description>
+        <description>Function '{0}' does not have mandatory 'type' property.</description>
     </error>
 
     <error id="MockData_FunctionCreateFail" actor="~.Mock" code="2004">
@@ -38,6 +38,20 @@
 
     <error id="MockData_FunctionReturn" actor="~.Mock" code="2006">
         <description>Function '{0}' returned '{2}', which is not assignable to '{1}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ DateRandomizer
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="DateRandomizer_YearAbsRange" actor="~.Mock" code="11001">
+        <description>Range of years is invalid: min='{0}', max='{1}'.</description>
+    </error>
+
+    <error id="DateRandomizer_YearRelRange" actor="~.Mock" code="11001">
+        <description>Range of years is invalid: min='{0}', max='{1}'.</description>
     </error>
 
 </errors>
