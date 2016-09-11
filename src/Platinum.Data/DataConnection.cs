@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Platinum.Data
 {
@@ -163,6 +164,7 @@ namespace Platinum.Data
         /// current connection.
         /// </summary>
         /// <returns>A <see cref="DbCommand"/> object.</returns>
+        [SuppressMessage( "Microsoft.Security", "CA2100:Review SQL queries for security vulnerabilities" )]
         protected override DbCommand CreateDbCommand()
         {
             var cmd = _connection.CreateCommand();

@@ -16,8 +16,6 @@ namespace Platinum.Mock.Tests
             // Where possible :)
             Assert.IsNotNull( instance );
 
-            decimal d;
-
             Assert.AreEqual<bool>( true, instance.BooleanProperty );
             Assert.AreEqual<byte>( 11, instance.ByteProperty );
             Assert.AreEqual<char>( 'c', instance.CharProperty );

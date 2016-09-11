@@ -10,7 +10,19 @@ namespace Platinum
         /// default constructor.
         /// </summary>
         /// <typeparam name="T">Casts instance to this type.</typeparam>
-        /// <param name="moniker">The type of the class to be instance.</param>
+        /// <returns>Instance of the designated type.</returns>
+        public static T Create<T>()
+        {
+            return Create<T>( typeof( T ) );
+        }
+
+
+        /// <summary>
+        /// Creates an instance of the type whose name is specified, using the
+        /// default constructor.
+        /// </summary>
+        /// <typeparam name="T">Casts instance to this type.</typeparam>
+        /// <param name="type">The type of the class to be instance.</param>
         /// <returns>Instance of the designated type, casted to type T.</returns>
         public static T Create<T>( Type type )
         {

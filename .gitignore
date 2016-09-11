@@ -1,7 +1,7 @@
 *.suo
 *.csproj.user
-*.nupkg
 .vs/
+build/
 src/**/ER.resx
 src/**/Errors.cs
 src/**/Exceptions.cs
@@ -14,4 +14,3 @@ tests/Platinum.Core.Tests/Configuration/Configuration.cs
 push.bat
 packages/
 TestResults/
-

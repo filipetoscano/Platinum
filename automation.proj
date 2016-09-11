@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
-    DefaultTargets="help">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="help">
     <PropertyGroup>
         <version>1.0.0.0</version>
 
@@ -38,15 +37,19 @@
     <Target Name="build">
         <PropertyGroup>
             <versionInfo>[assembly: System.Reflection.AssemblyVersion( "$(version)" )]</versionInfo>
+            <nugetArgs> -OutputDirectory ..\..\build -IncludeReferencedProjects -Prop Configuration=Release </nugetArgs>
         </PropertyGroup>
         
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
 
         <Exec Command=" nuget restore " />
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
-        <Exec Command=" nuget pack Platinum.Core.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Core" />
-        <Exec Command=" nuget pack Platinum.Data.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Data" />
-        <Exec Command=" nuget pack Platinum.Mock.csproj -IncludeReferencedProjects -Prop Configuration=Release " WorkingDirectory="src\Platinum.Mock" />
+
+        <MakeDir Directories="build" />
+        <Exec Command=" nuget pack Platinum.Core.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Core" />
+        <Exec Command=" nuget pack Platinum.Data.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Data" />
+        <Exec Command=" nuget pack Platinum.Mock.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Mock" />
+        <Exec Command=" nuget pack Platinum.Validation.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Validation" />
     </Target>
 
 
@@ -58,9 +61,10 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <Target Name="push">
         <Error Condition=" $(nugetPushKey) == '' " Text="Must specify 'nugetPushKey' when pushing to nuget source." />
-        <Exec Command=" nuget push Platinum.Core.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Core" />
-        <Exec Command=" nuget push Platinum.Data.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Data" />
-        <Exec Command=" nuget push Platinum.Mock.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="src\Platinum.Mock" />
+        <Exec Command=" nuget push Platinum.Core.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
+        <Exec Command=" nuget push Platinum.Data.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
+        <Exec Command=" nuget push Platinum.Mock.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
+        <Exec Command=" nuget push Platinum.Validation.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
     </Target>
 
 </Project>
