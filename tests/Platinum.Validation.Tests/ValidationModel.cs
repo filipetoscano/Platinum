@@ -26,6 +26,29 @@ namespace Platinum.Validation.Tests
     }
 
 
+    public class NestedClass
+    {
+        public NestedClass Nested { get; set; }
+
+        [Required]
+        public string String { get; set; }
+    }
+
+
+    public class ArrayItem
+    {
+        [Required]
+        public string String { get; set; }
+    }
+
+
+    public class ArrayClass
+    {
+        [Required]
+        public ArrayItem[] Array { get; set; }
+    }
+
+
     public class StringLengthClass
     {
         [StringLength( 5, 20 )]

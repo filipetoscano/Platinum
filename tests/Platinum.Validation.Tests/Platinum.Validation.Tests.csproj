@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Platinum.Core\Platinum.Core.csproj">
+      <Project>{46ffe5b4-e434-4088-a2ec-96b617cad072}</Project>
+      <Name>Platinum.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Platinum.Validation\Platinum.Validation.csproj">
       <Project>{47e34426-b640-4e7d-9928-919df16ed4d3}</Project>
       <Name>Platinum.Validation</Name>

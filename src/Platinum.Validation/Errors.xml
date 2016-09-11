@@ -8,7 +8,7 @@
     ~ Required
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Required_Invalid" actor="{0}#{1}" code="1001">
+    <error id="Required" actor="{0}.{1}" code="1001">
         <description>Field is required.</description>
     </error>
 
@@ -18,11 +18,11 @@
     ~ StringLength
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="StringLength_Min" actor="{0}#{1}" code="2001">
+    <error id="StringLength_Min" actor="{0}.{1}" code="2001">
         <description>Field is under '{2}' characters long.</description>
     </error>
 
-    <error id="StringLength_Max" actor="{0}#{1}" code="2002">
+    <error id="StringLength_Max" actor="{0}.{1}" code="2002">
         <description>Field is longer than '{2}' characters long.</description>
     </error>
 

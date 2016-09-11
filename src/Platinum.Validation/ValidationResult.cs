@@ -6,12 +6,12 @@ namespace Platinum.Validation
 {
     public class ValidationResult
     {
-        private List<ValidationException> _errors;
+        private List<ActorException> _errors;
 
 
         public ValidationResult()
         {
-            _errors = new List<ValidationException>();
+            _errors = new List<ActorException>();
         }
 
 
@@ -30,7 +30,7 @@ namespace Platinum.Validation
         /// <summary>
         /// Gets the collection of errors.
         /// </summary>
-        public ReadOnlyCollection<ValidationException> Errors
+        public ReadOnlyCollection<ActorException> Errors
         {
             get
             {
@@ -39,7 +39,7 @@ namespace Platinum.Validation
         }
 
 
-        public void AddError( ValidationException error )
+        public void AddError( ActorException error )
         {
             #region Validations
 

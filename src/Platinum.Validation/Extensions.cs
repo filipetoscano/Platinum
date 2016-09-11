@@ -1,4 +1,6 @@
-﻿namespace Platinum.Validation
+﻿using System;
+
+namespace Platinum.Validation
 {
     internal static class Extensions
     {
@@ -11,6 +13,12 @@
             {
                 string v = (string) value;
                 return v.Length > 0;
+            }
+            
+            if ( value is Array )
+            {
+                Array a = (Array) value;
+                return a.Length > 0;
             }
 
             return true;

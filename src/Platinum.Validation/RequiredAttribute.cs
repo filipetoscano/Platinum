@@ -25,7 +25,7 @@ namespace Platinum.Validation
             if ( value.HasValue() == true )
                 return;
 
-            ValidationException vex = new ValidationException( ER.Required_Invalid, context.Path, context.Property );
+            ValidationException vex = new ValidationException( ER.Required, context.Path, context.Property );
             result.AddError( vex );
         }
     }

@@ -56,12 +56,29 @@ namespace Platinum.Validation
                            .Select( x => (IValidationRule) x )
                            .ToArray();
 
-                if ( rules.Length == 0 )
-                    continue;
-
                 if ( propType.IsArray == true )
                 {
-                    Type arrType = prop.PropertyType.GetElementType();
+                    Type arrayType = prop.PropertyType.GetElementType();
+                    Array array = (Array) prop.GetValue( obj );
+
+                    context.Path = root;
+                    context.Property = prop.Name;
+
+                    foreach ( var rule in rules )
+                    {
+                        rule.Validate( context, result, array );
+                    }
+
+                    if ( array != null && arrayType.IsCustomClass() == true )
+                    {
+                        for ( int i=0; i<array.Length; i++ )
+                        {
+                            object av = array.GetValue( i );
+
+                            context.Path = BuildPath( root, prop.Name, i );
+                            Validate( context, result, av );
+                        }
+                    }
                 }
                 else
                 {
@@ -87,10 +104,27 @@ namespace Platinum.Validation
 
         private static string BuildPath( string root, string name )
         {
-            if ( root == null || root == "" )
-                return name;
+            #region Validations
 
-            return root + "." + name;
+            if ( name == null )
+                throw new ArgumentNullException( "name" );
+
+            #endregion
+
+            return $"{ root }.{ name }";
+        }
+
+
+        private static string BuildPath( string root, string name, int i )
+        {
+            #region Validations
+
+            if ( name == null )
+                throw new ArgumentNullException( "name" );
+
+            #endregion
+
+            return $"{ root }.{ name }[{ i }]";
         }
     }
 }
