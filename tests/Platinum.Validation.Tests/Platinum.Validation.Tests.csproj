@@ -50,7 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="RuleModel.cs" />
+    <Compile Include="ValueModel.cs" />
+    <Compile Include="RegexModel.cs" />
+    <Compile Include="RuleTests.cs" />
+    <Compile Include="ValueTests.cs" />
     <Compile Include="StringLengthModel.cs" />
+    <Compile Include="RegexTests.cs" />
     <Compile Include="ValidationModel.cs" />
     <Compile Include="StringLengthTests.cs" />
     <Compile Include="ValidationTests.cs" />
@@ -65,6 +71,15 @@
       <Project>{47e34426-b640-4e7d-9928-919df16ed4d3}</Project>
       <Name>Platinum.Validation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="validation01.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="validation02.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

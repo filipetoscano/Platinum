@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rules xmlns="urn:platinum/validation">
+    <add name="person/name">
+        <required />
+        <stringLength minLength="5" maxLength="10" />
+    </add>
+</rules>

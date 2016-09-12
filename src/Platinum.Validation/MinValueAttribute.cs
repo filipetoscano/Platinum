@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Platinum.Validation
 {
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class MinValueAttribute : Attribute, IValidationRule
     {
-        public MinValueAttribute( double minValue )
+        public MinValueAttribute( string minValue )
         {
+            #region Validations
+
+            if ( minValue == null )
+                throw new ArgumentNullException( nameof( minValue ) );
+
+            #endregion
+
             this.MinValue = minValue;
         }
 
@@ -14,7 +22,7 @@ namespace Platinum.Validation
         /// <summary>
         /// Gets the min value.
         /// </summary>
-        public double MinValue
+        public string MinValue
         {
             get;
             private set;
@@ -27,7 +35,7 @@ namespace Platinum.Validation
         public bool IsExclusive
         {
             get;
-            private set;
+            set;
         }
 
 
@@ -49,7 +57,7 @@ namespace Platinum.Validation
             if ( value is byte )
             {
                 byte v = (byte) value;
-                byte mx = (byte) this.MinValue;
+                byte mx = (byte) Convert.ChangeType( this.MinValue, typeof( byte ), CultureInfo.InvariantCulture );
 
                 Validate<byte>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -58,7 +66,7 @@ namespace Platinum.Validation
             if ( value is short )
             {
                 short v = (short) value;
-                short mx = (short) this.MinValue;
+                short mx = (short) Convert.ChangeType( this.MinValue, typeof( short ), CultureInfo.InvariantCulture );
 
                 Validate<short>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -67,7 +75,7 @@ namespace Platinum.Validation
             if ( value is int )
             {
                 int v = (int) value;
-                int mx = (int) this.MinValue;
+                int mx = (int) Convert.ChangeType( this.MinValue, typeof( int ), CultureInfo.InvariantCulture );
 
                 Validate<int>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -76,7 +84,7 @@ namespace Platinum.Validation
             if ( value is long )
             {
                 long v = (long) value;
-                long mx = (long) this.MinValue;
+                long mx = (long) Convert.ChangeType( this.MinValue, typeof( long ), CultureInfo.InvariantCulture );
 
                 Validate<long>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -85,7 +93,7 @@ namespace Platinum.Validation
             if ( value is float )
             {
                 float v = (float) value;
-                float mx = (float) this.MinValue;
+                float mx = (float) Convert.ChangeType( this.MinValue, typeof( float ), CultureInfo.InvariantCulture );
 
                 Validate<float>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -94,7 +102,7 @@ namespace Platinum.Validation
             if ( value is double )
             {
                 double v = (double) value;
-                double mx = (double) this.MinValue;
+                double mx = (double) Convert.ChangeType( this.MinValue, typeof( double ), CultureInfo.InvariantCulture );
 
                 Validate<double>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -103,7 +111,7 @@ namespace Platinum.Validation
             if ( value is decimal )
             {
                 decimal v = (decimal) value;
-                decimal mx = (decimal) this.MinValue;
+                decimal mx = (decimal) Convert.ChangeType( this.MinValue, typeof( decimal ), CultureInfo.InvariantCulture );
 
                 Validate<decimal>( context, result, v, mx, this.IsExclusive );
                 return;

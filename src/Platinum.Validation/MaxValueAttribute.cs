@@ -1,21 +1,28 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Platinum.Validation
 {
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class MaxValueAttribute : Attribute, IValidationRule
     {
-        public MaxValueAttribute( double maxValue )
+        public MaxValueAttribute( string maxValue )
         {
+            #region Validations
+
+            if ( maxValue == null )
+                throw new ArgumentNullException( nameof( maxValue ) );
+
+            #endregion
+
             this.MaxValue = maxValue;
-            this.IsExclusive = false;
         }
 
 
         /// <summary>
         /// Gets the max value.
         /// </summary>
-        public double MaxValue
+        public string MaxValue
         {
             get;
             private set;
@@ -28,7 +35,7 @@ namespace Platinum.Validation
         public bool IsExclusive
         {
             get;
-            private set;
+            set;
         }
 
 
@@ -50,7 +57,7 @@ namespace Platinum.Validation
             if ( value is byte )
             {
                 byte v = (byte) value;
-                byte mx = (byte) this.MaxValue;
+                byte mx = (byte) Convert.ChangeType( this.MaxValue, typeof( byte ), CultureInfo.InvariantCulture );
 
                 Validate<byte>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -59,7 +66,7 @@ namespace Platinum.Validation
             if ( value is short )
             {
                 short v = (short) value;
-                short mx = (short) this.MaxValue;
+                short mx = (short) Convert.ChangeType( this.MaxValue, typeof( short ), CultureInfo.InvariantCulture );
 
                 Validate<short>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -68,7 +75,7 @@ namespace Platinum.Validation
             if ( value is int )
             {
                 int v = (int) value;
-                int mx = (int) this.MaxValue;
+                int mx = (int) Convert.ChangeType( this.MaxValue, typeof( int ), CultureInfo.InvariantCulture );
 
                 Validate<int>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -77,7 +84,7 @@ namespace Platinum.Validation
             if ( value is long )
             {
                 long v = (long) value;
-                long mx = (long) this.MaxValue;
+                long mx = (long) Convert.ChangeType( this.MaxValue, typeof( long ), CultureInfo.InvariantCulture );
 
                 Validate<long>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -86,7 +93,7 @@ namespace Platinum.Validation
             if ( value is float )
             {
                 float v = (float) value;
-                float mx = (float) this.MaxValue;
+                float mx = (float) Convert.ChangeType( this.MaxValue, typeof( float ), CultureInfo.InvariantCulture );
 
                 Validate<float>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -95,7 +102,7 @@ namespace Platinum.Validation
             if ( value is double )
             {
                 double v = (double) value;
-                double mx = (double) this.MaxValue;
+                double mx = (double) Convert.ChangeType( this.MaxValue, typeof( double ), CultureInfo.InvariantCulture );
 
                 Validate<double>( context, result, v, mx, this.IsExclusive );
                 return;
@@ -104,7 +111,7 @@ namespace Platinum.Validation
             if ( value is decimal )
             {
                 decimal v = (decimal) value;
-                decimal mx = (decimal) this.MaxValue;
+                decimal mx = (decimal) Convert.ChangeType( this.MaxValue, typeof( decimal ), CultureInfo.InvariantCulture );
 
                 Validate<decimal>( context, result, v, mx, this.IsExclusive );
                 return;

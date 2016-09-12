@@ -47,6 +47,8 @@ namespace Platinum.Validation.Tests
             var vr = Validator.Validate( req );
 
             Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 1, vr.Errors.Count );
+            Assert.AreEqual( "StringLength_Min", vr.Errors[ 0 ].Message );
         }
 
 
@@ -92,6 +94,8 @@ namespace Platinum.Validation.Tests
             var vr = Validator.Validate( req );
 
             Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 1, vr.Errors.Count );
+            Assert.AreEqual( "StringLength_Max", vr.Errors[ 0 ].Message );
         }
 
 
@@ -152,6 +156,8 @@ namespace Platinum.Validation.Tests
             var vr = Validator.Validate( req );
 
             Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 1, vr.Errors.Count );
+            Assert.AreEqual( "StringLength_Min", vr.Errors[ 0 ].Message );
         }
 
 
@@ -167,6 +173,8 @@ namespace Platinum.Validation.Tests
             var vr = Validator.Validate( req );
 
             Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 1, vr.Errors.Count );
+            Assert.AreEqual( "StringLength_Max", vr.Errors[ 0 ].Message );
         }
     }
 }

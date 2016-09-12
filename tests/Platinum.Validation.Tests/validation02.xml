@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rules xmlns="urn:platinum/validation">
+    <add name="person/age">
+        <required />
+        <minValue minValue="5" />
+        <maxValue maxValue="100" isExclusive="true" />
+    </add>
+</rules>

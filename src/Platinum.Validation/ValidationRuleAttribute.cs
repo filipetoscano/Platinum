@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Platinum.Validation
 {
@@ -28,9 +29,36 @@ namespace Platinum.Validation
         }
 
 
-
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
+            IValidationRule[] rules = RulesFor( this.Name );
+
+            if ( rules == null || rules.Length == 0 )
+                return;
+
+            foreach ( var r in rules )
+            {
+                r.Validate( context, result, value );
+            }
+        }
+
+
+        private IValidationRule[] RulesFor( string name )
+        {
+            #region Validations
+
+            if ( name == null )
+                throw new ArgumentNullException( nameof( name ) );
+
+            #endregion
+
+            // TODO
+            List<IValidationRule> rules = new List<IValidationRule>();
+
+            rules.Add( new RequiredAttribute() );
+            rules.Add( new StringLengthAttribute( 5, 10 ) );
+
+            return rules.ToArray();
         }
     }
 }
