@@ -5,6 +5,48 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ MaxValue
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="MaxValue_GreaterThan" actor="{0}.{1}" code="4001">
+        <description>Value must be less than or equal to '{0}'.</description>
+    </error>
+
+    <error id="MaxValue_EqualTo" actor="{0}.{1}" code="4002">
+        <description>Value must be less than '{0}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ MinValue
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="MinValue_LessThan" actor="{0}.{1}" code="4003">
+        <description>Value must be greater than or equal to '{0}'.</description>
+    </error>
+
+    <error id="MinValue_EqualTo" actor="{0}.{1}" code="4004">
+        <description>Value must be greater than '{0}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ RegularExpression
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="RegularExpression_Invalid" actor="{0}.{1}" code="3001">
+        <description>Regular expression '{2}' is invalid.</description>
+    </error>
+
+    <error id="RegularExpression" actor="{0}.{1}" code="3002">
+        <description>Field does not match against expression '{2}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ Required
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->

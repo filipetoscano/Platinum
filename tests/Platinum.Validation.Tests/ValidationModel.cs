@@ -47,11 +47,4 @@ namespace Platinum.Validation.Tests
         [Required]
         public ArrayItem[] Array { get; set; }
     }
-
-
-    public class StringLengthClass
-    {
-        [StringLength( 5, 20 )]
-        public string OnlyMin { get; set; }
-    }
 }

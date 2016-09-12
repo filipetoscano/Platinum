@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Platinum.Validation
 {
@@ -18,6 +20,9 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary>
+        /// Gets the regular expression which must be matched.
+        /// </summary>
         public string Pattern
         {
             get;
@@ -40,10 +45,39 @@ namespace Platinum.Validation
             if ( value == null )
                 return;
 
-            if ( value.GetType() != typeof( string ) )
-                return;
 
-            string v = (string) value;
+            /*
+             * 
+             */
+            string sv;
+
+            if ( value is string )
+                sv = (string) value;
+            else
+                sv = (string) Convert.ChangeType( value, typeof( string ), CultureInfo.InvariantCulture );
+
+
+            /*
+             * 
+             */
+            Regex regex;
+
+            try
+            {
+                regex = new Regex( this.Pattern );
+            }
+            catch ( ArgumentException )
+            {
+                ValidationException vex = new ValidationException( ER.RegularExpression_Invalid, context.Path, context.Property, this.Pattern );
+                result.AddError( vex );
+                return;
+            }
+
+            if ( regex.IsMatch( sv ) == false )
+            {
+                ValidationException vex = new ValidationException( ER.RegularExpression, context.Path, context.Property, this.Pattern );
+                result.AddError( vex );
+            }
         }
     }
 }

@@ -7,6 +7,13 @@ namespace Platinum.Validation
     {
         public MaxLengthAttribute( int maxLength )
         {
+            #region Validations
+
+            if ( maxLength < 1 )
+                throw new ArgumentOutOfRangeException( nameof( maxLength ), "Max length must be greater than zero." );
+
+            #endregion
+
             this.MaxLength = maxLength;
         }
 
@@ -38,7 +45,7 @@ namespace Platinum.Validation
 
             string v = (string) value;
 
-            if ( v.Length < this.MaxLength )
+            if ( v.Length > this.MaxLength )
             {
                 ValidationException vex = new ValidationException( ER.StringLength_Max, context.Path, context.Property, this.MaxLength );
                 result.AddError( vex );

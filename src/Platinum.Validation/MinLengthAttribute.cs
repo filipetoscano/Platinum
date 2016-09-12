@@ -7,6 +7,13 @@ namespace Platinum.Validation
     {
         public MinLengthAttribute( int minLength )
         {
+            #region Validations
+
+            if ( minLength < 1 )
+                throw new ArgumentOutOfRangeException( nameof( minLength ), "Min length must be greater than zero." );
+
+            #endregion
+
             this.MinLength = minLength;
         }
 

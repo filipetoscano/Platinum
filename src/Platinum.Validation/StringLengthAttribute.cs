@@ -7,6 +7,16 @@ namespace Platinum.Validation
     {
         public StringLengthAttribute( int minLength, int maxLength )
         {
+            #region Validations
+
+            if ( minLength < 1 )
+                throw new ArgumentOutOfRangeException( nameof( minLength ), "Min length must be greater than zero." );
+
+            if ( minLength > maxLength )
+                throw new ArgumentOutOfRangeException( nameof( minLength ), "Min length must be smaller or equal to max length." );
+
+            #endregion
+
             this.MinLength = minLength;
             this.MaxLength = maxLength;
         }

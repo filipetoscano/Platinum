@@ -140,6 +140,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="IO\FsPath.cs" />
+    <Compile Include="IO\Glob.cs" />
     <Compile Include="Mirror.cs" />
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
