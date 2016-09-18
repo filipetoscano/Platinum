@@ -1,4 +1,5 @@
 ﻿using System;
+using Platinum.Reflection;
 
 namespace Platinum
 {
@@ -13,28 +14,35 @@ namespace Platinum
         /// <returns>An object of type T whose value is represented by value.</returns>
         public static T Parse<T>( string value )
         {
-            #region Validation
-
-            if ( value == null )
-                throw new ArgumentNullException( nameof( value ) );
-
-            if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( nameof( value ) );
-
-            #endregion
-
+            Type tt = typeof( T );
             T t;
 
-            if ( typeof( T ).IsEnum == false )
-                throw new CoreException( ER.Enumerate_TypeNotEnum, typeof( T ).FullName );
+            if ( tt.IsNullable() == true )
+            {
+                tt = Nullable.GetUnderlyingType( tt );
+
+                if ( tt.IsEnum == false )
+                    throw new CoreException( ER.Enumerate_TypeNotEnum, tt.FullName );
+
+                if ( value == null )
+                    return default( T );
+            }
+            else
+            {
+                if ( tt.IsEnum == false )
+                    throw new CoreException( ER.Enumerate_TypeNotEnum, tt.FullName );
+
+                if ( value == null )
+                    throw new ArgumentNullException( nameof( value ) );
+            }
 
             try
             {
-                t = (T) Enum.Parse( typeof( T ), value );
+                t = (T) Enum.Parse( tt, value );
             }
             catch ( ArgumentException ex )
             {
-                throw new CoreException( ER.Enumerate_Parse, ex, typeof( T ).FullName, value );
+                throw new CoreException( ER.Enumerate_Parse, ex, tt.FullName, value );
             }
 
             return t;
@@ -51,28 +59,35 @@ namespace Platinum
         /// <returns>An object of type T whose value is represented by value.</returns>
         public static T ParseInsensitive<T>( string value )
         {
-            #region Validation
-
-            if ( value == null )
-                throw new ArgumentNullException( nameof( value ) );
-
-            if ( value.Length == 0 )
-                throw new ArgumentOutOfRangeException( nameof( value ) );
-
-            #endregion
-
+            Type tt = typeof( T );
             T t;
 
-            if ( typeof( T ).IsEnum == false )
-                throw new CoreException( ER.Enumerate_TypeNotEnum, typeof( T ).FullName );
+            if ( tt.IsNullable() == true )
+            {
+                tt = Nullable.GetUnderlyingType( tt );
+
+                if ( tt.IsEnum == false )
+                    throw new CoreException( ER.Enumerate_TypeNotEnum, tt.FullName );
+
+                if ( value == null )
+                    return default( T );
+            }
+            else
+            {
+                if ( tt.IsEnum == false )
+                    throw new CoreException( ER.Enumerate_TypeNotEnum, tt.FullName );
+
+                if ( value == null )
+                    throw new ArgumentNullException( nameof( value ) );
+            }
 
             try
             {
-                t = (T) Enum.Parse( typeof( T ), value, true );
+                t = (T) Enum.Parse( tt, value, true );
             }
             catch ( ArgumentException ex )
             {
-                throw new CoreException( ER.Enumerate_ParseCaseInsensitive, ex, typeof( T ).FullName, value );
+                throw new CoreException( ER.Enumerate_ParseCaseInsensitive, ex, tt, value );
             }
 
             return t;

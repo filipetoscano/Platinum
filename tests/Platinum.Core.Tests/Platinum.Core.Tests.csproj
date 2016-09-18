@@ -62,6 +62,8 @@
     <Compile Include="Configuration\TheEnum.cs" />
     <Compile Include="Cryptography\SymmetricCryptoTest.cs" />
     <Compile Include="Cryptography\HashTest.cs" />
+    <Compile Include="EnumerateModel.cs" />
+    <Compile Include="EnumerateTests.cs" />
     <Compile Include="Globalization\GlobalizationTest.cs" />
     <Compile Include="IO\FsPathTest.cs" />
     <Compile Include="Resolver\Custom2Resolver.cs" />
