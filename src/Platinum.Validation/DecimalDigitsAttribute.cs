@@ -2,9 +2,11 @@
 
 namespace Platinum.Validation
 {
+    /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class DecimalDigitsAttribute : Attribute, IValidationRule
     {
+        /// <summary />
         public DecimalDigitsAttribute( int maxDecimalDigits )
         {
             this.MaxDecimalDigits = maxDecimalDigits;
@@ -22,6 +24,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             #region Validations

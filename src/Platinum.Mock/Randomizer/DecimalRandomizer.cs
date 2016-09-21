@@ -8,6 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class DecimalRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             decimal d = (decimal) R.NextDouble( 100000 );
@@ -16,6 +17,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

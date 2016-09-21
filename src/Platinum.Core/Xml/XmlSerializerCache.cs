@@ -56,7 +56,7 @@ namespace Platinum.Xml
         /// </summary>
         /// <typeparam name="T">Type to deserialize.</typeparam>
         /// <param name="xml">Serialized representation of T.</param>
-        /// <returns>Instance of <see cref="T"/>.</returns>
+        /// <returns>Instance of T.</returns>
         [SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
         public static T Deserialize<T>( string xml )
         {
@@ -95,7 +95,7 @@ namespace Platinum.Xml
         /// <typeparam name="T">Type to deserialize.</typeparam>
         /// <param name="schema">Schema to validate against.</param>
         /// <param name="xml">Serialized representation of T.</param>
-        /// <returns>Instance of <see cref="T"/>.</returns>
+        /// <returns>Instance of T.</returns>
         [SuppressMessage( "Microsoft.Usage", "CA2202:Do not dispose objects multiple times" )]
         public static T Deserialize<T>( XmlSchema schema, string xml )
         {

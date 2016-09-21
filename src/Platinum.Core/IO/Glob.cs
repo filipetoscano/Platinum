@@ -4,12 +4,13 @@ using System.IO;
 
 namespace Platinum.IO
 {
+    /// <summary />
     public static class Glob
     {
         /// <summary>
         /// Performs globbing against all provided path pattern.
         /// </summary>
-        /// <param name="pattern">
+        /// <param name="patterns">
         /// Path pattern.
         /// </param>
         /// <returns>

@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace Platinum.Mock
 {
+    /// <summary />
     public static class Randomizers
     {
+        /// <summary />
         public static Dictionary<Type, IRandomizer> All
         {
             get

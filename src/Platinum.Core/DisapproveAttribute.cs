@@ -9,11 +9,13 @@ namespace Platinum
     [AttributeUsage( AttributeTargets.All, Inherited = false )]
     public sealed class ಠ_ಠAttribute : Attribute
     {
+        /// <summary />
         public ಠ_ಠAttribute()
         {
         }
 
 
+        /// <summary />
         public ಠ_ಠAttribute( string reason )
         {
             this.Reason = reason;

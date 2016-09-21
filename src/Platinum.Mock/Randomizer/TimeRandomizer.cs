@@ -8,6 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class TimeRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             DateTime d = new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc );
@@ -17,6 +18,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

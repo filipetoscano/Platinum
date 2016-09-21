@@ -3,9 +3,11 @@ using System.Globalization;
 
 namespace Platinum.Validation
 {
+    /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class MaxValueAttribute : Attribute, IValidationRule
     {
+        /// <summary />
         public MaxValueAttribute( string maxValue )
         {
             #region Validations
@@ -39,6 +41,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             #region Validations
@@ -119,6 +122,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public static void Validate<T>( ValidationContext context, ValidationResult result, T value, T maxValue, bool isExclusive )
             where T : IComparable<T>
         {

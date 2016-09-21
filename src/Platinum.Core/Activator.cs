@@ -3,6 +3,7 @@ using System.Runtime.Remoting;
 
 namespace Platinum
 {
+    /// <summary />
     public static class Activator
     {
         /// <summary>

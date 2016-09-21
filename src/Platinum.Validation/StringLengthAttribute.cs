@@ -2,9 +2,11 @@
 
 namespace Platinum.Validation
 {
+    /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class StringLengthAttribute : Attribute, IValidationRule
     {
+        /// <summary />
         public StringLengthAttribute( int minLength, int maxLength )
         {
             #region Validations
@@ -22,6 +24,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public int MinLength
         {
             get;
@@ -29,6 +32,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public int MaxLength
         {
             get;
@@ -36,6 +40,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             #region Validations

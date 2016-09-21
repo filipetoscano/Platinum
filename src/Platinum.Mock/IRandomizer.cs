@@ -2,6 +2,9 @@
 
 namespace Platinum.Mock
 {
+    /// <summary>
+    /// Generic random value generator, for a given .NET native type.
+    /// </summary>
     public interface IRandomizer
     {
         /// <summary>

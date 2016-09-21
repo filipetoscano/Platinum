@@ -2,6 +2,7 @@
 
 namespace Platinum.Mock.DataLoader
 {
+    /// <summary />
     public class Data
     {
         /// <summary>

@@ -4,11 +4,13 @@ using System.Collections.ObjectModel;
 
 namespace Platinum.Validation
 {
+    /// <summary />
     public class ValidationResult
     {
         private List<ActorException> _errors;
 
 
+        /// <summary />
         public ValidationResult()
         {
             _errors = new List<ActorException>();
@@ -39,6 +41,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public void AddError( ActorException error )
         {
             #region Validations

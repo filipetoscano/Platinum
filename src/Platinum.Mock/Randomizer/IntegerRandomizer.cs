@@ -8,6 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class IntegerRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             int i = R.Next( 32767 );
@@ -16,6 +17,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

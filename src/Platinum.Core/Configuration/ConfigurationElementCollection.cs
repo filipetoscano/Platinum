@@ -48,7 +48,7 @@ namespace Platinum.Configuration
         /// list.
         /// </summary>
         /// <returns>
-        /// A <see cref="IEnumerator<T>" /> over the list of elements.
+        /// A IEnumerator over the list of elements.
         /// </returns>
         public new IEnumerator<T> GetEnumerator()
         {

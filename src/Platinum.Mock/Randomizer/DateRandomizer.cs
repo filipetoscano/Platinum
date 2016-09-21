@@ -9,6 +9,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class DateRandomizer : IRandomizer, IMockFunction
     {
+        /// <summary />
         public object Random( Type type )
         {
             DateTime d = DateTime.UtcNow;
@@ -18,6 +19,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations
@@ -32,6 +34,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Random( Dictionary<string,string> settings )
         {
             #region Validations

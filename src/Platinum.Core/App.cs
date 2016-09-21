@@ -2,6 +2,7 @@
 
 namespace Platinum
 {
+    /// <summary />
     public static class App
     {
         /// <summary>

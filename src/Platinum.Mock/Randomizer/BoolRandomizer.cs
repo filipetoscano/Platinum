@@ -7,6 +7,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class BoolRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             bool b = R.NextDouble() > 0.5;
@@ -15,6 +16,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

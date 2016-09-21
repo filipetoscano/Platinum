@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Platinum.Cryptography
 {
+    /// <summary />
     public class CertificateCrypto
     {
         private string _name;
@@ -36,6 +37,9 @@ namespace Platinum.Cryptography
         }
 
 
+        /// <summary>
+        /// Gets the serial number of the certificate.
+        /// </summary>
         public string SerialNumber
         {
             get

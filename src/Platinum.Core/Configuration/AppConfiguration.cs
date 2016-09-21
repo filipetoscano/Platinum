@@ -4,6 +4,7 @@ using System.Globalization;
 
 namespace Platinum.Configuration
 {
+    /// <summary />
     public static class AppConfiguration
     {
         /// <summary>
@@ -168,7 +169,7 @@ namespace Platinum.Configuration
 
         /// <summary>
         /// Gets the ConnectionStringsSection data for the current
-        //  application's default configuration.
+        /// application's default configuration.
         /// </summary>
         public static ConnectionStringSettingsCollection ConnectionStrings
         {

@@ -6,8 +6,10 @@ using KvConfig = Platinum.Configuration.KeyValueConfigurationElement;
 
 namespace Platinum.Mock
 {
+    /// <summary />
     internal static class Extensions
     {
+        /// <summary />
         internal static T Get<T>( this Dictionary<string, string> dict, string key )
         {
             if ( dict.ContainsKey( key ) == false )
@@ -17,6 +19,7 @@ namespace Platinum.Mock
         }
 
 
+        /// <summary />
         internal static T Get<T>( this Dictionary<string, string> dict, string key, T @default )
         {
             if ( dict.ContainsKey( key ) == false )
@@ -26,6 +29,7 @@ namespace Platinum.Mock
         }
 
 
+        /// <summary />
         internal static Dictionary<string,string> AsDictionary( this ConfigurationElementCollection<KvConfig> config )
         {
             Dictionary<string, string> d = new Dictionary<string, string>();

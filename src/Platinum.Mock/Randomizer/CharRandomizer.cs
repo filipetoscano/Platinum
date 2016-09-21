@@ -7,6 +7,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class CharRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             string s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -16,6 +17,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

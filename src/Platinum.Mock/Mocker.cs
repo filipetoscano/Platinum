@@ -8,12 +8,26 @@ using System.Xml.Serialization;
 
 namespace Platinum.Mock
 {
+    /// <summary>
+    /// Mocks an object.
+    /// </summary>
     public class Mocker
     {
         private const int ArrayLength = 3;
         private const int TypeRecurse = 2;
 
 
+        /// <summary>
+        /// Returns an instance of the designated type, filled with mock
+        /// values based on the metadata markup placed on each of the
+        /// properties.
+        /// </summary>
+        /// <typeparam name="T">
+        /// Type of object to return.
+        /// </typeparam>
+        /// <returns>
+        /// Instance of T, but with mocked values.
+        /// </returns>
         public static T Mock<T>() where T : class
         {
             T instance = (T) Mock( new Stack<Type>(), typeof( T ) );

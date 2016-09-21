@@ -2,6 +2,9 @@
 
 namespace Platinum.Data
 {
+    /// <summary>
+    /// Null values, but with type information.
+    /// </summary>
     public class N
     {
         /// <summary>

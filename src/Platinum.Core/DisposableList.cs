@@ -4,8 +4,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Platinum
 {
+    /// <summary />
     public class DisposableList : List<IDisposable>, IDisposable
     {
+        /// <summary />
         public T Add<T>( Func<T> factory ) where T : IDisposable
         {
             var item = factory();
@@ -15,6 +17,7 @@ namespace Platinum
         }
 
 
+        /// <summary />
         public void Dispose()
         {
             Dispose( true );
@@ -22,6 +25,7 @@ namespace Platinum
         }
 
 
+        /// <summary />
         [SuppressMessage( "Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations" )]
         protected virtual void Dispose( bool disposing )
         {

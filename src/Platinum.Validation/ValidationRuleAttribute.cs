@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace Platinum.Validation
 {
+    /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class ValidationRuleAttribute : Attribute, IValidationRule
     {
+        /// <summary />
         public ValidationRuleAttribute( string name )
         {
             #region Validations
@@ -29,6 +31,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             IValidationRule[] rules = RulesFor( this.Name );

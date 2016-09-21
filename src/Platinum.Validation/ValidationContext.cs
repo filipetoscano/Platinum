@@ -1,7 +1,9 @@
 ﻿namespace Platinum.Validation
 {
+    /// <summary />
     public class ValidationContext
     {
+        /// <summary />
         public string Path
         {
             get;
@@ -9,6 +11,7 @@
         }
 
 
+        /// <summary />
         public string Property
         {
             get;

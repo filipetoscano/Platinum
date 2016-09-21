@@ -3,6 +3,7 @@ using System.IO;
 
 namespace Platinum.IO
 {
+    /// <summary />
     public static class FsPath
     {
         /// <summary>

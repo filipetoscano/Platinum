@@ -3,7 +3,7 @@
 
     <section name="platinum/resolver" type="ResolverConfiguration">
         <repeater name="customResolvers">
-            <item type="ResolverDefinition">
+            <item name="add" type="ResolverDefinition">
                 <string name="scheme" key="true" />
                 <string name="moniker" />
             </item>

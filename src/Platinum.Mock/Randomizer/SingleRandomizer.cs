@@ -8,6 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class SingleRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             float f = (float) R.NextDouble( 100000 );
@@ -16,6 +17,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

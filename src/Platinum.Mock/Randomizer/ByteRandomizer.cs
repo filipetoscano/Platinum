@@ -8,6 +8,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class ByteRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             byte b = (byte) R.Next( 255 );
@@ -16,6 +17,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

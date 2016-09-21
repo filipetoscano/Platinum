@@ -3,6 +3,7 @@ using Platinum.Reflection;
 
 namespace Platinum
 {
+    /// <summary />
     public class Enumerate
     {
         /// <summary>

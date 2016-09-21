@@ -6,8 +6,10 @@ using System.Reflection;
 
 namespace Platinum.Data
 {
+    /// <summary />
     public static class Db
     {
+        /// <summary />
         public static DataConnection Connection( string name )
         {
             #region Validations
@@ -53,6 +55,7 @@ namespace Platinum.Data
         }
 
 
+        /// <summary />
         public static string Command( string commandName )
         {
             #region Validations

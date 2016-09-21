@@ -10,12 +10,14 @@ namespace Platinum.Mock.Randomizer
     {
         const string Base64Marker = "base64:";
 
+        /// <summary />
         public object Random( Type type )
         {
             return null;
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

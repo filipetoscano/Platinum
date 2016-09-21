@@ -4,11 +4,13 @@ using System.Collections.Specialized;
 
 namespace Platinum.Mock
 {
+    /// <summary />
     public class MockData
     {
         private static MockData _mock;
         private static object _lock = new object();
 
+        /// <summary />
         public static MockData Current
         {
             get
@@ -99,7 +101,7 @@ namespace Platinum.Mock
         /// <param name="randomizer">Which randomizer to use.</param>
         /// <param name="type">Expected return-type.</param>
         /// <param name="name">Name of mock data.</param>
-        /// <returnsRandom value.></returns>
+        /// <returns>Random value.</returns>
         public object Random( Type randomizer, Type type, string name )
         {
             #region Validations
@@ -135,6 +137,7 @@ namespace Platinum.Mock
         /// <summary>
         /// Gets a single data-point for the given data point.
         /// </summary>
+        /// <param name="randomizer">Which type of randomizer to use.</param>
         /// <param name="type">Expected return type.</param>
         /// <param name="name">Name of data-point set.</param>
         /// <returns>Random data-point.</returns>

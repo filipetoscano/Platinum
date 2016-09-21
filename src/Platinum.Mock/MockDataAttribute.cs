@@ -9,6 +9,13 @@ namespace Platinum.Mock
     [AttributeUsage( AttributeTargets.Class | AttributeTargets.Property )]
     public class MockDataAttribute : Attribute
     {
+        /// <summary>
+        /// Marks a property as having mock data from the given data set or
+        /// function.
+        /// </summary>
+        /// <param name="name">
+        /// Name of mock data set or function name.
+        /// </param>
         public MockDataAttribute( string name )
         {
             #region Validations
@@ -23,7 +30,7 @@ namespace Platinum.Mock
 
 
         /// <summary>
-        /// Gets the name of the mock data set or function.
+        /// Gets the name of the mock data set or function name.
         /// </summary>
         public string Name
         {

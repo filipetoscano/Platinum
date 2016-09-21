@@ -5,8 +5,10 @@ using System.Xml;
 
 namespace Platinum.Mock.DataLoader
 {
+    /// <summary />
     public class XmlDataLoader : IDataLoader
     {
+        /// <summary />
         public Data Load( Dictionary<string, string> settings )
         {
             #region Validations

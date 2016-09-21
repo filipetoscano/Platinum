@@ -7,6 +7,7 @@ namespace Platinum.Mock.Randomizer
     /// </summary>
     public class EnumRandomizer : IRandomizer
     {
+        /// <summary />
         public object Random( Type type )
         {
             Array values = Enum.GetValues( type );
@@ -15,6 +16,7 @@ namespace Platinum.Mock.Randomizer
         }
 
 
+        /// <summary />
         public object Parse( Type type, string value )
         {
             #region Validations

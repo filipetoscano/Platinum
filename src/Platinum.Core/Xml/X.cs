@@ -4,12 +4,15 @@ using System.Xml;
 
 namespace Platinum.Xml
 {
+    /// <summary />
     [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "X" )]
     public static class X
     {
         /*
          * AppendChild
          */
+
+        /// <summary />
         [SuppressMessage( "Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode" )]
         public static XmlElement AppendChild( XmlElement parent, string elementName, string @namespace )
         {
@@ -32,6 +35,7 @@ namespace Platinum.Xml
             return element;
         }
 
+        /// <summary />
         [SuppressMessage( "Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode" )]
         public static XmlElement AppendChild( XmlElement parent, string elementName, string @namespace, string innerText )
         {
@@ -56,6 +60,7 @@ namespace Platinum.Xml
             return element;
         }
 
+        /// <summary />
         [SuppressMessage( "Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode" )]
         public static XmlElement AppendChild( XmlDocument document, string elementName, string @namespace )
         {
@@ -83,6 +88,8 @@ namespace Platinum.Xml
         /*
          * SetAttribute
          */
+
+        /// <summary />
         [SuppressMessage( "Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode" )]
         public static XmlAttribute SetAttribute( XmlElement element, string attributeName, string attributeValue )
         {
@@ -112,6 +119,8 @@ namespace Platinum.Xml
             return attr;
         }
 
+
+        /// <summary />
         [SuppressMessage( "Microsoft.Design", "CA1059:MembersShouldNotExposeCertainConcreteTypes", MessageId = "System.Xml.XmlNode" )]
         public static XmlAttribute SetAttribute( XmlElement element, string attributeName, string attributeNamespace, string attributeValue )
         {

@@ -4,6 +4,7 @@ using System.Data.Common;
 
 namespace Platinum.Data
 {
+    /// <summary />
     public static class Extensions
     {
         /// <summary>

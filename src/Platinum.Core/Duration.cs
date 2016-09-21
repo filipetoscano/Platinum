@@ -127,7 +127,7 @@ namespace Platinum
         /// <param name="hours">Number of hours. Must be a positive value.</param>
         /// <param name="minutes">Number of minutes. Must be a positive value.</param>
         /// <param name="seconds">Number of seconds. Must be a positive value.</param>
-        /// <param name="milliSeconds">Number of milli-seconds. Must be a positive value.</param>
+        /// <param name="milliseconds">Number of milli-seconds. Must be a positive value.</param>
         public Duration( DurationDirection direction, int years, int months, int days, int hours, int minutes, int seconds, int milliseconds )
             : this()
         {
@@ -176,7 +176,7 @@ namespace Platinum
         /// <param name="hours">Number of hours. Must be a positive value.</param>
         /// <param name="minutes">Number of minutes. Must be a positive value.</param>
         /// <param name="seconds">Number of seconds. Must be a positive value.</param>
-        /// <param name="milliSeconds">Number of milli-seconds. Must be a positive value.</param>
+        /// <param name="milliseconds">Number of milli-seconds. Must be a positive value.</param>
         public Duration( int years, int months, int days, int hours, int minutes, int seconds, int milliseconds )
             : this( DurationDirection.Positive, years, months, days, hours, minutes, seconds, milliseconds )
         {
@@ -420,7 +420,7 @@ namespace Platinum
         /// Adds a duration to a start date.
         /// </summary>
         /// <param name="startDate">The start date.</param>
-        /// <param name="s">A duration in string format.</param>
+        /// <param name="duration">A duration in string format.</param>
         /// <returns>The resulting end date.</returns>
         public static DateTime AddDuration( DateTime startDate, string duration )
         {

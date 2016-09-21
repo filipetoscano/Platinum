@@ -2,9 +2,11 @@
 
 namespace Platinum.Validation
 {
+    /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class MinLengthAttribute : Attribute, IValidationRule
     {
+        /// <summary />
         public MinLengthAttribute( int minLength )
         {
             #region Validations
@@ -18,6 +20,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public int MinLength
         {
             get;
@@ -25,6 +28,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             #region Validations

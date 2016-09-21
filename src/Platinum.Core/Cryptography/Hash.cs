@@ -123,7 +123,7 @@ namespace Platinum.Cryptography
         }
 
 
-
+        /// <summary />
         [SuppressMessage( "Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Sha" )]
         public static string EbcdicSha1( string value )
         {

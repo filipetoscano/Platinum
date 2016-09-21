@@ -2,14 +2,17 @@
 
 namespace Platinum.Validation
 {
+    /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class RequiredAttribute : Attribute, IValidationRule
     {
+        /// <summary />
         public RequiredAttribute()
         {
         }
 
 
+        /// <summary />
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             #region Validations

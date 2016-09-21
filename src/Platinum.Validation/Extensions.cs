@@ -2,8 +2,10 @@
 
 namespace Platinum.Validation
 {
+    /// <summary />
     internal static class Extensions
     {
+        /// <summary />
         internal static bool HasValue( this object value )
         {
             if ( value == null )
