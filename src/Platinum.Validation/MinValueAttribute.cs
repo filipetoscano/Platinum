@@ -122,6 +122,7 @@ namespace Platinum.Validation
         }
 
 
+        /// <summary />
         public static void Validate<T>( ValidationContext context, ValidationResult result, T value, T minValue, bool isExclusive )
             where T : IComparable<T>
         {

@@ -5,11 +5,13 @@ using System.Linq;
 
 namespace Platinum.Globalization
 {
+    /// <summary />
     public static class CultureFactory
     {
         private static Dictionary<string, CultureInfo> _cultures = new Dictionary<string, CultureInfo>();
 
 
+        /// <summary />
         public static CultureInfo GetCulture( string cultureName )
         {
             #region Validations

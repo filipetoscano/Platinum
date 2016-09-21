@@ -4,7 +4,7 @@ using Platinum.Reflection;
 
 namespace Platinum
 {
-    /// <summary>
+    /// <summary />
     public static class Mirror
     {
         /// <summary>

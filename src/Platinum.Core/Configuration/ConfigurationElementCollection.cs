@@ -13,6 +13,7 @@ namespace Platinum.Configuration
         private List<T> _elements = new List<T>();
 
 
+        /// <summary />
         protected override ConfigurationElement CreateNewElement()
         {
             T newElement = new T();
@@ -21,6 +22,7 @@ namespace Platinum.Configuration
         }
 
 
+        /// <summary />
         protected override object GetElementKey( ConfigurationElement element )
         {
             return _elements.Find( e => e.Equals( element ) );

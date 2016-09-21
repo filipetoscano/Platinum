@@ -8,6 +8,7 @@ namespace Platinum.Web
     /// </remarks>
     public class MimeTypes
     {
+        /// <summary />
         public static Dictionary<string, string> List = new Dictionary<string, string>
         {
             // Additional

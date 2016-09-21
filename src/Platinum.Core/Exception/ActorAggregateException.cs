@@ -5,12 +5,14 @@ using System.Security.Permissions;
 
 namespace Platinum
 {
+    /// <summary />
     [Serializable]
     public class ActorAggregateException : ActorException
     {
         private List<ActorException> _exceptions = new List<ActorException>();
 
 
+        /// <summary />
         public ActorAggregateException( IEnumerable<ActorException> exceptions )
             : base( "##collection" )
         {
@@ -21,7 +23,9 @@ namespace Platinum
         }
 
 
-
+        /// <summary>
+        /// Gets the name of the actor of the first error/exception.
+        /// </summary>
         public override string Actor
         {
             get
@@ -34,6 +38,9 @@ namespace Platinum
         }
 
 
+        /// <summary>
+        /// Gets the error code of the first error/exception.
+        /// </summary>
         public override int Code
         {
             get
@@ -46,6 +53,9 @@ namespace Platinum
         }
 
 
+        /// <summary>
+        /// Gets the programmer friendly description of the first error/exception.
+        /// </summary>
         public override string Description
         {
             get
@@ -58,6 +68,7 @@ namespace Platinum
         }
 
 
+        /// <summary />
         public void Add( ActorException item )
         {
             #region Validations
@@ -71,18 +82,21 @@ namespace Platinum
         }
 
 
+        /// <summary />
         public void Clear()
         {
             _exceptions.Clear();
         }
 
 
+        /// <summary />
         public IEnumerator<ActorException> GetEnumerator()
         {
             return _exceptions.GetEnumerator();
         }
 
 
+        /// <summary />
         protected ActorAggregateException( SerializationInfo info, StreamingContext context )
             : base( info, context )
         {
@@ -97,6 +111,7 @@ namespace Platinum
         }
 
 
+        /// <summary />
         [SecurityPermission( SecurityAction.Demand, SerializationFormatter = true )]
         public override void GetObjectData( SerializationInfo info, StreamingContext context )
         {

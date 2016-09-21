@@ -3,21 +3,25 @@ using System.Runtime.Serialization;
 
 namespace Platinum
 {
+    /// <summary />
     [Serializable]
     public abstract class ActorException : Exception
     {
+        /// <summary />
         public ActorException( string message )
             : base( message )
         {
         }
 
 
+        /// <summary />
         public ActorException( string message, Exception innerException )
             : base( message, innerException )
         {
         }
 
 
+        /// <summary />
         protected ActorException( SerializationInfo info, StreamingContext context )
             : base( info, context )
         {

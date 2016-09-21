@@ -53,11 +53,14 @@ namespace Platinum.Configuration
     /// </summary>
     public sealed class NullableStringConverter : TypeConverter
     {
+        /// <summary />
         public override bool CanConvertFrom( ITypeDescriptorContext context, Type sourceType )
         {
             return sourceType == typeof( string );
         }
 
+
+        /// <summary />
         public override object ConvertFrom( ITypeDescriptorContext context, CultureInfo culture, object value )
         {
             return (NullableString) (string) value;

@@ -6,6 +6,7 @@ using HA = System.Security.Cryptography.HashAlgorithm;
 
 namespace Platinum.Cryptography
 {
+    /// <summary />
     public static class Hash
     {
         private static readonly uint[] _lookup32 = CreateLookup32();

@@ -1,5 +1,6 @@
 ﻿namespace Platinum.Cryptography
 {
+    /// <summary />
     public enum SymmetricCryptoAlgorithm
     {
         /// <summary>

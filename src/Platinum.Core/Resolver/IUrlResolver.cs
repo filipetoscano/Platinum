@@ -2,6 +2,7 @@
 
 namespace Platinum.Resolver
 {
+    /// <summary />
     public interface IUrlResolver
     {
         /// <summary>

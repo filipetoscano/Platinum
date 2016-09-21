@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Platinum.Cryptography
 {
+    /// <summary />
     public class SymmetricCrypto
     {
         private string _name;

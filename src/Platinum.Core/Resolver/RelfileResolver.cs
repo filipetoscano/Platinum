@@ -3,8 +3,10 @@ using System.IO;
 
 namespace Platinum.Resolver
 {
+    /// <summary />
     public class RelfileResolver : IUrlResolver
     {
+        /// <summary />
         public Uri ResolveUri( Uri baseUri, string relativeUri )
         {
             if ( baseUri == null )

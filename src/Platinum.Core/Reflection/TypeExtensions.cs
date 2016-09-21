@@ -2,6 +2,7 @@
 
 namespace Platinum.Reflection
 {
+    /// <summary />
     public static class TypeExtensions
     {
         /// <summary>

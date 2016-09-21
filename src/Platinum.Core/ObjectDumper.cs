@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace Platinum
 {
-    /// <summary>
+    /// <summary />
     public class ObjectDumper
     {
         private int _level;

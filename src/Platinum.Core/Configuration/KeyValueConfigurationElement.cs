@@ -2,6 +2,7 @@
 
 namespace Platinum.Configuration
 {
+    /// <summary />
     public class KeyValueConfigurationElement : ConfigurationElement
     {
         /// <summary>

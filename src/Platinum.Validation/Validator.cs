@@ -4,8 +4,10 @@ using System.Linq;
 
 namespace Platinum.Validation
 {
+    /// <summary />
     public static class Validator
     {
+        /// <summary />
         public static ValidationResult Validate<T>( T obj )
         {
             #region Validations

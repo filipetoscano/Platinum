@@ -7,6 +7,7 @@ using System.Xml;
 
 namespace Platinum.Resolver
 {
+    /// <summary />
     public class UrlResolver : XmlUrlResolver
     {
         private bool _collect;

@@ -8,6 +8,7 @@ using CI = System.Globalization.CultureInfo;
 
 namespace Platinum
 {
+    /// <summary />
     [Serializable]
     public abstract class ResxActorException : ActorException
     {
@@ -16,6 +17,7 @@ namespace Platinum
         private string _description;
 
 
+        /// <summary />
         public ResxActorException( string code )
             : base( code )
         {
@@ -23,12 +25,14 @@ namespace Platinum
         }
 
 
+        /// <summary />
         public ResxActorException( string code, params object[] args )
             : base( code )
         {
             ResxLoad( code, args );
         }
 
+        /// <summary />
 
         public ResxActorException( string code, Exception innerException )
             : base( code, innerException )
@@ -37,6 +41,7 @@ namespace Platinum
         }
 
 
+        /// <summary />
         public ResxActorException( string code, Exception innerException, params object[] args )
             : base( code, innerException )
         {
@@ -179,24 +184,39 @@ namespace Platinum
         }
 
 
+        /// <summary>
+        /// Gets the name of the actor which raised the error/exception.
+        /// </summary>
         public override string Actor
         {
             get { return _actor; }
         }
 
 
+        /// <summary>
+        /// Gets the error code of the error/exception.
+        /// </summary>
         public override int Code
         {
             get { return _code; }
         }
 
 
+        /// <summary>
+        /// Gets the programmer friendly description of the error/exception.
+        /// </summary>
+        /// <remarks>
+        /// No application/business code should ever make use of this value! If
+        /// conditions exist over errors/exceptions they should make use of the
+        /// .Actor/.Code properties.
+        /// </remarks>
         public override string Description
         {
             get { return _description; }
         }
 
 
+        /// <summary />
         protected ResxActorException( SerializationInfo info, StreamingContext context )
             : base( info, context )
         {
@@ -213,6 +233,7 @@ namespace Platinum
         }
 
 
+        /// <summary />
         [SecurityPermission( SecurityAction.Demand, SerializationFormatter = true )]
         public override void GetObjectData( SerializationInfo info, StreamingContext context )
         {
