@@ -74,7 +74,7 @@ namespace Platinum.Data
             Stream stream = assembly.GetManifestResourceStream( resourceName );
 
             if ( stream == null )
-                throw new DataException( ER.Command_CommandNotFound, assembly.FullName, commandName, resourceName );
+                throw new DataException( ER.Command_CommandNotFound, commandName, assembly.FullName, resourceName );
 
             /*
              * 

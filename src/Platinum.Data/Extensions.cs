@@ -1,6 +1,10 @@
 ﻿using Dapper;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Linq;
+using System.Reflection;
 
 namespace Platinum.Data
 {
@@ -40,6 +44,52 @@ namespace Platinum.Data
             string scalar = cnn.ExecuteScalar<string>( sql, param, transaction, commandTimeout, commandType );
 
             return Enumerate.Parse<T>( scalar );
+        }
+
+
+        /// <summary>
+        /// Converts an enumeration into a SQL Server TVP.
+        /// </summary>
+        /// <param name="rows">
+        /// Sets of dynamic rows.
+        /// </param>
+        /// <param name="typeName">
+        /// Name of the SQL Server TVP.
+        /// </param>
+        /// <returns></returns>
+        public static SqlMapper.ICustomQueryParameter AsTableValuedParameter<T>( this IEnumerable<T> rows, string typeName )
+        {
+            /*
+             * 
+             */
+            DataTable dt = new DataTable();
+            List<PropertyInfo> properties = new List<PropertyInfo>();
+
+            Type rowType = rows.GetType().GenericTypeArguments.Last();
+
+            foreach ( var p in rowType.GetProperties() )
+            {
+                dt.Columns.Add( p.Name, p.PropertyType );
+                properties.Add( p );
+            }
+
+
+            /*
+             * 
+             */
+            foreach ( var row in rows )
+            {
+                DataRow r = dt.NewRow();
+
+                foreach ( var prop in properties )
+                {
+                    r[ prop.Name ] = prop.GetValue( row );
+                }
+
+                dt.Rows.Add( r );
+            }
+
+            return dt.AsTableValuedParameter( typeName );
         }
     }
 }
