@@ -58,7 +58,6 @@ namespace Platinum.Validation
             // TODO
             List<IValidationRule> rules = new List<IValidationRule>();
 
-            rules.Add( new RequiredAttribute() );
             rules.Add( new StringLengthAttribute( 5, 10 ) );
 
             return rules.ToArray();

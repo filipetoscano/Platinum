@@ -57,6 +57,16 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ StringCharacterSet
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="StringCharacterSet_Invalid" actor="{0}.{1}" code="2003">
+        <description>String includes characters outside charset '{2}'.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ StringLength
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -66,6 +76,20 @@
 
     <error id="StringLength_Max" actor="{0}.{1}" code="2002">
         <description>Field is longer than '{2}' characters long.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ StringLower / StringUpper
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="StringLowerCase_Invalid" actor="{0}.{1}" code="2004">
+        <description>String includes characters which are not lower-case.</description>
+    </error>
+
+    <error id="StringUpperCase_Invalid" actor="{0}.{1}" code="2004">
+        <description>String includes characters which are not upper-case.</description>
     </error>
 
 
