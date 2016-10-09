@@ -71,6 +71,7 @@
     <Compile Include="DataConnection.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TypeHandler\DateTimeHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Platinum.Core\Platinum.Core.csproj">
