@@ -51,6 +51,7 @@
     <Compile Include="..\GlobalVersion.cs">
       <Link>Properties\GlobalVersion.cs</Link>
     </Compile>
+    <Compile Include="DataConfig.cs" />
     <Compile Include="DataCommand.cs">
       <SubType>Component</SubType>
     </Compile>
