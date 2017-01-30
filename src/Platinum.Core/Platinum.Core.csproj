@@ -74,6 +74,7 @@
     <Compile Include="Algorithm\Luhn.cs" />
     <Compile Include="Algorithm\NumericEncoder.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="CommitIdAttribute.cs" />
     <Compile Include="Configuration\Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -146,6 +147,8 @@
     <Compile Include="IO\Glob.cs" />
     <Compile Include="Mirror.cs" />
     <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Reflection\EntryAssemblyAttribute.cs" />
+    <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="Resolver\Configuration-Partial.cs" />
     <Compile Include="Resolver\RelfileResolver.cs" />

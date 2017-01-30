@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.Serialization;
 
 namespace Platinum
@@ -57,6 +58,25 @@ namespace Platinum
         public abstract string Description
         {
             get;
+        }
+
+
+        /// <summary>
+        /// Override the default implementation of .ToString(), so that all
+        /// relevant information is available in the string representation.
+        /// </summary>
+        /// <returns>String representation of error.</returns>
+        public override string ToString()
+        {
+            string s = string.Format( CultureInfo.InvariantCulture, "({0}/{1}) {2} [{3}]", this.Actor, this.Code, this.Description, this.Message );
+
+            if ( this.StackTrace != null )
+                s = s + "\n" + this.StackTrace;
+
+            if ( this.InnerException != null )
+                s = s + "\n\n" + this.InnerException.ToString();
+
+            return s;
         }
     }
 }
