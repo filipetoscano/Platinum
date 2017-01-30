@@ -147,9 +147,11 @@
     <Compile Include="IO\Glob.cs" />
     <Compile Include="Mirror.cs" />
     <Compile Include="ObjectDumper.cs" />
+    <Compile Include="Reflection\AppDomainExtensions.cs" />
     <Compile Include="Reflection\EntryAssemblyAttribute.cs" />
     <Compile Include="Reflection\AssemblyExtensions.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
+    <Compile Include="Reflection\AppDomainUtils.cs" />
     <Compile Include="Resolver\Configuration-Partial.cs" />
     <Compile Include="Resolver\RelfileResolver.cs" />
     <Compile Include="Resolver\IUrlResolver.cs" />
