@@ -49,6 +49,9 @@ namespace Platinum.Validation
 
             string v = (string) value;
 
+            if ( v.Length == 0 )
+                return;
+
             if ( v.Length > this.MaxLength )
             {
                 ValidationException vex = new ValidationException( ER.StringLength_Max, context.Path, context.Property, this.MaxLength );

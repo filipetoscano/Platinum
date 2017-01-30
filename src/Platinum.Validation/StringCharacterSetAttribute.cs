@@ -50,6 +50,9 @@ namespace Platinum.Validation
 
             string v = (string) value;
 
+            if ( v.Length == 0 )
+                return;
+
             if ( v.All( c => this.Charset.Contains( c ) ) == false )
             {
                 ValidationException vex = new ValidationException( ER.StringCharacterSet_Invalid, context.Path, context.Property, this.Charset );

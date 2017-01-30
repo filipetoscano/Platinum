@@ -59,6 +59,9 @@ namespace Platinum.Validation
             else
                 sv = (string) Convert.ChangeType( value, typeof( string ), CultureInfo.InvariantCulture );
 
+            if ( sv.Length == 0 )
+                return;
+
 
             /*
              * 
