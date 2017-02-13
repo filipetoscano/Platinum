@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
+using NLog.Config;
+using System.Xml;
+using System.IO;
 
 namespace Platinum.Metrics.Test
 {
@@ -12,6 +15,8 @@ namespace Platinum.Metrics.Test
         [TestMethod]
         public void TestMethod1()
         {
+            LogManager.Configuration = Config();
+
             logger.Info( "Start: TestMethod1" );
 
             SampleMeasure m = new SampleMeasure()
@@ -33,6 +38,14 @@ namespace Platinum.Metrics.Test
             } );
 
             logger.Info( "End: TestMethod1" );
+        }
+
+
+        private static LoggingConfiguration Config()
+        {
+            string path = Path.Combine( Environment.CurrentDirectory, @"..\..\NLog.config" );
+
+            return new XmlLoggingConfiguration( path );
         }
     }
 }

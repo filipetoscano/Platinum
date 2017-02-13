@@ -147,7 +147,7 @@ namespace Platinum.Metrics
 
             foreach ( var logEvent in logEvents )
             {
-                if ( logEvent.Parameters.Count() == 0 )
+                if ( logEvent.Parameters == null || logEvent.Parameters.Count() == 0 )
                     continue;
 
 
