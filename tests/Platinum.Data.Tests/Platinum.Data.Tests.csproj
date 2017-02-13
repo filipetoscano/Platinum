@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DateTimeTest.cs" />
     <Compile Include="NoServerTest.cs" />
     <Compile Include="BasicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
