@@ -2,6 +2,16 @@
 {
     internal static class Q
     {
+        internal static string DbError
+        {
+            get { return Db.Command( "Sql/DbError" ); }
+        }
+
+        internal static string DbErrorArg
+        {
+            get { return Db.Command( "Sql/DbErrorArg" ); }
+        }
+
         internal static string Multi1
         {
             get { return Db.Command( "Sql/Multi1" ); }

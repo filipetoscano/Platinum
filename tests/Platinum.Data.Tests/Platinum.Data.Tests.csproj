@@ -59,7 +59,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DurationTest.cs" />
     <Compile Include="DateTimeTest.cs" />
+    <Compile Include="DbErrorTest.cs" />
     <Compile Include="NoServerTest.cs" />
     <Compile Include="BasicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +92,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sql\Query.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sql\DbError.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sql\DbErrorArg.sql" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

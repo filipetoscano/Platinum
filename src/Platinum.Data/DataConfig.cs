@@ -10,6 +10,7 @@ namespace Platinum.Data
         public static void Register()
         {
             SqlMapper.AddTypeHandler( new DateTimeHandler() );
+            SqlMapper.AddTypeHandler( new DurationHandler() );
         }
     }
 }
