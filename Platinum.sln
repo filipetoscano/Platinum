@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{64D1A3
 		automation.proj = automation.proj
 		src\Platinum.Core\Platinum.Core.nuspec = src\Platinum.Core\Platinum.Core.nuspec
 		src\Platinum.Data\Platinum.Data.nuspec = src\Platinum.Data\Platinum.Data.nuspec
+		src\Platinum.Logging\Platinum.Logging.nuspec = src\Platinum.Logging\Platinum.Logging.nuspec
 		src\Platinum.Metrics\Platinum.Metrics.nuspec = src\Platinum.Metrics\Platinum.Metrics.nuspec
 		src\Platinum.Mock\Platinum.Mock.nuspec = src\Platinum.Mock\Platinum.Mock.nuspec
 		src\Platinum.Validation\Platinum.Validation.nuspec = src\Platinum.Validation\Platinum.Validation.nuspec
@@ -38,6 +39,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Metrics", "src\Platinum.Metrics\Platinum.Metrics.csproj", "{982DF336-F970-493F-BE85-4CFA6310AF58}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Metrics.Test", "tests\Platinum.Metrics.Test\Platinum.Metrics.Test.csproj", "{9940A888-FDE4-4A85-8644-21B5A0BFFE82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Logging", "src\Platinum.Logging\Platinum.Logging.csproj", "{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Logging.Tests", "tests\Platinum.Logging.Tests\Platinum.Logging.Tests.csproj", "{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +90,14 @@ Global
 		{9940A888-FDE4-4A85-8644-21B5A0BFFE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9940A888-FDE4-4A85-8644-21B5A0BFFE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9940A888-FDE4-4A85-8644-21B5A0BFFE82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +113,8 @@ Global
 		{3DC9E2CA-179F-4450-AFEB-748DAD5CE7D0} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 		{982DF336-F970-493F-BE85-4CFA6310AF58} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{9940A888-FDE4-4A85-8644-21B5A0BFFE82} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
+		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
+		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

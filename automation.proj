@@ -48,6 +48,7 @@
         <MakeDir Directories="build" />
         <Exec Command=" nuget pack Platinum.Core.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Core" />
         <Exec Command=" nuget pack Platinum.Data.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Data" />
+        <Exec Command=" nuget pack Platinum.Logging.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Logging" />
         <Exec Command=" nuget pack Platinum.Metrics.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Metrics" />
         <Exec Command=" nuget pack Platinum.Mock.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Mock" />
         <Exec Command=" nuget pack Platinum.Validation.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Validation" />
@@ -64,6 +65,7 @@
         <Error Condition=" $(nugetPushKey) == '' " Text="Must specify 'nugetPushKey' when pushing to nuget source." />
         <Exec Command=" nuget push Platinum.Core.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Data.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
+        <Exec Command=" nuget push Platinum.Logging.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Metrics.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Mock.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Validation.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />

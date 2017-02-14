@@ -1,16 +1,23 @@
 ﻿using Elasticsearch.Net;
+using Newtonsoft.Json;
 using NLog;
 using NLog.Common;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
+using Platinum;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 
-namespace Platinum.Metrics
+namespace Festo.Logging
 {
-    [Target( "Metrics" )]
+    /// <summary>
+    /// Target which publishes log events to ElasticSearch in a structured
+    /// format.
+    /// </summary>
+    [Target( "ElasticSearch" )]
     public class ElasticSearchTarget : TargetWithLayout
     {
         private IElasticLowLevelClient _client;
@@ -40,20 +47,19 @@ namespace Platinum.Metrics
 
 
         /// <summary>
-        /// Initializes a new instance of <see cref="ElasticSearchTarget" />.
+        /// Creates a new instance of the <see cref="ElasticSearchTarget" /> class.
         /// </summary>
         public ElasticSearchTarget()
         {
             Name = "ElasticSearch";
             Uri = "http://localhost:9200";
-            Index = "metrics-${date:format=yyyy.MM.dd}";
-            DocumentType = "measure";
+            DocumentType = "logevent";
+            Index = "logstash-${date:format=yyyy.MM.dd}";
         }
 
 
         /// <summary>
-        /// Initializes the current instance, based on the declarative configuration
-        /// in the NLog.config file.
+        /// Initializes the current instance.
         /// </summary>
         protected override void InitializeTarget()
         {
@@ -147,39 +153,36 @@ namespace Platinum.Metrics
 
             foreach ( var logEvent in logEvents )
             {
-                if ( logEvent.Parameters == null || logEvent.Parameters.Count() == 0 )
-                    continue;
-
-
-                /*
-                 * 
-                 */
                 var document = new Dictionary<string, object>
                 {
                     { "@timestamp", logEvent.TimeStamp },
                     { "level", logEvent.Level.Name },
-                    { "application", App.Name },
+                    { "message", Layout.Render( logEvent ) },
+                    { "application", App.SafeName },
+                    { "environment", App.SafeEnvironment },
                     { "host", Environment.MachineName },
                 };
 
-
-                /*
-                 * 
-                 */
-                object measure = logEvent.Parameters[ 0 ];
-                Type measureType = measure.GetType();
-
-                document.Add( "measure", measureType.FullName );
-
-                foreach ( var p in measureType.GetProperties() )
+                if ( logEvent.Exception != null )
                 {
-                    document.Add( p.Name, p.GetValue( measure ) );
+                    if ( logEvent.Exception is ActorException )
+                    {
+                        ActorException ae = (ActorException) logEvent.Exception;
+
+                        document[ "message" ] = ae.Description;
+                        document.Add( "id", ae.Message );
+                        document.Add( "actor", ae.Actor );
+                        document.Add( "code", ae.Code );
+                    }
+                    else
+                    {
+                        var jsonString = JsonConvert.SerializeObject( logEvent.Exception );
+                        var ex = JsonConvert.DeserializeObject<ExpandoObject>( jsonString );
+
+                        // document.Add( "exception", ex.ReplaceDotInKeys() );
+                    }
                 }
 
-
-                /*
-                 * 
-                 */
                 var index = Index.Render( logEvent ).ToLowerInvariant();
                 var type = DocumentType.Render( logEvent );
 

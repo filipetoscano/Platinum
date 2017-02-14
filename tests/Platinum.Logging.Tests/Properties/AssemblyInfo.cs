@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Reflection;
 using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// Assembly information
-[assembly: AssemblyTitle( "Platinum Core" )]
-[assembly: AssemblyDescription( "Core assembly." )]
+// General information
+[assembly: AssemblyTitle( "Logging Tests" )]
+[assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
-[assembly: AssemblyCompany( "Transition" )]
+[assembly: AssemblyCompany( "" )]
 [assembly: AssemblyProduct( "Platinum" )]
 [assembly: AssemblyCopyright( "" )]
 [assembly: AssemblyTrademark( "" )]
@@ -17,11 +16,11 @@ using System.Runtime.InteropServices;
 // Additional information
 [assembly: CLSCompliant( true )]
 [assembly: ComVisible( false )]
-[assembly: Guid( "8aad0f38-6757-4562-acfd-a1cefdcb1e24" )]
+[assembly: Guid( "22d097db-92a3-444c-8ccb-5ee86b8cf9f6" )]
 [assembly: NeutralResourcesLanguage( "en-GB" )]
 
-// Internals
-[assembly: InternalsVisibleTo( "Platinum.Logging" )]
-[assembly: InternalsVisibleTo( "Platinum.Metrics" )]
+// Version information
+[assembly: AssemblyVersion( "1.0.0.0" )]
+[assembly: AssemblyFileVersion( "1.0.0.0" )]
 
 /* eof */
