@@ -18,3 +18,4 @@ packages/
 TestResults/
 push.bat
 real.bat
+src/Platinum.VisualStudio/project.lock.json
