@@ -64,6 +64,17 @@
     <Compile Include="Cryptography\HashTest.cs" />
     <Compile Include="EnumerateModel.cs" />
     <Compile Include="EnumerateTests.cs" />
+    <Compile Include="ExceptionFwk\Errors.cs">
+      <DependentUpon>Errors.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ExceptionFwk\Exceptions.cs">
+      <DependentUpon>Exceptions.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ExceptionFwk\ExceptionTests.cs" />
     <Compile Include="Globalization\GlobalizationTest.cs" />
     <Compile Include="IO\FsPathTest.cs" />
     <Compile Include="Resolver\Custom2Resolver.cs" />
@@ -81,6 +92,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ExceptionFwk\ER.resx" />
     <EmbeddedResource Include="Resolver\world.xslt" />
     <EmbeddedResource Include="Resolver\hello.xslt" />
     <EmbeddedResource Include="Resolver\hello.xml" />
@@ -90,6 +102,18 @@
       <Generator>YConfigGenTool</Generator>
       <LastGenOutput>Configuration.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExceptionFwk\Errors.xml">
+      <Generator>YResxErrorTool</Generator>
+      <LastGenOutput>Errors.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ExceptionFwk\Exceptions.xml">
+      <Generator>YResxExceptionTool</Generator>
+      <LastGenOutput>Exceptions.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Choose>

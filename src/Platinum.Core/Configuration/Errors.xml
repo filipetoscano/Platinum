@@ -10,22 +10,31 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Get_Required" actor="~#Configuration" code="1001">
         <description>Configuration key '{0}' is mandatory.</description>
+        <arg name="Key" />
     </error>
 
     <error id="Get_NotBool" actor="~#Configuration" code="1002">
         <description>Configuration key '{0}' is not a valid boolean, value is '{1}'.</description>
+        <arg name="Key" />
+        <arg name="Value" />
     </error>
 
     <error id="Get_NotEnum" actor="~#Configuration" code="1003">
         <description>Configuration key '{0}' is not a valid enumerate.</description>
+        <arg name="Key" />
     </error>
 
     <error id="Get_NotGuid" actor="~#Configuration" code="1004">
         <description>Configuration key '{0}' is not a valid GUID, value is '{1}'.</description>
+        <arg name="Key" />
+        <arg name="Value" />
     </error>
 
     <error id="Get_ChangeType" actor="~#Configuration" code="1005">
         <description>Configuration key '{0}' is not a valid '{1}', value is '{2}'.</description>
+        <arg name="Key" />
+        <arg name="Type" />
+        <arg name="Value" />
     </error>
 
 
@@ -38,14 +47,19 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Section_NotDeclared" actor="~#Configuration" code="1101">
         <description>Section '{0}' was not declared in the application configuration file (configSections/sectionGroup/section).</description>
+        <arg name="Section" />
     </error>
 
     <error id="Section_NotExpectedType" actor="~#Development" code="1102">
         <description>Section '{0}' has type '{1}', but caller expected type '{2}'.</description>
+        <arg name="Section" />
+        <arg name="SectionType" />
+        <arg name="CastType" />
     </error>
 
     <error id="Section_Invalid" actor="~#Configuration" code="1103">
         <description>Section '{0}' is not configured correctly, please review inner exception for details.</description>
+        <arg name="Section" />
     </error>
 
 </errors>

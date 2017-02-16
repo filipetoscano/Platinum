@@ -8,15 +8,20 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="UrlResolver_Assembly_SegmentCount" actor="~#Runtime" code="7001">
-        <description>An assembly URN must have at least two segmenents, which value '{0}' does not.</description>
+        <description>An assembly URN must have at least two segments, which value '{0}' does not.</description>
+        <arg name="Urn" />
     </error>
 
     <error id="UrlResolver_Assembly_ResourceNotFound" actor="~#Runtime" code="7002">
         <description>Assembly '{0}' does not contain a resource '{1}'.</description>
+        <arg name="Assembly" />
+        <arg name="Resource" />
     </error>
 
     <error id="UrlResolver_InvalidCustomResolver" actor="~#Runtime" code="7003">
         <description>Custom URL resolver for scheme '{0}' is invalid, with type moniker '{1}'.</description>
+        <arg name="Scheme" />
+        <arg name="Type" />
     </error>
 
 </errors>

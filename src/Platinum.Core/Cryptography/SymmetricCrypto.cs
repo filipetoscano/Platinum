@@ -248,7 +248,7 @@ namespace Platinum.Cryptography
                 }
                 catch ( FormatException )
                 {
-                    throw new CryptographyException( ER.SymmetricCrypto_Config_InvalidKey, keyName );
+                    throw new CryptographyException( ER.SymmetricCrypto_Config_InvalidKey, _name );
                 }
 
                 try
@@ -257,7 +257,7 @@ namespace Platinum.Cryptography
                 }
                 catch ( FormatException )
                 {
-                    throw new CryptographyException( ER.SymmetricCrypto_Config_InvalidIv, ivName );
+                    throw new CryptographyException( ER.SymmetricCrypto_Config_InvalidIv, _name );
                 }
 
 

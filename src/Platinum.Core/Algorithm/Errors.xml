@@ -10,10 +10,14 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Luhn_DuplicateCharacterInSet" actor="~#Runtime" code="7001">
         <description>Character '{1}' is declared twice in character set '{0}'.</description>
+        <arg name="CharacterSet" />
+        <arg name="Character" />
     </error>
 
     <error id="Luhn_CodeCharacterNotInSet" actor="~#Development" code="7002">
         <description>Character '{1}' is not valid for character set '{0}'.</description>
+        <arg name="CharacterSet" />
+        <arg name="Character" />
     </error>
 
 
@@ -25,10 +29,14 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="NumericEncoder_DuplicateCharacterInSet" actor="~#Runtime" code="7001">
         <description>Character '{1}' is declared twice in character set '{0}'.</description>
+        <arg name="CharacterSet" />
+        <arg name="Character" />
     </error>
 
     <error id="NumericEncoder_CodeCharacterNotInSet" actor="~#Runtime" code="7003">
         <description>Character '{1}' is not valid for character set '{0}'.</description>
+        <arg name="CharacterSet" />
+        <arg name="Character" />
     </error>
 
 </errors>

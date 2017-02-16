@@ -1,14 +1,13 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NLog;
 using NLog.Config;
-using System.Xml;
+using System;
 using System.IO;
 
 namespace Platinum.Metrics.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class MetricTest
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 

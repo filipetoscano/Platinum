@@ -10,7 +10,11 @@ src/**/bin/
 src/**/obj/
 tests/**/bin/
 tests/**/obj/
+tests/**/ER.resx
+tests/**/Errors.cs
+tests/**/Exceptions.cs
 tests/Platinum.Core.Tests/Configuration/Configuration.cs
-push.bat
 packages/
 TestResults/
+push.bat
+real.bat

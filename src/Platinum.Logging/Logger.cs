@@ -14,5 +14,17 @@ namespace Platinum.Logging
 
             this._logger = logger;
         }
+
+
+        public void Error( ActorException exception )
+        {
+            this._logger.Error( exception );
+        }
+
+
+        public void Fatal( ActorException exception )
+        {
+            this._logger.Error( exception );
+        }
     }
 }

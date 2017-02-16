@@ -133,7 +133,7 @@ namespace Platinum.Cryptography
             EnsureCertificate();
 
             if ( _certificate.HasPrivateKey == false )
-                throw new CryptographyException( ER.CertificateCrypto_CertificateWithoutPrivateKey, _certificate.Subject );
+                throw new CryptographyException( ER.CertificateCrypto_CertificateWithoutPrivateKey, _name, _certificate.Subject );
 
             byte[] response;
 
@@ -146,9 +146,9 @@ namespace Platinum.Cryptography
             catch ( CryptographicException ex )
             {
                 if ( ex.Message == "The handle is invalid." )
-                    throw new CryptographyException( ER.CertificateCrypto_DecryptBuffer_PrivateKey_InvalidHandle, ex, _certificate.Subject );
+                    throw new CryptographyException( ER.CertificateCrypto_DecryptBuffer_PrivateKey_InvalidHandle, ex, _name, _certificate.Subject );
                 else
-                    throw new CryptographyException( ER.CertificateCrypto_DecryptBuffer_PrivateKey_Other, ex, _certificate.Subject );
+                    throw new CryptographyException( ER.CertificateCrypto_DecryptBuffer_PrivateKey_Other, ex, _name, _certificate.Subject );
             }
 
             try
@@ -157,7 +157,7 @@ namespace Platinum.Cryptography
             }
             catch ( CryptographicException ex )
             {
-                throw new CryptographyException( ER.CertificateCrypto_DecryptBuffer, ex, _certificate.Subject );
+                throw new CryptographyException( ER.CertificateCrypto_DecryptBuffer, ex, _name, _certificate.Subject );
             }
 
             return response;
@@ -237,13 +237,13 @@ namespace Platinum.Cryptography
             if ( certs.Count == 0 )
             {
                 store.Close();
-                throw new CryptographyException( ER.CertificateCrypto_CertificateNotFound, whoAmI, subjectName, storeLocation, storeName );
+                throw new CryptographyException( ER.CertificateCrypto_CertificateNotFound, name, subjectName, storeLocation, storeName, whoAmI );
             }
 
             if ( certs.Count > 1 )
             {
                 store.Close();
-                throw new CryptographyException( ER.CertificateCrypto_MultipleCertifificatesFound, whoAmI, subjectName, certs.Count );
+                throw new CryptographyException( ER.CertificateCrypto_MultipleCertifificatesFound, name, subjectName, certs.Count, whoAmI );
             }
 
 

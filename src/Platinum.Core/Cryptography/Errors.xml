@@ -8,39 +8,61 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="CertificateCrypto_EncryptBufferTooLarge" actor="~#Development" code="6001">
-        <description>Requested buffer cannot be encrypted by '{1}': buffer can be, at most, '{2}' bytes long.</description>
+        <description>Requested buffer cannot be encrypted by '{0}': buffer can be, at most, '{2}' bytes long.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
+        <arg name="MaxBytes" />
     </error>
 
     <error id="CertificateCrypto_EncryptBuffer" actor="~#Runtime" code="6002">
         <description>Failed to encrypt buffer using certificate '{0}'.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
     </error>
 
     <error id="CertificateCrypto_CertificateWithoutPrivateKey" actor="~#Configuration" code="6003">
-        <description>Certificate '{1}' doesn't contain private key: can't decrypt without it!</description>
+        <description>Certificate '{0}' doesn't contain private key: can't decrypt without it!</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
     </error>
 
     <error id="CertificateCrypto_DecryptBuffer_PrivateKey_InvalidHandle" actor="~#Configuration" code="6004">
-        <description>Failed to obtain handle on private key: validate if the current identity has access to certificate '{0}'.</description>
+        <description>Failed to obtain handle on private key for '{0}': validate if the current identity has access to certificate '{1}'.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
     </error>
 
     <error id="CertificateCrypto_DecryptBuffer_PrivateKey_Other" actor="~#Configuration" code="6005">
-        <description>Failed to obtain handle on private key: validate if the current identity has access to certificate '{0}'.</description>
+        <description>Failed to obtain handle on private key for '{0}': validate if the current identity has access to certificate '{1}'.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
     </error>
 
     <error id="CertificateCrypto_DecryptBuffer" actor="~#Runtime" code="6006">
         <description>Failed to decrypt buffer using certificate '{0}'.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
     </error>
 
     <error id="CertificateCrypto_DecryptValue_FromBase64" actor="~#Runtime" code="6007">
-        <description>Cannot decrypt value, since string is not a valid B64 string</description>
+        <description>Cannot decrypt 'value', since string is not a valid B64 string.</description>
     </error>
 
     <error id="CertificateCrypto_CertificateNotFound" actor="~#Configuration" code="6008">
-        <description>No certificate with subject name '{1}' for configured store/location '{2}/{3}'. Current identity: '{0}'.</description>
+        <description>No certificate '{0}' with subject name '{1}' for configured store/location '{2}/{3}'. Current identity: '{4}'.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
+        <arg name="StoreLocation" />
+        <arg name="StoreName" />
+        <arg name="Identity" />
     </error>
 
     <error id="CertificateCrypto_MultipleCertifificatesFound" actor="~#Configuration" code="6009">
-        <description>Configured store/location store contains '{2}' certificates matching subject name '{1}': please remove any unnecessary certificates so that there is no ambiguity. Current identity: '{0}'.</description>
+        <description>Certificate '{0}' has {3} certificates matching subject name '{1}': please remove any unnecessary certificates so that there is no ambiguity. Current identity: '{2}'.</description>
+        <arg name="Certificate" />
+        <arg name="Subject" />
+        <arg name="Identity" />
+        <arg name="Count" />
     </error>
 
 
@@ -59,22 +81,27 @@
 
     <error id="SymmetricCrypto_Decrypt_CreateDecryptor" actor="~#Internal" code="6103">
         <description>Failed to create decryptor for '{0}'.</description>
+        <arg name="Algorithm" />
     </error>
 
     <error id="SymmetricCrypto_Decrypt_Fail" actor="~#Runtime" code="6104">
         <description>Failed to decrypt using '{0}'.</description>
+        <arg name="Algorithm" />
     </error>
 
     <error id="SymmetricCrypto_Encrypt_CreateEncryptor" actor="~#Runtime" code="6105">
         <description>Failed to create encryptor for '{0}'.</description>
+        <arg name="Algorithm" />
     </error>
 
     <error id="SymmetricCrypto_Config_InvalidKey" actor="~#Configuration" code="6106">
-        <description>Value of key is not a valid Base64 string.</description>
+        <description>Value of key for '{0}' is not a valid Base64 string.</description>
+        <arg name="CryptoName" />
     </error>
 
     <error id="SymmetricCrypto_Config_InvalidIv" actor="~#Configuration" code="6107">
-        <description>Value of IV is not a valid Base64 string.</description>
+        <description>Value of IV for '{0}' is not a valid Base64 string.</description>
+        <arg name="CryptoName" />
     </error>
 
 </errors>

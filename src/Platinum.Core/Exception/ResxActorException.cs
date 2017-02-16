@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
@@ -18,6 +19,7 @@ namespace Platinum
 
 
         /// <summary />
+        [SuppressMessage( "Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors" )]
         public ResxActorException( string code )
             : base( code )
         {
@@ -26,14 +28,16 @@ namespace Platinum
 
 
         /// <summary />
+        [SuppressMessage( "Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors" )]
         public ResxActorException( string code, params object[] args )
             : base( code )
         {
             ResxLoad( code, args );
         }
 
-        /// <summary />
 
+        /// <summary />
+        [SuppressMessage( "Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors" )]
         public ResxActorException( string code, Exception innerException )
             : base( code, innerException )
         {
@@ -42,6 +46,7 @@ namespace Platinum
 
 
         /// <summary />
+        [SuppressMessage( "Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors" )]
         public ResxActorException( string code, Exception innerException, params object[] args )
             : base( code, innerException )
         {
@@ -51,6 +56,14 @@ namespace Platinum
 
         private void ResxLoad( string code, object[] args )
         {
+            #region Validations
+
+            if ( code == null )
+                throw new ArgumentNullException( nameof( code ) );
+
+            #endregion
+
+
             /*
              * 
              */
@@ -119,6 +132,28 @@ namespace Platinum
                 _description = string.Format( CI.InvariantCulture, "Exception '{0}' has missing values in RM.", code );
 
                 return;
+            }
+
+
+            /*
+             * Populate .Data with the named arguments.
+             */
+            string xargs = rm.GetString( code + "_Args" );
+
+            if ( string.IsNullOrEmpty( xargs ) == false )
+            {
+                string[] arglist = xargs.Split( ';' );
+
+                for ( int i=0; i<arglist.Length; i++ )
+                {
+                    string dataKey = arglist[ i ];
+                    object dataValue = null;
+
+                    if ( args != null && i < args.Length )
+                        dataValue = args[ i ];
+
+                    this.Data[ dataKey ] = dataValue;
+                }
             }
 
 

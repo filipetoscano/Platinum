@@ -8,9 +8,9 @@
         }
 
 
-        public void Event( ActorException @event )
+        public void Event( string eventId, params object[] args )
         {
-            this._logger.Event( @event );
+            this._logger.Event( eventId, args );
         }
     }
 }

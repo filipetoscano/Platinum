@@ -9,6 +9,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Factory_Culture_NotFound" actor="~#Runtime" code="1002">
         <description>Culture '{0}' does not exist.</description>
+        <arg name="Culture" />
     </error>
 
 </errors>

@@ -170,16 +170,14 @@ namespace Festo.Logging
                         ActorException ae = (ActorException) logEvent.Exception;
 
                         document[ "message" ] = ae.Description;
-                        document.Add( "id", ae.Message );
+                        document.Add( "exid", ae.Message );
                         document.Add( "actor", ae.Actor );
                         document.Add( "code", ae.Code );
+                        document.Add( "exception", ae.ToString() );
                     }
                     else
                     {
-                        var jsonString = JsonConvert.SerializeObject( logEvent.Exception );
-                        var ex = JsonConvert.DeserializeObject<ExpandoObject>( jsonString );
-
-                        // document.Add( "exception", ex.ReplaceDotInKeys() );
+                        document.Add( "exception", logEvent.Exception.ToString() );
                     }
                 }
 
