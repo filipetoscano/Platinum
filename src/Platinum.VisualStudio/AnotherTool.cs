@@ -8,13 +8,13 @@ using VSLangProj80;
 namespace Platinum.VisualStudio
 {
     /// <summary>
-    /// Test tool.
+    /// Another tool.
     /// </summary>
     [ComVisible( true )]
-    [Guid( "30e16ee4-d230-4c86-a82a-9113330c2ef1" )]
-    [CodeGeneratorRegistration( typeof( TestTool ), "Test Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
-    [ProvideObject( typeof( TestTool ) )]
-    public class TestTool : BaseTool
+    [Guid( "aa4ae541-1a08-4f8e-87c7-a6bc6d635e62" )]
+    [CodeGeneratorRegistration( typeof( AnotherTool ), "Another Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
+    [ProvideObject( typeof( AnotherTool ) )]
+    public class AnotherTool : BaseTool
     {
 #pragma warning disable 0414
         //The name of this generator (use for 'Custom Tool' property of project item)
@@ -27,7 +27,7 @@ namespace Platinum.VisualStudio
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat( "// TestTool {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString() );
+            sb.AppendFormat( "// AnotherTool {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString() );
             sb.Append( Environment.NewLine );
 
             sb.AppendFormat( "// Namespace={0}", fileNamespace );

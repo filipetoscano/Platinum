@@ -96,6 +96,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="AnotherTool.cs" />
     <Compile Include="TestTool.cs" />
     <None Include="app.config" />
     <None Include="project.json" />
