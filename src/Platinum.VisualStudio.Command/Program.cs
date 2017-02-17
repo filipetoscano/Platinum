@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace Platinum.VisualStudio.Command
@@ -16,8 +17,7 @@ namespace Platinum.VisualStudio.Command
              * TODO
              */
             CommandLine cl = new CommandLine();
-            cl.Project = args[ 0 ];
-
+            cl.Solution = args[ 0 ];
 
 
             /*
@@ -44,8 +44,10 @@ namespace Platinum.VisualStudio.Command
              */
             int exitCode;
 
-            if ( cl.Project != null )
-                exitCode = RunProject( cl, tools );
+            if ( cl.Solution != null )
+                exitCode = RunSolution( cl.Solution, tools, cl.WhatIf );
+            else if ( cl.Project != null )
+                exitCode = RunProject( cl.Project, tools, cl.WhatIf );
             else
                 exitCode = 2;
 
@@ -53,18 +55,18 @@ namespace Platinum.VisualStudio.Command
         }
 
 
-
         /// <summary>
         /// Runs all of the extension custom tools for the specified project.
         /// </summary>
-        /// <param name="cl">Command-line.</param>
+        /// <param name="solution">Path of solution file.</param>
         /// <param name="tools">List of custom tools.</param>
-        private static int RunProject( CommandLine cl, Dictionary<string, Type> tools )
+        /// <param name="whatIf">Whether to generate content, or not.</param>
+        private static int RunSolution( string solution, Dictionary<string, Type> tools, bool whatIf )
         {
             #region Validations
 
-            if ( cl == null )
-                throw new ArgumentNullException( nameof( cl ) );
+            if ( solution == null )
+                throw new ArgumentNullException( nameof( solution ) );
 
             if ( tools == null )
                 throw new ArgumentNullException( nameof( tools ) );
@@ -75,9 +77,75 @@ namespace Platinum.VisualStudio.Command
             /*
              * 
              */
-            if ( File.Exists( cl.Project ) == false )
+            if ( File.Exists( solution ) == false )
             {
-                Console.Error.WriteLine( $"err: Project '{ cl.Project }' not found." );
+                Console.Error.WriteLine( $"err: Solution '{ solution }' not found." );
+                return 10001;
+            }
+
+            string rootPath = Path.GetDirectoryName( solution );
+
+
+            /*
+             * 
+             */
+            string sln = File.ReadAllText( solution );
+            string[] lines = sln.Split( '\n' );
+
+
+            /*
+             * 
+             */
+            Regex regex = new Regex( "^Project\\(\"{.*?}\"\\) = \"(?<name>.*?)\", \"(?<path>.*?.csproj)\", \"{.*?}\"$" );
+            var exitCode = 0;
+
+            foreach ( var line in lines )
+            {
+                var m = regex.Match( line.Trim() );
+
+                if ( m.Success == false )
+                    continue;
+
+
+                /*
+                 * 
+                 */
+                string rel = m.Groups[ "path" ].Value;
+                string csproj = Path.Combine( rootPath, rel );
+                Console.WriteLine( "csproj=" + m.Groups[ "path" ].Value );
+
+                exitCode += RunProject( csproj, tools, whatIf );
+            }
+
+            return 0;
+        }
+
+
+
+        /// <summary>
+        /// Runs all of the extension custom tools for the specified project.
+        /// </summary>
+        /// <param name="cl">Command-line.</param>
+        /// <param name="tools">List of custom tools.</param>
+        private static int RunProject( string project, Dictionary<string, Type> tools, bool whatIf )
+        {
+            #region Validations
+
+            if ( project == null )
+                throw new ArgumentNullException( nameof( project ) );
+
+            if ( tools == null )
+                throw new ArgumentNullException( nameof( tools ) );
+
+            #endregion
+
+
+            /*
+             * 
+             */
+            if ( File.Exists( project ) == false )
+            {
+                Console.Error.WriteLine( $"err: Project '{ project }' not found." );
                 return 10001;
             }
 
@@ -92,11 +160,11 @@ namespace Platinum.VisualStudio.Command
 
             try
             {
-                csproj.Load( cl.Project );
+                csproj.Load( project );
             }
             catch ( Exception ex )
             {
-                Console.Error.WriteLine( $"err: Project '{ cl.Project }' failed to load." );
+                Console.Error.WriteLine( $"err: Project '{ project }' failed to load." );
                 Console.Error.WriteLine( ex.ToString() );
                 return 10002;
             }
@@ -109,7 +177,7 @@ namespace Platinum.VisualStudio.Command
 
             if ( rootNsElem == null )
             {
-                Console.Error.WriteLine( $"err: Project '{ cl.Project }' does not contain a 'RootNamespace' element." );
+                Console.Error.WriteLine( $"err: Project '{ project }' does not contain a 'RootNamespace' element." );
                 return 10003;
             }
 
@@ -135,7 +203,7 @@ namespace Platinum.VisualStudio.Command
                  * 
                  */
                 string fullName = Path.Combine(
-                    Path.GetDirectoryName( cl.Project ),
+                    Path.GetDirectoryName( project ),
                     relativePath );
                 FileInfo file = new FileInfo( fullName );
 
@@ -143,8 +211,7 @@ namespace Platinum.VisualStudio.Command
 
                 Console.WriteLine( "f={0} ns={1} t={2}", relativePath, ns, toolName );
 
-                if ( cl.WhatIf == false )
-                    exitCode += RunTool( tools, toolName, file, ns, cl.WhatIf );
+                exitCode += RunTool( tools, toolName, file, ns, whatIf );
             }
 
 

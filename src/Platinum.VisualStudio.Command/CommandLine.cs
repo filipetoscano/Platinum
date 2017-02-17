@@ -6,6 +6,11 @@
     public class CommandLine
     {
         /// <summary>
+        /// File name of .sln file to process.
+        /// </summary>
+        public string Solution { get; set; }
+
+        /// <summary>
         /// File name of .csproj file to process.
         /// </summary>
         public string Project { get; set; }
