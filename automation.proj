@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="help">
     <PropertyGroup>
-        <version>1.0.1.0</version>
+        <version>1.1.0.0</version>
 
         <nugetSource>http://localhost:5000/</nugetSource>
         <nugetPushKey></nugetPushKey>
@@ -42,9 +42,15 @@
         
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
 
-        <Exec Command=" nuget restore " />
+        <Exec Command=" nuget restore Platinum.sln " />
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
 
+        <Copy SourceFiles="src\Platinum.Schema\Platinum.Schema.nuspecx" DestinationFiles="src\Platinum.Schema\Platinum.Schema.nuspec" />
+        <XmlPoke XmlInputPath="src\Platinum.Schema\Platinum.Schema.nuspec"
+                 Query="/package/metadata/version"
+                 Value="$(version)" />
+
+        <!-- Packing -->
         <MakeDir Directories="build" />
         <Exec Command=" nuget pack Platinum.Core.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Core" />
         <Exec Command=" nuget pack Platinum.Data.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Data" />
@@ -52,6 +58,7 @@
         <Exec Command=" nuget pack Platinum.Metrics.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Metrics" />
         <Exec Command=" nuget pack Platinum.Mock.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Mock" />
         <Exec Command=" nuget pack Platinum.Validation.csproj $(nugetArgs) " WorkingDirectory="src\Platinum.Validation" />
+        <Exec Command=" nuget pack Platinum.Schema.nuspec -OutputDirectory ..\..\build " WorkingDirectory="src\Platinum.Schema" />
     </Target>
 
 
@@ -68,6 +75,7 @@
         <Exec Command=" nuget push Platinum.Logging.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Metrics.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Mock.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
+        <Exec Command=" nuget push Platinum.Schema.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Validation.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
     </Target>
 

@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Logging", "src\Pla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Logging.Tests", "tests\Platinum.Logging.Tests\Platinum.Logging.Tests.csproj", "{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Schema", "src\Platinum.Schema\Platinum.Schema.csproj", "{139B339D-CD0A-4EA8-883D-E0E865454A32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{9940A888-FDE4-4A85-8644-21B5A0BFFE82} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
+		{139B339D-CD0A-4EA8-883D-E0E865454A32} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

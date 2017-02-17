@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<errors xmlns="urn:platinum/actor">
+<errors xmlns="urn:platinum/actor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/actor ../../Platinum.Schema/PlatinumResxError.xsd">
     <actor base="{Application}.Xml" />
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

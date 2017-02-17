@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<exceptions xmlns="urn:platinum/actor/exception">
+<exceptions xmlns="urn:platinum/actor/exception" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/actor/exception ../../Platinum.Schema/PlatinumResxException.xsd">
+
     <add name="ResolverException" />
 </exceptions>

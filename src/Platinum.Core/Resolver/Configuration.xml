@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<configuration xmlns="urn:yttrium/vs/config">
+<configuration xmlns="urn:platinum/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/config ../../Platinum.Schema/PlatinumConfigGen.xsd">
 
     <section name="platinum/resolver" type="ResolverConfiguration">
         <repeater name="customResolvers">

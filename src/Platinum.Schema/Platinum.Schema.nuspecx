@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>Platinum.Schema</id>
+        <version>1.0.0.0</version>
+        <title>Platinum Schema</title>
+        <authors>Filipe Toscano</authors>
+        <owners>Filipe Toscano</owners>
+        <licenseUrl>https://raw.githubusercontent.com/filipetoscano/Platinum/master/License.txt</licenseUrl>
+        <projectUrl>https://github.com/filipetoscano/Zinc</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/filipetoscano/Platinum/master/src/platinum.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Platinum schema</description>
+        <copyright></copyright>
+        <tags></tags>
+    </metadata>
+    <files>
+        <file src="PlatinumConfigGen.xsd" target="content\PlatinumConfigGen.xsd" />
+        <file src="PlatinumResxError.xsd" target="content\PlatinumResxError.xsd" />
+        <file src="PlatinumResxException.xsd" target="content\PlatinumResxException.xsd" />
+    </files>
+</package>

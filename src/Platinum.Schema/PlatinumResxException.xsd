@@ -13,15 +13,27 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <xsd:element name="exceptions">
+        <xsd:annotation>
+            <xsd:documentation>Enumerates all of the exception classes which should be emitted automatically.</xsd:documentation>
+        </xsd:annotation>
+
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="add" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>Defines an exception class.</xsd:documentation>
+                    </xsd:annotation>
+
                     <xsd:complexType>
                         <xsd:sequence>
                             <xsd:element name="summary" type="xsd:string" minOccurs="0" />
                             <xsd:element name="remarks" type="xsd:string" minOccurs="0" />
                         </xsd:sequence>
-                        <xsd:attribute name="name" type="p:exceptionTypeName" use="required" />
+                        <xsd:attribute name="name" type="p:exceptionTypeName" use="required">
+                            <xsd:annotation>
+                                <xsd:documentation>Name of exception class.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:attribute>
                     </xsd:complexType>
                 </xsd:element>
             </xsd:sequence>
