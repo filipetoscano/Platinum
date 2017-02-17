@@ -1,8 +1,11 @@
 ﻿using Microsoft.VisualStudio.Shell;
-using System.Runtime.InteropServices;
-using VSLangProj80;
 using System;
-using System.Text;
+using System.IO;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Xml;
+using System.Xml.Xsl;
+using VSLangProj80;
 
 namespace Platinum.VisualStudio
 {
@@ -33,12 +36,37 @@ namespace Platinum.VisualStudio
 
             #endregion
 
-            StringBuilder sb = new StringBuilder();
+            /*
+             * #1. Load XML document
+             */
+            XmlDocument doc = X.Load( inputContent, "PlatinumResxException.xsd" );
 
-            sb.AppendFormat( "// PtResxExceptionTool" );
-            sb.Append( Environment.NewLine );
 
-            return sb.ToString();
+            /*
+             * #2. Build arguments
+             */
+            FileInfo inputFile = new FileInfo( inputFileName );
+            string rawName = inputFile.Name.Substring( 0, inputFile.Name.Length - inputFile.Extension.Length );
+
+            XsltArgumentList args = new XsltArgumentList();
+            args.AddParam( "ToolVersion", "", Assembly.GetExecutingAssembly().GetName( false ).Version.ToString( 4 ) );
+            args.AddParam( "FileName", "", rawName );
+            args.AddParam( "FullFileName", "", inputFile.FullName );
+            args.AddParam( "Namespace", "", fileNamespace );
+
+            args.AddExtensionObject( "urn:eo-util", new XsltExtensionObject() );
+
+
+            /*
+             * #3. Load transformation
+             */
+            XslCompiledTransform xslt = X.LoadXslt( "PlatinumResxException-ToCode.xslt" );
+
+
+            /*
+             * #4. Apply transformation
+             */
+            return X.ToText( xslt, args, doc );
         }
     }
 }

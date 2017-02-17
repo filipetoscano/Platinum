@@ -2,9 +2,9 @@
 <xsd:schema
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified"
-    targetNamespace="urn:yttrium/vs/config"
-    xmlns:y="urn:yttrium/vs/config"
-    xmlns="urn:yttrium/vs/config">
+    targetNamespace="urn:platinum/config"
+    xmlns:y="urn:platinum/config"
+    xmlns="urn:platinum/config">
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

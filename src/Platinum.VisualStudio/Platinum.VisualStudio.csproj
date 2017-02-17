@@ -94,6 +94,8 @@
     <Compile Include="TestTool.cs" />
     <Compile Include="Framework\ToolException.cs" />
     <Compile Include="PtXsltTool.cs" />
+    <Compile Include="X.cs" />
+    <Compile Include="XsltExtensionObject.cs" />
     <None Include="app.config" />
     <None Include="project.json" />
   </ItemGroup>

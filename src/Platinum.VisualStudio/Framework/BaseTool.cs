@@ -123,8 +123,16 @@ namespace Platinum.VisualStudio
 
             #endregion
 
-            // TODO: Proper C# comment
-            return exception.ToString();
+            StringBuilder sb = new StringBuilder();
+
+            foreach ( var line in exception.ToString().Split( '\n' ) )
+            {
+                sb.Append( "// " );
+                sb.Append( line.TrimEnd() );
+                sb.Append( Environment.NewLine );
+            }
+
+            return sb.ToString();
         }
 
 
