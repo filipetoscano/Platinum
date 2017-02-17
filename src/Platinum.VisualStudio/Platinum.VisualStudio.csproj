@@ -91,6 +91,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Compile Include="BaseCodeGenerator.cs" />
     <Compile Include="BaseCodeGeneratorWithSite.cs" />
     <Compile Include="BaseTool.cs" />
+    <Compile Include="ITool.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +99,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     </Compile>
     <Compile Include="AnotherTool.cs" />
     <Compile Include="TestTool.cs" />
+    <Compile Include="ToolException.cs" />
     <None Include="app.config" />
     <None Include="project.json" />
   </ItemGroup>
