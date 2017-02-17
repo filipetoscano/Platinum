@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{0B3CB3DB-554F-436C-8831-92CB8AA285F1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0B3CB3DB-554F-436C-8831-92CB8AA285F1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0B4C9C65-061B-499D-9D7A-46A8CA412A20}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.VisualStudio", "src\Platinum.VisualStudio\Platinum.VisualStudio.csproj", "{461089E7-008E-4737-BA17-E1FCD1CC3D0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.VisualStudio.Command", "src\Platinum.VisualStudio.Command\Platinum.VisualStudio.Command.csproj", "{97196401-357C-4A6B-8BB7-147337C8A4EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.VisualStudio.Tests", "tests\Platinum.VisualStudio.Tests\Platinum.VisualStudio.Tests.csproj", "{B3AF0C65-9019-4BC3-84F9-9555553F0E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{97196401-357C-4A6B-8BB7-147337C8A4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97196401-357C-4A6B-8BB7-147337C8A4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97196401-357C-4A6B-8BB7-147337C8A4EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AF0C65-9019-4BC3-84F9-9555553F0E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AF0C65-9019-4BC3-84F9-9555553F0E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AF0C65-9019-4BC3-84F9-9555553F0E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AF0C65-9019-4BC3-84F9-9555553F0E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{461089E7-008E-4737-BA17-E1FCD1CC3D0E} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{97196401-357C-4A6B-8BB7-147337C8A4EE} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
+		{B3AF0C65-9019-4BC3-84F9-9555553F0E49} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

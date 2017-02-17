@@ -13,9 +13,10 @@ namespace Platinum.VisualStudio.Command
         public static void Main( string[] args )
         {
             /*
-             * 
+             * TODO
              */
             CommandLine cl = new CommandLine();
+            cl.Project = args[ 0 ];
 
 
 
@@ -143,7 +144,7 @@ namespace Platinum.VisualStudio.Command
                 Console.WriteLine( "f={0} ns={1} t={2}", relativePath, ns, toolName );
 
                 if ( cl.WhatIf == false )
-                    exitCode += RunTool( tools, toolName, file, ns );
+                    exitCode += RunTool( tools, toolName, file, ns, cl.WhatIf );
             }
 
 
@@ -182,7 +183,7 @@ namespace Platinum.VisualStudio.Command
 
 
         /// <summary />
-        private static int RunTool( Dictionary<string, Type> tools, string tool, FileInfo file, string @namespace )
+        private static int RunTool( Dictionary<string, Type> tools, string tool, FileInfo file, string @namespace, bool whatIf )
         {
             #region Validations
 
@@ -210,7 +211,7 @@ namespace Platinum.VisualStudio.Command
 
             try
             {
-                bt.Execute( file.FullName, @namespace );
+                bt.Execute( file.FullName, @namespace, whatIf );
             }
             catch ( Exception ex )
             {

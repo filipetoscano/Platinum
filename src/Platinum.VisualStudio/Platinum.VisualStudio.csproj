@@ -1,13 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Copyright (c) Microsoft Corporation. All rights reserved.
-THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
-ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
-IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
-PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
-
--->
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
@@ -88,18 +79,21 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseCodeGenerator.cs" />
-    <Compile Include="BaseCodeGeneratorWithSite.cs" />
-    <Compile Include="BaseTool.cs" />
-    <Compile Include="ITool.cs" />
+    <Compile Include="Framework\BaseCodeGenerator.cs" />
+    <Compile Include="Framework\BaseCodeGeneratorWithSite.cs" />
+    <Compile Include="Framework\BaseTool.cs" />
+    <Compile Include="Framework\ITool.cs" />
+    <Compile Include="PtConfigGenTool.cs" />
+    <Compile Include="PtResxErrorTool.cs" />
+    <Compile Include="PtResxExceptionTool.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="AnotherTool.cs" />
     <Compile Include="TestTool.cs" />
-    <Compile Include="ToolException.cs" />
+    <Compile Include="Framework\ToolException.cs" />
+    <Compile Include="PtXsltTool.cs" />
     <None Include="app.config" />
     <None Include="project.json" />
   </ItemGroup>
@@ -122,6 +116,19 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <EmbeddedResource Include="Resources\PlatinumConfigGen-ToCode.xslt" />
+    <EmbeddedResource Include="Resources\PlatinumResxError-ToCode.xslt" />
+    <EmbeddedResource Include="Resources\PlatinumResxError-ToResx.xslt" />
+    <EmbeddedResource Include="Resources\PlatinumResxException-ToCode.xslt" />
+    <EmbeddedResource Include="..\Platinum.Schema\PlatinumConfigGen.xsd">
+      <Link>Resources\PlatinumConfigGen.xsd</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Platinum.Schema\PlatinumResxError.xsd">
+      <Link>Resources\PlatinumResxError.xsd</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Platinum.Schema\PlatinumResxException.xsd">
+      <Link>Resources\PlatinumResxException.xsd</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <!--

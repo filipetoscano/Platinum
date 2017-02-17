@@ -15,7 +15,7 @@ namespace Platinum.VisualStudio
 
             try
             {
-                outputContent = Execute( this.FileNameSpace, this.InputFilePath, inputFileContent );
+                outputContent = Execute( this.FileNameSpace, this.InputFilePath, inputFileContent, false );
             }
             catch ( ToolException ex )
             {
@@ -36,7 +36,8 @@ namespace Platinum.VisualStudio
         /// </summary>
         /// <param name="inputFileName">Input file name.</param>
         /// <param name="fileNamespace">CLR namespace.</param>
-        void ITool.Execute( string inputFileName, string fileNamespace )
+        /// <param name="whatIf">Whether to perform changes or not.</param>
+        void ITool.Execute( string inputFileName, string fileNamespace, bool whatIf )
         {
             #region Validations
 
@@ -72,7 +73,7 @@ namespace Platinum.VisualStudio
 
             try
             {
-                outputContent = Execute( fileNamespace, inputFileName, inputContent );
+                outputContent = Execute( fileNamespace, inputFileName, inputContent, whatIf );
             }
             catch ( ToolException )
             {
@@ -87,6 +88,9 @@ namespace Platinum.VisualStudio
             /*
              * Write primary output.
              */
+            if ( whatIf == true )
+                return;
+
             string outputFile = Path.Combine( file.DirectoryName, Path.GetFileNameWithoutExtension( file.FullName ) + ".cs" );
 
             try
@@ -119,11 +123,12 @@ namespace Platinum.VisualStudio
 
             #endregion
 
-            throw new NotImplementedException();
+            // TODO: Proper C# comment
+            return exception.ToString();
         }
 
 
         /// <summary />
-        protected abstract string Execute( string fileNamespace, string inputFileName, string inputContent );
+        protected abstract string Execute( string fileNamespace, string inputFileName, string inputContent, bool whatIf );
     }
 }

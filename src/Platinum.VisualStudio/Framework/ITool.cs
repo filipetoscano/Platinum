@@ -10,6 +10,7 @@
         /// </summary>
         /// <param name="inputFileName">Name of file to process.</param>
         /// <param name="fileNamespace">CLR namespace of file.</param>
-        void Execute( string inputFileName, string fileNamespace );
+        /// <param name="whatIf">Whether to perform changes or not.</param>
+        void Execute( string inputFileName, string fileNamespace, bool whatIf );
     }
 }

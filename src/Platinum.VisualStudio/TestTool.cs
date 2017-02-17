@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -11,20 +12,27 @@ namespace Platinum.VisualStudio
     /// Test tool.
     /// </summary>
     [ComVisible( true )]
-    [Guid( "30e16ee4-d230-4c86-a82a-9113330c2ef1" )]
+    [Guid( "e820d8a8-03a7-41c2-973e-07cad36e2888" )]
     [CodeGeneratorRegistration( typeof( TestTool ), "Test Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
     [ProvideObject( typeof( TestTool ) )]
     public class TestTool : BaseTool
     {
-#pragma warning disable 0414
-        //The name of this generator (use for 'Custom Tool' property of project item)
-        internal static string name = "TestTool";
-#pragma warning restore 0414
-
-
         /// <summary />
-        protected override string Execute( string fileNamespace, string inputFileName, string inputContent )
+        protected override string Execute( string fileNamespace, string inputFileName, string inputContent, bool whatIf )
         {
+            #region Validations
+
+            if ( fileNamespace == null )
+                throw new ArgumentNullException( nameof( fileNamespace ) );
+
+            if ( inputFileName == null )
+                throw new ArgumentNullException( nameof( inputFileName ) );
+
+            if ( inputContent == null )
+                throw new ArgumentNullException( nameof( inputContent ) );
+
+            #endregion
+
             StringBuilder sb = new StringBuilder();
 
             sb.AppendFormat( "// TestTool {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString() );
@@ -38,6 +46,23 @@ namespace Platinum.VisualStudio
 
             sb.AppendFormat( "// Content [bytes]={0}", inputContent.Length );
             sb.Append( Environment.NewLine );
+
+
+            /*
+             * 
+             */
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "Platinum.VisualStudio.Resources.PlatinumConfigGen.xsd";
+
+            using ( Stream stream = assembly.GetManifestResourceStream( resourceName ) )
+            using ( StreamReader reader = new StreamReader( stream ) )
+            {
+                string result = reader.ReadToEnd();
+
+                sb.AppendLine( "/*" );
+                sb.Append( result );
+                sb.AppendLine( "*/" );
+            }
 
             return sb.ToString();
         }
