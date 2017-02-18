@@ -42,7 +42,11 @@
         
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
 
+        <!-- Deps -->
         <Exec Command=" nuget restore Platinum.sln " />
+        <Exec Command=" bin\ptvscmd.exe Platinum.sln " />
+
+        <!-- Compile -->
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
 
         <Copy SourceFiles="src\Platinum.Schema\Platinum.Schema.nuspecx" DestinationFiles="src\Platinum.Schema\Platinum.Schema.nuspec" />

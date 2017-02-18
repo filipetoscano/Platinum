@@ -35,17 +35,17 @@ namespace Platinum.VisualStudio
         /// Executes the generator tool, through a command-line interface.
         /// </summary>
         /// <param name="inputFileName">Input file name.</param>
-        /// <param name="fileNamespace">CLR namespace.</param>
+        /// <param name="inputNamespace">CLR namespace.</param>
         /// <param name="whatIf">Whether to perform changes or not.</param>
-        void ITool.Execute( string inputFileName, string fileNamespace, bool whatIf )
+        void ITool.Execute( string inputFileName, string inputNamespace, bool whatIf )
         {
             #region Validations
 
             if ( inputFileName == null )
                 throw new ArgumentNullException( nameof( inputFileName ) );
 
-            if ( fileNamespace == null )
-                throw new ArgumentNullException( nameof( fileNamespace ) );
+            if ( inputNamespace == null )
+                throw new ArgumentNullException( nameof( inputNamespace ) );
 
             #endregion
 
@@ -73,7 +73,7 @@ namespace Platinum.VisualStudio
 
             try
             {
-                outputContent = Execute( fileNamespace, inputFileName, inputContent, whatIf );
+                outputContent = Execute( inputNamespace, inputFileName, inputContent, whatIf );
             }
             catch ( ToolException )
             {
@@ -137,6 +137,6 @@ namespace Platinum.VisualStudio
 
 
         /// <summary />
-        protected abstract string Execute( string fileNamespace, string inputFileName, string inputContent, bool whatIf );
+        protected abstract string Execute( string inputNamespace, string inputFileName, string inputContent, bool whatIf );
     }
 }

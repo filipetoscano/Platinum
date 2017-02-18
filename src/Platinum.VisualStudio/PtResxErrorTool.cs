@@ -22,12 +22,12 @@ namespace Platinum.VisualStudio
         /// <summary>
         /// Executes tool.
         /// </summary>
-        protected override string Execute( string fileNamespace, string inputFileName, string inputContent, bool whatIf )
+        protected override string Execute( string inputNamespace, string inputFileName, string inputContent, bool whatIf )
         {
             #region Validations
 
-            if ( fileNamespace == null )
-                throw new ArgumentNullException( nameof( fileNamespace ) );
+            if ( inputNamespace == null )
+                throw new ArgumentNullException( nameof( inputNamespace ) );
 
             if ( inputFileName == null )
                 throw new ArgumentNullException( nameof( inputFileName ) );
@@ -53,7 +53,7 @@ namespace Platinum.VisualStudio
             args.AddParam( "ToolVersion", "", Assembly.GetExecutingAssembly().GetName( false ).Version.ToString( 4 ) );
             args.AddParam( "FileName", "", rawName );
             args.AddParam( "FullFileName", "", inputFile.FullName );
-            args.AddParam( "Namespace", "", fileNamespace );
+            args.AddParam( "Namespace", "", inputNamespace );
 
             args.AddExtensionObject( "urn:eo-util", new XsltExtensionObject() );
 

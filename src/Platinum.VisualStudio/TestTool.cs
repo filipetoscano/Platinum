@@ -18,12 +18,12 @@ namespace Platinum.VisualStudio
     public class TestTool : BaseTool
     {
         /// <summary />
-        protected override string Execute( string fileNamespace, string inputFileName, string inputContent, bool whatIf )
+        protected override string Execute( string inputNamespace, string inputFileName, string inputContent, bool whatIf )
         {
             #region Validations
 
-            if ( fileNamespace == null )
-                throw new ArgumentNullException( nameof( fileNamespace ) );
+            if ( inputNamespace == null )
+                throw new ArgumentNullException( nameof( inputNamespace ) );
 
             if ( inputFileName == null )
                 throw new ArgumentNullException( nameof( inputFileName ) );
@@ -38,7 +38,7 @@ namespace Platinum.VisualStudio
             sb.AppendFormat( "// TestTool {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString() );
             sb.Append( Environment.NewLine );
 
-            sb.AppendFormat( "// Namespace={0}", fileNamespace );
+            sb.AppendFormat( "// Namespace={0}", inputNamespace );
             sb.Append( Environment.NewLine );
 
             sb.AppendFormat( "// Input={0}", inputFileName );
