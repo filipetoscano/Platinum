@@ -1,16 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-
-Copyright (c) Microsoft Corporation. All rights reserved.
-THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
-ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
-IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
-PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
-
--->
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="3f69c623-570f-498c-a0bd-7acfac5ced5b" Version="1.0" Language="en-US" Publisher="Transition" />
+        <Identity Id="3f69c623-570f-498c-a0bd-7acfac5ced5b" Version="1.2" Language="en-US" Publisher="Transition" />
         <DisplayName>Platinum Visual Studio Extensions</DisplayName>
         <Description xml:space="preserve">Includes custom tools to boost productivity in Visual Studio.</Description>
         <Icon>platinum.ico</Icon>

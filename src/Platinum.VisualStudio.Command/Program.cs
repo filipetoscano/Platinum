@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -18,6 +19,29 @@ namespace Platinum.VisualStudio.Command
              */
             CommandLine cl = new CommandLine();
             cl.Solution = args[ 0 ];
+
+
+            /*
+             * Load referenced assemblies into domain, so that they are discoverable.
+             * In this case, it is preferable to probing the entire directory -- since
+             * these command-line tools tend to be put all together in a bin/ folder.
+             */
+            foreach ( string key in ConfigurationManager.AppSettings.Keys )
+            {
+                string assemblyName = ConfigurationManager.AppSettings[ key ];
+
+                try
+                {
+                    AppDomain.CurrentDomain.Load( assemblyName );
+                }
+                catch ( Exception ex )
+                {
+                    Console.Error.WriteLine( "err: failed to load assembly '{0}'.", assemblyName );
+                    Console.Error.WriteLine( ex.ToString() );
+                    Environment.ExitCode = 1001;
+                    return;
+                }
+            }
 
 
             /*
@@ -49,7 +73,7 @@ namespace Platinum.VisualStudio.Command
             else if ( cl.Project != null )
                 exitCode = RunProject( cl.Project, tools, cl.WhatIf );
             else
-                exitCode = 2;
+                exitCode = 1000;
 
             Environment.ExitCode = exitCode;
         }
