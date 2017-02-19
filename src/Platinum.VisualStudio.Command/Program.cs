@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -52,21 +53,61 @@ namespace Platinum.VisualStudio.Command
 
             foreach ( var assembly in AppDomain.CurrentDomain.GetAssemblies() )
             {
-                Console.WriteLine( assembly.FullName );
-
                 if ( assembly.IsDynamic == true )
+                    continue;
+
+                if ( assembly.FullName.StartsWith( "mscorlib, " ) == true )
+                    continue;
+
+                if ( assembly.FullName.StartsWith( "System, " ) == true )
                     continue;
 
                 if ( assembly.FullName.StartsWith( "System." ) == true )
                     continue;
 
-                foreach ( var type in assembly.GetTypes() )
+                Console.WriteLine( "loading tools from {0}...", assembly.FullName );
+
+
+                /*
+                 * 
+                 */
+                Type[] types;
+
+                try
+                {
+                    types = assembly.GetTypes();
+                }
+                catch ( ReflectionTypeLoadException ex )
+                {
+                    Console.WriteLine( "Exception:" );
+                    Console.WriteLine( ex.ToString() );
+
+                    foreach ( var le in ex.LoaderExceptions )
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine( "Loader exception:" );
+                        Console.WriteLine( le.ToString() );
+                    }
+
+                    Environment.ExitCode = 1002;
+                    return;
+                }
+                catch ( Exception ex )
+                {
+                    Console.WriteLine( ex.ToString() );
+
+                    Environment.ExitCode = 1003;
+                    return;
+                }
+
+                foreach ( var type in types )
                 {
                     if ( type.IsInterface == true )
                         continue;
 
                     if ( interfaceType.IsAssignableFrom( type ) == true )
                     {
+                        Console.WriteLine( "+ {0}", type.Name );
                         tools.Add( type.Name, type );
                     }
                 }
