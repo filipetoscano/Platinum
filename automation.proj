@@ -39,7 +39,7 @@
             <versionInfo>[assembly: System.Reflection.AssemblyVersion( "$(version)" )]</versionInfo>
             <nugetArgs> -OutputDirectory ..\..\build -IncludeReferencedProjects -Prop Configuration=Release </nugetArgs>
         </PropertyGroup>
-        
+
         <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
 
         <!-- Deps -->
@@ -81,6 +81,28 @@
         <Exec Command=" nuget push Platinum.Mock.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Schema.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
         <Exec Command=" nuget push Platinum.Validation.$(Version).nupkg -s $(nugetSource) $(nugetPushKey) " WorkingDirectory="build" />
+    </Target>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ build-vs/
+    ~ Build the Visual Studio plugin.
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="build-vs">
+        <!-- Deps -->
+        <Exec Command=" nuget restore Platinum.VisualStudio.sln " />
+
+        <!-- Compile -->
+        <MSBuild Projects="Platinum.VisualStudio.sln" Properties="Configuration=Release" />
+
+        <!-- Packing -->
+        <Copy SourceFiles="src\Platinum.VisualStudio\bin\Release\Platinum.VisualStudio.dll" DestinationFolder="bin" />
+        <Copy SourceFiles="src\Platinum.VisualStudio.Command\bin\Release\ptvscmd.exe"       DestinationFolder="bin" />
+
+        <!-- Plugin -->
+        <Copy SourceFiles="src\Platinum.VisualStudio.Plugin\bin\Release\Platinum.VisualStudio.Plugin.vsix" DestinationFolder="build" />
     </Target>
 
 </Project>
