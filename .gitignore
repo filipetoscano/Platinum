@@ -8,6 +8,8 @@ src/**/Exceptions.cs
 src/**/Configuration.cs
 src/**/bin/
 src/**/obj/
+src/**/project.lock.json
+src/Platinum.Schema/Platinum.Schema.nuspec
 tests/**/bin/
 tests/**/obj/
 tests/**/ER.resx
@@ -18,5 +20,3 @@ packages/
 TestResults/
 push.bat
 real.bat
-src/Platinum.VisualStudio/project.lock.json
-src/Platinum.Schema/Platinum.Schema.nuspec
