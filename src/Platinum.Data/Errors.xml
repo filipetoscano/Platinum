@@ -10,18 +10,22 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Connection_NotFound" actor="~.Data.Configuration" code="1001">
         <description>No settings for database '{0}' found.</description>
+        <arg name="Database" />
     </error>
 
     <error id="Connection_NoProviderName" actor="~.Data.Configuration" code="1002">
         <description>Settings for database '{0}' have no defined provider.</description>
+        <arg name="Database" />
     </error>
 
     <error id="Connection_NoConnection" actor="~.Data.Configuration" code="1003">
         <description>Settings for database '{0}' have no defined connection string.</description>
+        <arg name="Database" />
     </error>
 
     <error id="Connection_NoFactory" actor="~.Data.Configuration" code="1004">
-        <description>Settings for database '{0}' have no defined connection string.</description>
+        <description>Settings for database '{0}' have no defined factory.</description>
+        <arg name="Database" />
     </error>
 
 
@@ -32,18 +36,22 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Open_ConnectFailed" actor="~.Data.{0}" code="2001">
         <description>Failed to connect to '{0}'.</description>
+        <arg name="Database" />
     </error>
 
     <error id="Open_LoginFailed" actor="~.Data.{0}" code="2002">
         <description>Failed to connect to '{0}', invalid login.</description>
+        <arg name="Database" />
     </error>
 
     <error id="Open_DatabaseInvalid" actor="~.Data.{0}" code="2003">
         <description>Failed to connect to '{0}', invalid database.</description>
+        <arg name="Database" />
     </error>
 
     <error id="Open_Failed" actor="~.Data.{0}" code="2004">
         <description>Failed to connect to '{0}'.</description>
+        <arg name="Database" />
     </error>
 
 
@@ -54,6 +62,9 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Command_CommandNotFound" actor="~.Data.Development" code="3001">
         <description>Command '{0}' in assembly '{1}' not found: no embedded resource with name '{2}'.</description>
+        <arg name="Command" />
+        <arg name="Assembly" />
+        <arg name="Resource" />
     </error>
 
 
@@ -64,14 +75,20 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="ExecuteNonQuery" actor="~.Data.{0}" code="4001">
         <description>Command '{0}'/'{1}' failed.</description>
+        <arg name="Database" />
+        <arg name="Command" />
     </error>
 
     <error id="ExecuteScalar" actor="~.Data.{0}" code="4002">
         <description>Command '{0}'/'{1}' failed.</description>
+        <arg name="Database" />
+        <arg name="Command" />
     </error>
 
     <error id="ExecuteDbDataReader" actor="~.Data.{0}" code="4003">
         <description>Command '{0}'/'{1}' failed.</description>
+        <arg name="Database" />
+        <arg name="Command" />
     </error>
 
 </errors>
