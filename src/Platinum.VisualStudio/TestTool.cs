@@ -1,68 +1,47 @@
 ﻿using Microsoft.VisualStudio.Shell;
 using System;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using VSLangProj80;
 
-namespace Platinum.VisualStudio
+namespace Platinum.VisualStudio.Plugin
 {
     /// <summary>
     /// Test tool.
     /// </summary>
     [ComVisible( true )]
     [Guid( "e820d8a8-03a7-41c2-973e-07cad36e2888" )]
-    [CodeGeneratorRegistration( typeof( TestTool ), "Test Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
-    [ProvideObject( typeof( TestTool ) )]
+    [CodeGeneratorRegistration( typeof( PtTestTool ), "Test Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
+    [ProvideObject( typeof( PtTestTool ) )]
+    public class PtTestTool : BasePlugin<TestTool>
+    {
+    }
+
+
+    /// <summary>
+    /// Test tool.
+    /// </summary>
     public class TestTool : BaseTool
     {
-        /// <summary />
-        protected override string Execute( string inputNamespace, string inputFileName, string inputContent, bool whatIf )
+        /// <summary>
+        /// Executes tool.
+        /// </summary>
+        protected override string Execute( ToolGenerateArgs args )
         {
-            #region Validations
-
-            if ( inputNamespace == null )
-                throw new ArgumentNullException( nameof( inputNamespace ) );
-
-            if ( inputFileName == null )
-                throw new ArgumentNullException( nameof( inputFileName ) );
-
-            if ( inputContent == null )
-                throw new ArgumentNullException( nameof( inputContent ) );
-
-            #endregion
-
             StringBuilder sb = new StringBuilder();
 
             sb.AppendFormat( "// TestTool {0}", Assembly.GetExecutingAssembly().GetName().Version.ToString() );
             sb.Append( Environment.NewLine );
 
-            sb.AppendFormat( "// Namespace={0}", inputNamespace );
+            sb.AppendFormat( "// Namespace={0}", args.Namespace );
             sb.Append( Environment.NewLine );
 
-            sb.AppendFormat( "// Input={0}", inputFileName );
+            sb.AppendFormat( "// Input={0}", args.FileName );
             sb.Append( Environment.NewLine );
 
-            sb.AppendFormat( "// Content [bytes]={0}", inputContent.Length );
+            sb.AppendFormat( "// Content [bytes]={0}", args.Content.Length );
             sb.Append( Environment.NewLine );
-
-
-            /*
-             * 
-             */
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "Platinum.VisualStudio.Resources.PlatinumConfigGen.xsd";
-
-            using ( Stream stream = assembly.GetManifestResourceStream( resourceName ) )
-            using ( StreamReader reader = new StreamReader( stream ) )
-            {
-                string result = reader.ReadToEnd();
-
-                sb.AppendLine( "/*" );
-                sb.Append( result );
-                sb.AppendLine( "*/" );
-            }
 
             return sb.ToString();
         }

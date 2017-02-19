@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestTool.xml">
-      <Generator>TestTool</Generator>
+      <Generator>PtTestTool</Generator>
       <LastGenOutput>TestTool.cs</LastGenOutput>
     </Content>
     <Content Include="XsltTool.xml">

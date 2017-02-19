@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{97196401-357C-4A6B-8BB7-147337C8A4EE}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{47BF070B-81AD-403D-8639-D1CC2E67919C}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Platinum.VisualStudio.Command</RootNamespace>
-    <AssemblyName>ptvscmd</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>Platinum.VisualStudio</RootNamespace>
+    <AssemblyName>Platinum.VisualStudio</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,12 +30,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>..\platinum.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,18 +41,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandLine.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Framework\BaseTool.cs" />
+    <Compile Include="Framework\IPlugin.cs" />
+    <Compile Include="Framework\ITool.cs" />
+    <Compile Include="Framework\IGenerator.cs" />
+    <Compile Include="Framework\ToolException.cs" />
+    <Compile Include="Framework\ToolGenerateArgs.cs" />
+    <Compile Include="Framework\ToolRunArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConfigGenTool.cs" />
+    <Compile Include="ResxErrorTool.cs" />
+    <Compile Include="ResxExceptionTool.cs" />
+    <Compile Include="X.cs" />
+    <Compile Include="XsltExtensionObject.cs" />
+    <Compile Include="XsltTool.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <EmbeddedResource Include="Resources\PlatinumConfigGen-ToCode.xslt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Platinum.VisualStudio.Tools\Platinum.VisualStudio.csproj">
-      <Project>{47bf070b-81ad-403d-8639-d1cc2e67919c}</Project>
-      <Name>Platinum.VisualStudio</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="..\platinum.schema\PlatinumConfigGen.xsd">
+      <Link>Resources\PlatinumConfigGen.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PlatinumResxError-ToCode.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PlatinumResxError-ToResx.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\platinum.schema\PlatinumResxError.xsd">
+      <Link>Resources\PlatinumResxError.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PlatinumResxException-ToCode.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\platinum.schema\PlatinumResxException.xsd">
+      <Link>Resources\PlatinumResxException.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

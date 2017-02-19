@@ -1,7 +1,8 @@
 ﻿namespace Platinum.VisualStudio
 {
     /// <summary>
-    /// Designates a Visual Studio tool.
+    /// Command-line interface. Content is immediately written to the
+    /// target file. Exceptions are *NOT* caught.
     /// </summary>
     public interface ITool
     {

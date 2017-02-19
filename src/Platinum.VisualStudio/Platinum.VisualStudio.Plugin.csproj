@@ -14,8 +14,8 @@
     <ProjectGuid>{461089E7-008E-4737-BA17-E1FCD1CC3D0E}</ProjectGuid>
     <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Platinum.VisualStudio</RootNamespace>
-    <AssemblyName>Platinum.VisualStudio</AssemblyName>
+    <RootNamespace>Platinum.VisualStudio.Plugin</RootNamespace>
+    <AssemblyName>Platinum.VisualStudio.Plugin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -32,7 +32,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Platinum.VisualStudio.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Platinum.VisualStudio.Plugin.xml</DocumentationFile>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <StartAction>Program</StartAction>
     <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
@@ -81,11 +81,7 @@
     </Compile>
     <Compile Include="Framework\BaseCodeGenerator.cs" />
     <Compile Include="Framework\BaseCodeGeneratorWithSite.cs" />
-    <Compile Include="Framework\BaseTool.cs" />
-    <Compile Include="Framework\IToolChain.cs" />
-    <Compile Include="Framework\ITool.cs" />
-    <Compile Include="Framework\ToolGenerateArgs.cs" />
-    <Compile Include="Framework\ToolRunArgs.cs" />
+    <Compile Include="Framework\BasePlugin.cs" />
     <Compile Include="PtConfigGenTool.cs" />
     <Compile Include="PtResxErrorTool.cs" />
     <Compile Include="PtResxExceptionTool.cs" />
@@ -95,10 +91,7 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="TestTool.cs" />
-    <Compile Include="Framework\ToolException.cs" />
     <Compile Include="PtXsltTool.cs" />
-    <Compile Include="X.cs" />
-    <Compile Include="XsltExtensionObject.cs" />
     <None Include="app.config" />
     <None Include="project.json" />
   </ItemGroup>
@@ -121,19 +114,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <EmbeddedResource Include="Resources\PlatinumConfigGen-ToCode.xslt" />
-    <EmbeddedResource Include="Resources\PlatinumResxError-ToCode.xslt" />
-    <EmbeddedResource Include="Resources\PlatinumResxError-ToResx.xslt" />
-    <EmbeddedResource Include="Resources\PlatinumResxException-ToCode.xslt" />
-    <EmbeddedResource Include="..\Platinum.Schema\PlatinumConfigGen.xsd">
-      <Link>Resources\PlatinumConfigGen.xsd</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\Platinum.Schema\PlatinumResxError.xsd">
-      <Link>Resources\PlatinumResxError.xsd</Link>
-    </EmbeddedResource>
-    <EmbeddedResource Include="..\Platinum.Schema\PlatinumResxException.xsd">
-      <Link>Resources\PlatinumResxException.xsd</Link>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Platinum.VisualStudio.Tools\Platinum.VisualStudio.csproj">
+      <Project>{47bf070b-81ad-403d-8639-d1cc2e67919c}</Project>
+      <Name>Platinum.VisualStudio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <!--

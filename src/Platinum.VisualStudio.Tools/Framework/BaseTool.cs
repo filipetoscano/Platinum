@@ -1,39 +1,16 @@
-﻿using Microsoft.Samples.VisualStudio.GeneratorSample;
-using System;
+﻿using System;
 using System.IO;
 using System.Text;
 
 namespace Platinum.VisualStudio
 {
     /// <summary />
-    public abstract class BaseTool : BaseCodeGeneratorWithSite, ITool, IToolChain
+    public abstract class BaseTool : IPlugin, ITool, IGenerator
     {
-        /// <summary />
-        protected override byte[] GenerateCode( string inputFileContent )
-        {
-            string outputContent;
-
-            try
-            {
-                outputContent = Execute( this.FileNameSpace, this.InputFilePath, inputFileContent, false );
-            }
-            catch ( ToolException ex )
-            {
-                outputContent = ErrorEmit( ex );
-            }
-            catch ( Exception ex )
-            {
-                outputContent = ErrorEmit( ex );
-            }
-
-            return Encoding.UTF8.GetBytes( outputContent );
-        }
-
-
-
         /// <summary>
-        /// Executes the generator tool, through a command-line interface.
+        /// Command-line support.
         /// </summary>
+        /// <param name="args">Generation arguments.</param>
         void ITool.Run( ToolRunArgs args )
         {
             /*
@@ -57,9 +34,17 @@ namespace Platinum.VisualStudio
              */
             string outputContent;
 
+            ToolGenerateArgs toolArgs = new ToolGenerateArgs()
+            {
+                Namespace = args.Namespace,
+                FileName = args.FileName,
+                Content = inputContent,
+                WhatIf = args.WhatIf
+            };
+
             try
             {
-                outputContent = Execute( args.Namespace, args.FileName, inputContent, args.WhatIf );
+                outputContent = Execute( toolArgs );
             }
             catch ( ToolException )
             {
@@ -90,10 +75,40 @@ namespace Platinum.VisualStudio
         }
 
 
-        /// <summary />
-        string IToolChain.Generate( ToolGenerateArgs args )
+        /// <summary>
+        /// Plugin support.
+        /// </summary>
+        /// <param name="args">Generation arguments.</param>
+        /// <returns>Content.</returns>
+        byte[] IPlugin.Generate( ToolGenerateArgs args )
         {
-            return Execute( args.Namespace, args.FileName, args.Content, args.WhatIf );
+            string outputContent;
+
+            try
+            {
+                outputContent = Execute( args );
+            }
+            catch ( ToolException ex )
+            {
+                outputContent = ErrorEmit( ex );
+            }
+            catch ( Exception ex )
+            {
+                outputContent = ErrorEmit( ex );
+            }
+
+            return Encoding.UTF8.GetBytes( outputContent );
+        }
+
+
+        /// <summary>
+        /// Tool chain support.
+        /// </summary>
+        /// <param name="args">Generation arguments.</param>
+        /// <returns>Generated content.</returns>
+        string IGenerator.Generate( ToolGenerateArgs args )
+        {
+            return Execute( args );
         }
 
 
@@ -130,6 +145,6 @@ namespace Platinum.VisualStudio
 
 
         /// <summary />
-        protected abstract string Execute( string inputNamespace, string inputFileName, string inputContent, bool whatIf );
+        protected abstract string Execute( ToolGenerateArgs args );
     }
 }

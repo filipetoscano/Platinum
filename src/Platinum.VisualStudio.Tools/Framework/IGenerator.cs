@@ -1,9 +1,10 @@
 ﻿namespace Platinum.VisualStudio
 {
     /// <summary>
-    /// Designates a Visual Studio tool.
+    /// Internal interface: used when one tool wants to re-use another tool.
+    /// Returns the content to the caller, but exceptions are *NOT* handled.
     /// </summary>
-    public interface IToolChain
+    public interface IGenerator
     {
         /// <summary>
         /// Generates the output.
