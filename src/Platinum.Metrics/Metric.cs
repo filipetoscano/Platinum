@@ -1,4 +1,5 @@
 ﻿using NLog;
+using System;
 using System.Dynamic;
 
 namespace Platinum.Metrics
@@ -8,19 +9,29 @@ namespace Platinum.Metrics
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
-        public static void Increment( string measureName )
+        public static Meter Meter( string measureName )
         {
-        }
+            #region Validations
 
+            if ( measureName == null )
+                throw new ArgumentNullException( nameof( measureName ) );
 
-        public static void Decrement( string measureName )
-        {
+            #endregion
+
+            return new Metrics.Meter( logger, measureName );
         }
 
 
         public static void Gauge<T>( T measure )
         {
-            logger.Info( measure );
+            #region Validations
+
+            if ( measure == null )
+                throw new ArgumentNullException( nameof( measure ) );
+
+            #endregion
+
+            logger.Info( typeof( T ).Name, measure );
         }
     }
 }

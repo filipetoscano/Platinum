@@ -147,7 +147,7 @@ namespace Platinum.Metrics
 
             foreach ( var logEvent in logEvents )
             {
-                if ( logEvent.Parameters == null || logEvent.Parameters.Count() == 0 )
+                if ( logEvent.Parameters == null || logEvent.Parameters.Count() != 2 )
                     continue;
 
 
@@ -167,10 +167,20 @@ namespace Platinum.Metrics
                 /*
                  * 
                  */
-                object measure = logEvent.Parameters[ 0 ];
-                Type measureType = measure.GetType();
+                string measureName = (string) logEvent.Parameters[ 0 ];
+                object measure = logEvent.Parameters[ 1 ];
 
-                document.Add( "measure", measureType.FullName );
+
+                /*
+                 * 
+                 */
+                document.Add( "measure", measureName );
+
+
+                /*
+                 * 
+                 */
+                Type measureType = measure.GetType();
 
                 foreach ( var p in measureType.GetProperties() )
                 {
