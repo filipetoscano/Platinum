@@ -12,7 +12,7 @@ namespace Platinum.VisualStudio.Plugin
     [Guid( "fc195c8e-72c7-47d5-a8fd-e4dba1e32d17" )]
     [CodeGeneratorRegistration( typeof( PtResxExceptionTool ), "Platinum Exception", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
     [ProvideObject( typeof( PtResxExceptionTool ) )]
-    public class PtResxExceptionTool : BasePlugin<ResxExceptionTool>
+    public class PtResxExceptionTool : BasePlugin<VisualStudio.PtResxExceptionTool>
     {
     }
 }

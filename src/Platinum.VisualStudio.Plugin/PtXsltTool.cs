@@ -12,7 +12,7 @@ namespace Platinum.VisualStudio.Plugin
     [Guid( "fc3f5148-b5c0-4877-bc80-7023e32de35d" )]
     [CodeGeneratorRegistration( typeof( PtXsltTool ), "XSLT Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
     [ProvideObject( typeof( PtXsltTool ) )]
-    public class PtXsltTool : BasePlugin<XsltTool>
+    public class PtXsltTool : BasePlugin<VisualStudio.PtXsltTool>
     {
     }
 }

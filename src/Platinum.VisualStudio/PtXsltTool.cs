@@ -15,7 +15,7 @@ namespace Platinum.VisualStudio
     /// <summary>
     /// Applies an XSLT, generating C# as 'code-behind'.
     /// </summary>
-    public class XsltTool : BaseTool
+    public class PtXsltTool : BaseTool
     {
         /// <summary>
         /// Executes tool.

@@ -48,18 +48,28 @@ namespace Platinum.VisualStudio.Command
              *
              */
             Type interfaceType = typeof( ITool );
-
-            var rs = from assembly in AppDomain.CurrentDomain.GetAssemblies()
-                     from type in assembly.GetTypes()
-                     where type.IsInterface == false
-                     where interfaceType.IsAssignableFrom( type ) == true
-                     select type;
-
             Dictionary<string, Type> tools = new Dictionary<string, Type>();
 
-            foreach ( var t in rs )
+            foreach ( var assembly in AppDomain.CurrentDomain.GetAssemblies() )
             {
-                tools.Add( t.Name, t );
+                Console.WriteLine( assembly.FullName );
+
+                if ( assembly.IsDynamic == true )
+                    continue;
+
+                if ( assembly.FullName.StartsWith( "System." ) == true )
+                    continue;
+
+                foreach ( var type in assembly.GetTypes() )
+                {
+                    if ( type.IsInterface == true )
+                        continue;
+
+                    if ( interfaceType.IsAssignableFrom( type ) == true )
+                    {
+                        tools.Add( type.Name, type );
+                    }
+                }
             }
 
 

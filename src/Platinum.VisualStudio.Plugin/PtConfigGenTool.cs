@@ -12,7 +12,7 @@ namespace Platinum.VisualStudio.Plugin
     [Guid( "1de76d29-65be-4aba-baba-ae8719e5dd0e" )]
     [CodeGeneratorRegistration( typeof( PtConfigGenTool ), "Test Tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
     [ProvideObject( typeof( PtConfigGenTool ) )]
-    public class PtConfigGenTool : BasePlugin<ConfigGenTool>
+    public class PtConfigGenTool : BasePlugin<VisualStudio.PtConfigGenTool>
     {
     }
 }

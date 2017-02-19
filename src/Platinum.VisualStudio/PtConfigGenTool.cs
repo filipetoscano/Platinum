@@ -8,7 +8,7 @@ namespace Platinum.VisualStudio
     /// <summary>
     /// Generate configuration section handler.
     /// </summary>
-    public class ConfigGenTool : BaseTool
+    public class PtConfigGenTool : BaseTool
     {
         /// <summary>
         /// Executes tool.

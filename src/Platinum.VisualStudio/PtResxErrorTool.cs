@@ -1,14 +1,15 @@
 ﻿using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Xml;
 using System.Xml.Xsl;
 
 namespace Platinum.VisualStudio
 {
     /// <summary>
-    /// Automatically generates exception classes.
+    /// Generate code-behind class and ER.resx files.
     /// </summary>
-    public class ResxExceptionTool : BaseTool
+    public class PtResxErrorTool : BaseTool
     {
         /// <summary>
         /// Executes tool.
@@ -18,7 +19,7 @@ namespace Platinum.VisualStudio
             /*
              * #1. Load XML document
              */
-            XmlDocument doc = X.Load( args.Content, "PlatinumResxException.xsd" );
+            XmlDocument doc = X.Load( args.Content, "PlatinumResxError.xsd" );
 
 
             /*
@@ -39,13 +40,27 @@ namespace Platinum.VisualStudio
             /*
              * #3. Load transformation
              */
-            XslCompiledTransform xslt = X.LoadXslt( "PlatinumResxException-ToCode.xslt" );
+            XslCompiledTransform xsl1 = X.LoadXslt( "PlatinumResxError-ToCode.xslt" );
+            XslCompiledTransform xsl2 = X.LoadXslt( "PlatinumResxError-ToResx.xslt" );
 
 
             /*
              * #4. Apply transformation
              */
-            return X.ToText( xslt, xsltArgs, doc );
+            string cs = X.ToText( xsl1, xsltArgs, doc );
+            string resx = X.ToXml( xsl2, xsltArgs, doc );
+
+
+            /*
+             * #5. Write the contents of the ER.resx file
+             */
+            if ( args.WhatIf == false )
+            {
+                string resxPath = Path.Combine( inputFile.DirectoryName, "ER.resx" );
+                File.WriteAllText( resxPath, resx, Encoding.UTF8 );
+            }
+
+            return cs;
         }
     }
 }
