@@ -82,7 +82,10 @@
     <Compile Include="Framework\BaseCodeGenerator.cs" />
     <Compile Include="Framework\BaseCodeGeneratorWithSite.cs" />
     <Compile Include="Framework\BaseTool.cs" />
+    <Compile Include="Framework\IToolChain.cs" />
     <Compile Include="Framework\ITool.cs" />
+    <Compile Include="Framework\ToolGenerateArgs.cs" />
+    <Compile Include="Framework\ToolRunArgs.cs" />
     <Compile Include="PtConfigGenTool.cs" />
     <Compile Include="PtResxErrorTool.cs" />
     <Compile Include="PtResxExceptionTool.cs" />

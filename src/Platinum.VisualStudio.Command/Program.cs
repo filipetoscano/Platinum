@@ -300,9 +300,18 @@ namespace Platinum.VisualStudio.Command
             ITool bt = (ITool) Activator.CreateInstance( toolType );
             int status = 0;
 
+
+            /*
+             * 
+             */
+            ToolRunArgs args = new ToolRunArgs();
+            args.Namespace = @namespace;
+            args.FileName = file.FullName;
+            args.WhatIf = whatIf;
+
             try
             {
-                bt.Execute( file.FullName, @namespace, whatIf );
+                bt.Run( args );
             }
             catch ( Exception ex )
             {

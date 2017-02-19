@@ -6,7 +6,7 @@ using System.Text;
 namespace Platinum.VisualStudio
 {
     /// <summary />
-    public abstract class BaseTool : BaseCodeGeneratorWithSite, ITool
+    public abstract class BaseTool : BaseCodeGeneratorWithSite, ITool, IToolChain
     {
         /// <summary />
         protected override byte[] GenerateCode( string inputFileContent )
@@ -34,26 +34,12 @@ namespace Platinum.VisualStudio
         /// <summary>
         /// Executes the generator tool, through a command-line interface.
         /// </summary>
-        /// <param name="inputFileName">Input file name.</param>
-        /// <param name="inputNamespace">CLR namespace.</param>
-        /// <param name="whatIf">Whether to perform changes or not.</param>
-        void ITool.Execute( string inputFileName, string inputNamespace, bool whatIf )
+        void ITool.Run( ToolRunArgs args )
         {
-            #region Validations
-
-            if ( inputFileName == null )
-                throw new ArgumentNullException( nameof( inputFileName ) );
-
-            if ( inputNamespace == null )
-                throw new ArgumentNullException( nameof( inputNamespace ) );
-
-            #endregion
-
-
             /*
              * 
              */
-            FileInfo file = new FileInfo( inputFileName );
+            FileInfo file = new FileInfo( args.FileName );
             string inputContent;
 
             try
@@ -73,7 +59,7 @@ namespace Platinum.VisualStudio
 
             try
             {
-                outputContent = Execute( inputNamespace, inputFileName, inputContent, whatIf );
+                outputContent = Execute( args.Namespace, args.FileName, inputContent, args.WhatIf );
             }
             catch ( ToolException )
             {
@@ -88,7 +74,7 @@ namespace Platinum.VisualStudio
             /*
              * Write primary output.
              */
-            if ( whatIf == true )
+            if ( args.WhatIf == true )
                 return;
 
             string outputFile = Path.Combine( file.DirectoryName, Path.GetFileNameWithoutExtension( file.FullName ) + ".cs" );
@@ -101,6 +87,13 @@ namespace Platinum.VisualStudio
             {
                 throw new ToolException( $"Failed to write to '{ outputFile }'.", ex );
             }
+        }
+
+
+        /// <summary />
+        string IToolChain.Generate( ToolGenerateArgs args )
+        {
+            return Execute( args.Namespace, args.FileName, args.Content, args.WhatIf );
         }
 
 
