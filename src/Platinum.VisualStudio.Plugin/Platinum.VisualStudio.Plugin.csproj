@@ -116,7 +116,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Platinum.VisualStudio.Tools\Platinum.VisualStudio.csproj">
+    <ProjectReference Include="..\Platinum.VisualStudio\Platinum.VisualStudio.csproj">
       <Project>{47bf070b-81ad-403d-8639-d1cc2e67919c}</Project>
       <Name>Platinum.VisualStudio</Name>
     </ProjectReference>
