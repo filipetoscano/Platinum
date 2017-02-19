@@ -49,12 +49,12 @@
     <Compile Include="Framework\ToolGenerateArgs.cs" />
     <Compile Include="Framework\ToolRunArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ConfigGenTool.cs" />
-    <Compile Include="ResxErrorTool.cs" />
-    <Compile Include="ResxExceptionTool.cs" />
+    <Compile Include="PtConfigGenTool.cs" />
+    <Compile Include="PtResxErrorTool.cs" />
+    <Compile Include="PtResxExceptionTool.cs" />
     <Compile Include="X.cs" />
     <Compile Include="XsltExtensionObject.cs" />
-    <Compile Include="XsltTool.cs" />
+    <Compile Include="PtXsltTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\PlatinumConfigGen-ToCode.xslt" />
