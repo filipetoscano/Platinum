@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -16,10 +15,29 @@ namespace Platinum.VisualStudio.Command
         public static void Main( string[] args )
         {
             /*
-             * TODO
+             *
              */
-            CommandLine cl = new CommandLine();
-            cl.Solution = args[ 0 ];
+            CommandLine cl;
+
+            if ( Command.TryParse<CommandLine>( args, out cl ) == false )
+            {
+                Environment.ExitCode = 1001;
+                return;
+            }
+
+
+            /*
+             * If neither .Solution or .Project is specified, then behave like most
+             * .NET tools: look for a solution :P
+             */
+            if ( cl.Solution == null && cl.Project == null )
+            {
+                if ( TargetFind( cl ) == false )
+                {
+                    Environment.ExitCode = 1011;
+                    return;
+                }
+            }
 
 
             /*
@@ -127,6 +145,68 @@ namespace Platinum.VisualStudio.Command
                 exitCode = 1000;
 
             Environment.ExitCode = exitCode;
+        }
+
+
+        /// <summary>
+        /// No explicit target was specified in the command-line, so the tool will look
+        /// for a valid target: an .sln or .csproj file.
+        /// </summary>
+        /// <param name="cl">Command line.</param>
+        /// <returns>True if a target was found, false otherwise.</returns>
+        private static bool TargetFind( CommandLine cl )
+        {
+            #region Validations
+
+            if ( cl == null )
+                throw new ArgumentNullException( nameof( cl ) );
+
+            #endregion
+
+            var cwd = new DirectoryInfo( Environment.CurrentDirectory );
+
+
+            /*
+             * 
+             */
+            FileInfo[] sln = cwd.GetFiles( "*.sln" );
+
+            if ( sln.Length > 1 )
+            {
+                Console.Error.WriteLine( "err: current directory has more than one solution." );
+                return false;
+            }
+
+            if ( sln.Length == 1 )
+            {
+                cl.Solution = sln[ 0 ].FullName;
+                return true;
+            }
+
+
+            /*
+             * 
+             */
+            FileInfo[] csproj = cwd.GetFiles( "*.csproj" );
+
+            if ( csproj.Length > 1 )
+            {
+                Console.Error.WriteLine( "err: current directory has more than one C# project." );
+                return false;
+            }
+
+            if ( csproj.Length == 1 )
+            {
+                cl.Project = csproj[ 0 ].FullName;
+                return true;
+            }
+
+
+            /*
+             * 
+             */
+            Console.Error.WriteLine( "err: current directory has no solution or C# project." );
+            return false;
         }
 
 

@@ -44,7 +44,7 @@
 
         <!-- Deps -->
         <Exec Command=" nuget restore Platinum.sln " />
-        <Exec Command=" bin\ptvscmd.exe Platinum.sln " />
+        <Exec Command=" bin\ptvscmd.exe --solution=Platinum.sln " />
 
         <!-- Compile -->
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
