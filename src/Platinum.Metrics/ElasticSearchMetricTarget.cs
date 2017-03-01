@@ -104,8 +104,15 @@ namespace Platinum.Metrics
 
             try
             {
+                /*
+                 * 
+                 */
                 var logEvents = events.Select( e => e.LogEvent );
                 var payload = ToPostData( logEvents );
+
+                if ( payload == null )
+                    return;
+
                 var result = _client.Bulk<byte[]>( payload );
 
                 if ( result.Success == true )
@@ -115,18 +122,18 @@ namespace Platinum.Metrics
                 /*
                  * 
                  */
-                InternalLogger.Error( "Failed to send log messages to elasticsearch: status={0}, message=\"{1}\"",
+                InternalLogger.Error( "Failed to send metrics: status={0}, message=\"{1}\"",
                     result.HttpStatusCode,
                     result.OriginalException?.Message ?? "No error message. Enable Trace logging for more information." );
 
-                InternalLogger.Trace( "Failed to send log messages to elasticsearch: result={0}", result );
+                InternalLogger.Trace( "Failed to send metrics: result={0}", result );
 
                 if ( result.OriginalException != null )
                     throw result.OriginalException;
             }
             catch ( Exception ex )
             {
-                InternalLogger.Error( "Error while sending log messages to elasticsearch: message=\"{0}\"", ex.Message );
+                InternalLogger.Error( "Error while sending metrics: message=\"{0}\"", ex.Message );
 
                 if ( ThrowExceptions == true )
                     throw;
@@ -147,7 +154,7 @@ namespace Platinum.Metrics
 
             foreach ( var logEvent in logEvents )
             {
-                if ( logEvent.Parameters == null || logEvent.Parameters.Count() != 2 )
+                if ( logEvent.Parameters == null || logEvent.Parameters.Count() != 1 )
                     continue;
 
 
@@ -167,8 +174,8 @@ namespace Platinum.Metrics
                 /*
                  * 
                  */
-                string measureName = (string) logEvent.Parameters[ 0 ];
-                object measure = logEvent.Parameters[ 1 ];
+                string measureName = logEvent.Message;
+                object measure = logEvent.Parameters[ 0 ];
 
 
                 /*
@@ -197,6 +204,9 @@ namespace Platinum.Metrics
                 payload.Add( new { index = new { _index = index, _type = type } } );
                 payload.Add( document );
             }
+
+            if ( payload.Count == 0 )
+                return null;
 
             return payload;
         }
