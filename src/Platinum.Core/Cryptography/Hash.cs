@@ -114,6 +114,17 @@ namespace Platinum.Cryptography
 
 
         /// <summary>
+        /// Computes the SHA256 hash of the string value.
+        /// </summary>
+        /// <param name="value">String value.</param>
+        /// <returns>SHA256 hash, in hex format.</returns>
+        public static string SHA256( string value )
+        {
+            return Compute( HashAlgorithm.SHA256, value, HashFormat.Hex );
+        }
+
+
+        /// <summary>
         /// Computes the SHA512 hash of the string value.
         /// </summary>
         /// <param name="value">String value.</param>

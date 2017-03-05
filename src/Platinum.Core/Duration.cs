@@ -355,7 +355,7 @@ namespace Platinum
                 secs = float.Parse( m.Groups[ "seconds" ].Value, CultureInfo.InvariantCulture );
 
             int ss = (int) secs;
-            int ms = (int) Math.Round( (secs - ss) * 1000.0 );
+            int ms = (int) System.Math.Round( (secs - ss) * 1000.0 );
 
             Duration duration = new Duration( direction, YY, MM, DD, hh, mm, ss, ms );
             return duration;

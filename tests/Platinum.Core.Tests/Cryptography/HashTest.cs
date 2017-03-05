@@ -28,11 +28,11 @@ namespace Platinum.Core.Tests.Cryptography
         [TestMethod]
         public void SHA256()
         {
-            Assert.AreEqual( "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", Hash.Compute( HashAlgorithm.SHA256, "" ) );
-            Assert.AreEqual( "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb", Hash.Compute( HashAlgorithm.SHA256, "a" ) );
-            Assert.AreEqual( "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", Hash.Compute( HashAlgorithm.SHA256, "abc" ) );
-            Assert.AreEqual( "f7846f55cf23e14eebeab5b4e1550cad5b509e3348fbc4efa3a1413d393cb650", Hash.Compute( HashAlgorithm.SHA256, "message digest" ) );
-            Assert.AreEqual( "71c480df93d6ae2f1efad1447c66c9525e316218cf51fc8d9ed832f2daf18b73", Hash.Compute( HashAlgorithm.SHA256, "abcdefghijklmnopqrstuvwxyz" ) );
+            Assert.AreEqual( "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", Hash.SHA256( "" ) );
+            Assert.AreEqual( "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb", Hash.SHA256( "a" ) );
+            Assert.AreEqual( "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", Hash.SHA256( "abc" ) );
+            Assert.AreEqual( "f7846f55cf23e14eebeab5b4e1550cad5b509e3348fbc4efa3a1413d393cb650", Hash.SHA256( "message digest" ) );
+            Assert.AreEqual( "71c480df93d6ae2f1efad1447c66c9525e316218cf51fc8d9ed832f2daf18b73", Hash.SHA256( "abcdefghijklmnopqrstuvwxyz" ) );
         }
 
 

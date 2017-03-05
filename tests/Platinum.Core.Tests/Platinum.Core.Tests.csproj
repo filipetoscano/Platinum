@@ -63,6 +63,7 @@
     <Compile Include="Cryptography\SymmetricCryptoTest.cs" />
     <Compile Include="Cryptography\HashTest.cs" />
     <Compile Include="EnumerateModel.cs" />
+    <Compile Include="MathTests.cs" />
     <Compile Include="EnumerateTests.cs" />
     <Compile Include="ExceptionFwk\Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>

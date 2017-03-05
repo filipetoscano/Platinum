@@ -145,6 +145,7 @@
     </Compile>
     <Compile Include="IO\FsPath.cs" />
     <Compile Include="IO\Glob.cs" />
+    <Compile Include="Math.cs" />
     <Compile Include="Mirror.cs" />
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Reflection\AppDomainExtensions.cs" />
@@ -172,6 +173,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resolver\UrlResolver.cs" />
+    <Compile Include="RoundingMode.cs" />
     <Compile Include="Xml\Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>
       <AutoGen>True</AutoGen>

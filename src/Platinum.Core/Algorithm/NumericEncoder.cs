@@ -90,7 +90,7 @@ namespace Platinum.Algorithm
                 if ( v == 0 )
                     continue;
 
-                int add = (int) Math.Pow( this.CharacterSet.Length, power ) * v;
+                int add = (int) System.Math.Pow( this.CharacterSet.Length, power ) * v;
                 acc += add;
             }
 
@@ -121,7 +121,7 @@ namespace Platinum.Algorithm
 
             while ( index < this.EncodedLength )
             {
-                int res = ((int) Math.Floor( number / Math.Pow( this.CharacterSet.Length, index ) ) % this.CharacterSet.Length);
+                int res = ((int) System.Math.Floor( number / System.Math.Pow( this.CharacterSet.Length, index ) ) % this.CharacterSet.Length);
                 list.Add( this.CharacterSet[ res ].ToString() );
 
                 index++;
