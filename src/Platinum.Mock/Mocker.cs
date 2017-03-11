@@ -146,7 +146,7 @@ namespace Platinum.Mock
                     else
                     {
                         if ( propType.IsNullable() == true )
-                            propType = propType.GetGenericArguments()[ 0 ];
+                            propType = propType.GetNullableType();
 
                         object pv = MockValue( prop.Name, propType, xsdType, mda );
 

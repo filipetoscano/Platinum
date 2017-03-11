@@ -6,15 +6,27 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ Enum
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Enum_IsNotDefined" actor="{0}.{1}" code="5001">
+        <description>Enum value is not defined.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ MaxValue
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="MaxValue_GreaterThan" actor="{0}.{1}" code="4001">
-        <description>Value must be less than or equal to '{0}'.</description>
+        <description>Value must be less than or equal to '{2}'.</description>
+        <arg name="Max" />
     </error>
 
     <error id="MaxValue_EqualTo" actor="{0}.{1}" code="4002">
-        <description>Value must be less than '{0}'.</description>
+        <description>Value must be less than '{2}'.</description>
+        <arg name="Max" />
     </error>
 
 
@@ -24,11 +36,13 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="MinValue_LessThan" actor="{0}.{1}" code="4003">
-        <description>Value must be greater than or equal to '{0}'.</description>
+        <description>Value must be greater than or equal to '{2}'.</description>
+        <arg name="Min" />
     </error>
 
     <error id="MinValue_EqualTo" actor="{0}.{1}" code="4004">
-        <description>Value must be greater than '{0}'.</description>
+        <description>Value must be greater than '{2}'.</description>
+        <arg name="Min" />
     </error>
 
 
@@ -39,10 +53,12 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="RegularExpression_Invalid" actor="{0}.{1}" code="3001">
         <description>Regular expression '{2}' is invalid.</description>
+        <arg name="Pattern" />
     </error>
 
     <error id="RegularExpression" actor="{0}.{1}" code="3002">
         <description>Field does not match against expression '{2}'.</description>
+        <arg name="Pattern" />
     </error>
 
 

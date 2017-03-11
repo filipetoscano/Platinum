@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="DecimalDigitsAttribute.cs" />
+    <Compile Include="EnumIsDefinedRule.cs" />
     <Compile Include="Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EnumTests.cs" />
     <Compile Include="RuleModel.cs" />
     <Compile Include="ValueModel.cs" />
     <Compile Include="RegexModel.cs" />

@@ -56,8 +56,23 @@ namespace Platinum.Validation
                 var rules = prop.GetCustomAttributes( false )
                            .Where( x => typeof( IValidationRule ).IsAssignableFrom( x.GetType() ) )
                            .Select( x => (IValidationRule) x )
-                           .ToArray();
+                           .ToList();
 
+
+                /*
+                 * Special handling for enums: assert that the value
+                 * of the enum is always a supported value.
+                 */
+                if ( propType.IsEnum == true )
+                    rules.Add( new EnumIsDefinedRule() );
+
+                if ( propType.IsNullable() == true && propType.GetNullableType().IsEnum == true )
+                    rules.Add( new EnumIsDefinedRule() );
+
+
+                /*
+                 * 
+                 */
                 if ( propType.IsArray == true )
                 {
                     Type arrayType = prop.PropertyType.GetElementType();

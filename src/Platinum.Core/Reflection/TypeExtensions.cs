@@ -32,5 +32,19 @@ namespace Platinum.Reflection
             return type.IsGenericType == true
                 && type.GetGenericTypeDefinition() == typeof( Nullable<> );
         }
+
+
+        /// <summary>
+        /// Gets the base type of a nullable type.
+        /// </summary>
+        /// <param name="type">Runtime type.</param>
+        /// <returns>Base type, of nullable type.</returns>
+        public static Type GetNullableType( this Type type )
+        {
+            if ( IsNullable( type ) == false )
+                throw new ArgumentOutOfRangeException( nameof( type ), "Type is not nullable." );
+
+            return type.GetGenericArguments()[ 0 ];
+        }
     }
 }
