@@ -241,13 +241,17 @@ namespace Platinum
         /// Decimal value.
         /// </param>
         /// <returns>
-        /// Number of decimal digits.
+        /// Number of decimal digits, discarding trailing zeros.
         /// </returns>
         public static int DecimalDigits( decimal value )
         {
-            byte dd = (byte) ((Decimal.GetBits( value )[ 3 ] >> 16) & 0x7F);
+            string s = value.ToString( CultureInfo.InvariantCulture );
+            int ix = s.IndexOf( '.' );
 
-            return dd;
+            if ( ix < 0 )
+                return 0;
+
+            return ( s.TrimEnd( '0' ).Length -1 - ix );
         }
 
 
@@ -262,10 +266,10 @@ namespace Platinum
         /// </returns>
         public static int TotalDigits( decimal value )
         {
-            string s = value.ToString( CultureInfo.InvariantCulture );
+            string s = Math.Abs( value ).ToString( CultureInfo.InvariantCulture );
 
             if ( s.IndexOf( '.' ) > -1 )
-                return s.Length - 1;
+                return s.TrimEnd( '0' ).Length - 1;
             else
                 return s.Length;
         }

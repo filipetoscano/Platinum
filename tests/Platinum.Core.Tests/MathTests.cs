@@ -145,7 +145,7 @@ namespace Platinum.Core.Tests
 
             Assert.AreEqual( 2, Math.DecimalDigits( 1.23m ) );
             Assert.AreEqual( 2, Math.DecimalDigits( -1.23m ) );
-            Assert.AreEqual( 2, Math.DecimalDigits( -1.20m ) );
+            Assert.AreEqual( 1, Math.DecimalDigits( -1.20m ) );
             Assert.AreEqual( 2, Math.DecimalDigits( 1m / 100m ) );
             Assert.AreEqual( 2, Math.DecimalDigits( Math.Round( 1.55555m, 2 ) ) );
         }
@@ -157,13 +157,14 @@ namespace Platinum.Core.Tests
         [TestMethod]
         public void TotalDigits()
         {
+            Assert.AreEqual( 4, Math.TotalDigits( 1000m ) );
             Assert.AreEqual( 3, Math.TotalDigits( 100m ) );
             Assert.AreEqual( 1, Math.TotalDigits( 1m ) );
             Assert.AreEqual( 1, Math.TotalDigits( 0m ) );
 
             Assert.AreEqual( 3, Math.TotalDigits( 1.23m ) );
             Assert.AreEqual( 3, Math.TotalDigits( -1.23m ) );
-            Assert.AreEqual( 3, Math.TotalDigits( -1.20m ) );
+            Assert.AreEqual( 2, Math.TotalDigits( -1.20m ) );
             Assert.AreEqual( 3, Math.TotalDigits( 1m / 100m ) );
             Assert.AreEqual( 3, Math.TotalDigits( Math.Round( 1.55555m, 2 ) ) );
         }
