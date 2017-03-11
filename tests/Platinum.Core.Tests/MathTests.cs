@@ -133,6 +133,42 @@ namespace Platinum.Core.Tests
         }
 
 
+        /// <summary>
+        /// Decimal Digits
+        /// </summary>
+        [TestMethod]
+        public void DecimalDigits()
+        {
+            Assert.AreEqual( 0, Math.DecimalDigits( 100m ) );
+            Assert.AreEqual( 0, Math.DecimalDigits( 1m ) );
+            Assert.AreEqual( 0, Math.DecimalDigits( 0m ) );
+
+            Assert.AreEqual( 2, Math.DecimalDigits( 1.23m ) );
+            Assert.AreEqual( 2, Math.DecimalDigits( -1.23m ) );
+            Assert.AreEqual( 2, Math.DecimalDigits( -1.20m ) );
+            Assert.AreEqual( 2, Math.DecimalDigits( 1m / 100m ) );
+            Assert.AreEqual( 2, Math.DecimalDigits( Math.Round( 1.55555m, 2 ) ) );
+        }
+
+
+        /// <summary>
+        /// Total Digits
+        /// </summary>
+        [TestMethod]
+        public void TotalDigits()
+        {
+            Assert.AreEqual( 3, Math.TotalDigits( 100m ) );
+            Assert.AreEqual( 1, Math.TotalDigits( 1m ) );
+            Assert.AreEqual( 1, Math.TotalDigits( 0m ) );
+
+            Assert.AreEqual( 3, Math.TotalDigits( 1.23m ) );
+            Assert.AreEqual( 3, Math.TotalDigits( -1.23m ) );
+            Assert.AreEqual( 3, Math.TotalDigits( -1.20m ) );
+            Assert.AreEqual( 3, Math.TotalDigits( 1m / 100m ) );
+            Assert.AreEqual( 3, Math.TotalDigits( Math.Round( 1.55555m, 2 ) ) );
+        }
+
+
         /// <summary />
         private static void RunSequence( List<decimal> expected, RoundingMode mode )
         {

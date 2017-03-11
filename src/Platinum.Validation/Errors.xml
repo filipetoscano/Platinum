@@ -3,6 +3,21 @@
     xsi:schemaLocation="urn:platinum/actor ../Platinum.Schema/PlatinumResxError.xsd">
     <actor base="{Application}" />
 
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Numeric
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="DecimalDigits_Max" actor="{0}.{1}" code="7001">
+        <description>Value has more than '{2}' decimal digits.</description>
+    </error>
+
+    <error id="TotalDigits_Max" actor="{0}.{1}" code="7002">
+        <description>Value has more than '{2}' total digits.</description>
+    </error>
+
+
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
     ~ Email

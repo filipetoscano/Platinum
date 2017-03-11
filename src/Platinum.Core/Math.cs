@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Platinum
 {
@@ -230,6 +231,43 @@ namespace Platinum
             }
 
             return v;
+        }
+
+
+        /// <summary>
+        /// Returns the number of decimal digits.
+        /// </summary>
+        /// <param name="value">
+        /// Decimal value.
+        /// </param>
+        /// <returns>
+        /// Number of decimal digits.
+        /// </returns>
+        public static int DecimalDigits( decimal value )
+        {
+            byte dd = (byte) ((Decimal.GetBits( value )[ 3 ] >> 16) & 0x7F);
+
+            return dd;
+        }
+
+
+        /// <summary>
+        /// Returns the total number of digits in the decimal value.
+        /// </summary>
+        /// <param name="value">
+        /// Decimal value.
+        /// </param>
+        /// <returns>
+        /// Total number of digits.
+        /// </returns>
+        public static int TotalDigits( decimal value )
+        {
+            string s = value.ToString( CultureInfo.InvariantCulture );
+
+            if ( s.IndexOf( '.' ) > -1 )
+                return s.Length - 1;
+            else
+                return s.Length;
         }
     }
 }

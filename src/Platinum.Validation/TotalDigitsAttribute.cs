@@ -4,20 +4,19 @@ namespace Platinum.Validation
 {
     /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
-    public class DecimalDigitsAttribute : Attribute, IValidationRule
+    public class TotalDigitsAttribute : Attribute, IValidationRule
     {
         /// <summary />
-        public DecimalDigitsAttribute( int maxDecimalDigits )
+        public TotalDigitsAttribute( int maxTotalDigits )
         {
-            this.MaxDecimalDigits = maxDecimalDigits;
+            this.MaxTotalDigits = maxTotalDigits;
         }
 
 
         /// <summary>
-        /// Gets the maximum number of decimal digits that the value can
-        /// have.
+        /// Gets the maximum number of decimal digits.
         /// </summary>
-        public int MaxDecimalDigits
+        public int MaxTotalDigits
         {
             get;
             private set;
@@ -42,11 +41,11 @@ namespace Platinum.Validation
 
             // TODO: What for float/double?
             decimal v = (decimal) value;
-            int dd = Math.DecimalDigits( v );
+            int dd = Math.TotalDigits( v );
 
-            if ( dd > this.MaxDecimalDigits )
+            if ( dd > this.MaxTotalDigits )
             {
-                ValidationException vex = new ValidationException( ER.DecimalDigits_Max, context.Path, context.Property, this.MaxDecimalDigits );
+                ValidationException vex = new ValidationException( ER.TotalDigits_Max, context.Path, context.Property, this.MaxTotalDigits );
                 result.AddError( vex );
             }
         }
