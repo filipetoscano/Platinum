@@ -40,6 +40,41 @@ namespace Platinum
 
 
         /// <summary>
+        /// Returns a value indicating the sign of a decimal number.
+        /// </summary>
+        /// <param name="value">
+        /// A signed decimal number.
+        /// </param>
+        /// <returns>
+        /// A number that indicates the sign of value, as shown in the following table.Return
+        /// value Meaning -1 value is less than zero. 0 value is equal to zero. 1 value is
+        /// greater than zero.
+        /// </returns>
+        public static int Sign( decimal value )
+        {
+            return System.Math.Sign( value );
+        }
+
+
+        /// <summary>
+        /// Returns a specified number raised to the specified power.
+        /// </summary>
+        /// <param name="x">
+        /// A double-precision floating-point number to be raised to a power.
+        /// </param>
+        /// <param name="y">
+        /// A double-precision floating-point number that specifies a power.
+        /// </param>
+        /// <returns>
+        /// The number x raised to the power y.
+        /// </returns>
+        public static double Pow( double x, double y )
+        {
+            return System.Math.Pow( x, y );
+        }
+
+
+        /// <summary>
         /// Returns the smallest integer value that is greater than or equal to the specified
         /// decimal number.
         /// </summary>
