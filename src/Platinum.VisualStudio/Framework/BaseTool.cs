@@ -39,7 +39,8 @@ namespace Platinum.VisualStudio
                 Namespace = args.Namespace,
                 FileName = args.FileName,
                 Content = inputContent,
-                WhatIf = args.WhatIf
+                WhatIf = args.WhatIf,
+                IsInteractive = false,
             };
 
             try

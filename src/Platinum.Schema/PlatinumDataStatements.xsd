@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified"
+    targetNamespace="urn:platinum/data/statements"
+    xmlns:p="urn:platinum/data/statements"
+    xmlns="urn:platinum/data/statements">
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ statements/
+    ~ Schema root
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xsd:element name="statements">
+        <xsd:annotation>
+            <xsd:documentation>Root element of statement file.</xsd:documentation>
+        </xsd:annotation>
+
+        <xsd:complexType />
+    </xsd:element>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ statements/
+    ~ In-memory generated file.
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <xsd:element name="statements-internal">
+        <xsd:annotation>
+            <xsd:documentation>Root element of statement file.</xsd:documentation>
+        </xsd:annotation>
+
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="add" type="p:namespace" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:complexType name="namespace">
+        <xsd:sequence>
+            <xsd:element name="add" type="p:namespace" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="file" type="p:file" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+        <xsd:attribute name="full" type="xsd:string" use="required" />
+    </xsd:complexType>
+
+
+    <xsd:complexType name="file">
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+        <xsd:attribute name="resx" type="xsd:string" use="required" />
+    </xsd:complexType>
+
+</xsd:schema>

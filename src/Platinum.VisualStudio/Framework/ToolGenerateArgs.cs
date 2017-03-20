@@ -24,5 +24,11 @@
         /// Whether tool should perform writes.
         /// </summary>
         public bool WhatIf { get; set; }
+
+        /// <summary>
+        /// Whether tool is being invoked interactively (through Visual Studio
+        /// plugin) or through command-line.
+        /// </summary>
+        public bool IsInteractive { get; set; }
     }
 }

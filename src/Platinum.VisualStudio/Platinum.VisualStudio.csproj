@@ -52,6 +52,7 @@
     <Compile Include="PtConfigGenTool.cs" />
     <Compile Include="PtResxErrorTool.cs" />
     <Compile Include="PtResxExceptionTool.cs" />
+    <Compile Include="PtDataStatementsTool.cs" />
     <Compile Include="X.cs" />
     <Compile Include="XsltExtensionObject.cs" />
     <Compile Include="PtXsltTool.cs" />
@@ -86,12 +87,14 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+     <EmbeddedResource Include="Resources\PlatinumDataStatements-ToCode.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\platinum.schema\PlatinumDataStatements.xsd">
+      <Link>Resources\PlatinumDataStatements.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

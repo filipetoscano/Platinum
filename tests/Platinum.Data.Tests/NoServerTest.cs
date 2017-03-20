@@ -1,11 +1,8 @@
 ﻿using Dapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
+using Q = Platinum.Data.Tests.Statements.Sql;
 
 namespace Platinum.Data.Tests
 {

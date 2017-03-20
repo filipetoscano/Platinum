@@ -49,6 +49,9 @@
     <None Include="PlatinumResxError.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="PlatinumDataStatements.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="PlatinumResxException.xsd">
       <SubType>Designer</SubType>
     </None>

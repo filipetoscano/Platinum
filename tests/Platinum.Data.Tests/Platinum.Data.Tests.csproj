@@ -65,7 +65,11 @@
     <Compile Include="NoServerTest.cs" />
     <Compile Include="BasicTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Q.cs" />
+    <Compile Include="Statements.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Statements.xml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Platinum.Core\Platinum.Core.csproj">
@@ -98,6 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Sql\DbErrorArg.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Statements.xml">
+      <Generator>XsltTool</Generator>
+      <LastGenOutput>Statements.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

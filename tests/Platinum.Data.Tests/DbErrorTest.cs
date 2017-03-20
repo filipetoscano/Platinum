@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Common;
 using System.Threading.Tasks;
+using Q = Platinum.Data.Tests.Statements.Sql;
 
 namespace Platinum.Data.Tests
 {

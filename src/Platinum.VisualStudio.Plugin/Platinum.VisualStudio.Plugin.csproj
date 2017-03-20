@@ -82,6 +82,7 @@
     <Compile Include="Framework\BaseCodeGenerator.cs" />
     <Compile Include="Framework\BaseCodeGeneratorWithSite.cs" />
     <Compile Include="Framework\BasePlugin.cs" />
+    <Compile Include="PtDataStatementsTool.cs" />
     <Compile Include="PtConfigGenTool.cs" />
     <Compile Include="PtResxErrorTool.cs" />
     <Compile Include="PtResxExceptionTool.cs" />

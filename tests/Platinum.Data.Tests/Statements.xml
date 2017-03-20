@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?codebehind transformation="C:\Work\Transition\Platinum\src\Platinum.VisualStudio\Resources\PlatinumDataStatements-ToCode.xslt"?>
+<statements-internal xmlns="urn:platinum/data/statements">
+
+    <add name="Sql" full="Sql">
+        <!--
+        <add name="Xpto1" full="Sql/Xpto">
+            <file name="DbError1" resx="Sql/Xpto1/DbError" />
+            <file name="DbError2" resx="Sql/Xpto1/DbError" />
+        </add>
+
+        <add name="Xpto2" full="Sql/Xpto">
+            <file name="DbError1" resx="Sql/Xpto2/DbError" />
+            <file name="DbError2" resx="Sql/Xpto2/DbError" />
+        </add>
+        -->
+
+        <file name="DbError" resx="Sql/DbError" />
+        <file name="DbErrorArg" resx="Sql/DbErrorArg" />
+        <file name="Multi1" resx="Sql/Multi1" />
+        <file name="Multi2" resx="Sql/Multi2" />
+        <file name="Query" resx="Sql/Query" />
+        <file name="Single" resx="Sql/Single" />
+    </add>
+
+</statements-internal>

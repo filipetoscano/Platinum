@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
+using Q = Platinum.Data.Tests.Statements.Sql;
 
 namespace Platinum.Data.Tests
 {

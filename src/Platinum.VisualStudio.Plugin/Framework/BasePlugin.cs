@@ -26,7 +26,8 @@ namespace Platinum.VisualStudio.Plugin
                 Content = inputFileContent,
                 Namespace = this.FileNameSpace,
                 FileName = this.InputFilePath,
-                WhatIf = false
+                WhatIf = false,
+                IsInteractive = true,
             };
 
             try
