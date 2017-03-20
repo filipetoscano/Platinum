@@ -54,10 +54,30 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LoggerTest.cs" />
+    <Compile Include="Audit.cs" />
+    <Compile Include="LoggingTest.cs" />
+    <Compile Include="Errors.cs">
+      <DependentUpon>Errors.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Exceptions.cs">
+      <DependentUpon>Exceptions.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="AuditorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Exceptions.xml">
+      <Generator>PtResxExceptionTool</Generator>
+      <LastGenOutput>Exceptions.cs</LastGenOutput>
+    </None>
+    <None Include="Errors.xml">
+      <Generator>PtResxErrorTool</Generator>
+      <LastGenOutput>Errors.cs</LastGenOutput>
+    </None>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -76,6 +96,9 @@
       <Project>{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992}</Project>
       <Name>Platinum.Logging</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ER.resx" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

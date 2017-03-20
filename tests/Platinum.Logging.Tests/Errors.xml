@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/actor ../../src/Platinum.Schema/PlatinumResxError.xsd">
+    <actor base="{Application}" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Event for Auditor
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Event_NoArguments" actor="~.Tests" code="1001">
+        <description>Without arguments.</description>
+    </error>
+
+    <error id="Event_OneArgument" actor="~.Tests" code="1002">
+        <description>With a single argument '{0}'.</description>
+        <arg name="Arg1" />
+    </error>
+
+    <error id="Event_TwoArguments" actor="~.Tests" code="1003">
+        <description>With two arguments: '{0}' and '{1}'.</description>
+        <arg name="Arg1" />
+        <arg name="Arg2" />
+    </error>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Exception for Logger
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Exception_NoArguments" actor="~.Tests" code="2001">
+        <description>Without arguments.</description>
+    </error>
+
+</errors>

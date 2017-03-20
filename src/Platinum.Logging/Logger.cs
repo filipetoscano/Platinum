@@ -16,6 +16,18 @@ namespace Platinum.Logging
         }
 
 
+        public void Info( ActorException exception )
+        {
+            this._logger.Info( exception );
+        }
+
+
+        public void Warn( ActorException exception )
+        {
+            this._logger.Warn( exception );
+        }
+
+
         public void Error( ActorException exception )
         {
             this._logger.Error( exception );
@@ -24,7 +36,7 @@ namespace Platinum.Logging
 
         public void Fatal( ActorException exception )
         {
-            this._logger.Error( exception );
+            this._logger.Fatal( exception );
         }
     }
 }

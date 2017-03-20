@@ -1,5 +1,4 @@
 ﻿using Elasticsearch.Net;
-using Newtonsoft.Json;
 using NLog;
 using NLog.Common;
 using NLog.Config;
@@ -8,7 +7,6 @@ using NLog.Targets;
 using Platinum;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 
 namespace Festo.Logging
@@ -89,7 +87,7 @@ namespace Festo.Logging
         /// <summary>
         /// Writes a batch of events to ElasticSearch.
         /// </summary>
-        /// <param name="logEvent">NLog Event.</param>
+        /// <param name="logEvents">Array of NLog Event.</param>
         protected override void Write( AsyncLogEventInfo[] logEvents )
         {
             SendBatch( logEvents );

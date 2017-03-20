@@ -90,19 +90,5 @@ namespace Platinum.Logging
 
             logger.Info( exception, null );
         }
-
-
-        public static void Event( this NLog.Logger logger, string eventId )
-        {
-            Event( logger, eventId, null );
-        }
-
-
-        public static void Event( this NLog.Logger logger, string eventId, params object[] args )
-        {
-            if ( eventId == null )
-                throw new ArgumentNullException( nameof( eventId ) );
-
-        }
     }
 }

@@ -56,8 +56,8 @@
     <Compile Include="..\GlobalVersion.cs">
       <Link>Properties\GlobalVersion.cs</Link>
     </Compile>
+    <Compile Include="Auditor.cs" />
     <Compile Include="ElasticSearchTarget.cs" />
-    <Compile Include="Logger.Event.cs" />
     <Compile Include="Logger.Debug.cs" />
     <Compile Include="LoggerExtensions.cs" />
     <Compile Include="LogManager.cs" />

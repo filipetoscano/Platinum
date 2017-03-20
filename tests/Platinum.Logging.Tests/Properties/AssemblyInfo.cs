@@ -14,7 +14,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCulture( "" )]
 
 // Additional information
-[assembly: CLSCompliant( true )]
 [assembly: ComVisible( false )]
 [assembly: Guid( "22d097db-92a3-444c-8ccb-5ee86b8cf9f6" )]
 [assembly: NeutralResourcesLanguage( "en-GB" )]
