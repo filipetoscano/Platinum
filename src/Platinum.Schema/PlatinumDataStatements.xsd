@@ -34,20 +34,34 @@
 
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="add" type="p:namespace" minOccurs="0" maxOccurs="unbounded" />
+                <xsd:element name="add" type="p:namespace" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:unique name="uqContent2">
+                        <xsd:selector xpath="p:*" />
+                        <xsd:field xpath=" @name " />
+                    </xsd:unique>
+                </xsd:element>
             </xsd:sequence>
         </xsd:complexType>
+
+        <xsd:unique name="uqContent1">
+            <xsd:selector xpath="p:*" />
+            <xsd:field xpath=" @name " />
+        </xsd:unique>
     </xsd:element>
 
 
     <xsd:complexType name="namespace">
         <xsd:sequence>
-            <xsd:element name="add" type="p:namespace" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="add" type="p:namespace" minOccurs="0" maxOccurs="unbounded">
+                <xsd:unique name="uqContent3">
+                    <xsd:selector xpath="p:*" />
+                    <xsd:field xpath=" @name " />
+                </xsd:unique>
+            </xsd:element>
             <xsd:element name="file" type="p:file" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
 
         <xsd:attribute name="name" type="xsd:string" use="required" />
-        <xsd:attribute name="full" type="xsd:string" use="required" />
     </xsd:complexType>
 
 

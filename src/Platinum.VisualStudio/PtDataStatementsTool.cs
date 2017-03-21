@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
-using System.Xml.Schema;
-using System.Xml.XPath;
 using System.Xml.Xsl;
 
 namespace Platinum.VisualStudio
@@ -17,6 +13,9 @@ namespace Platinum.VisualStudio
     /// </summary>
     public class PtDataStatementsTool : BaseTool
     {
+        internal const string NS = "urn:platinum/data/statements";
+
+
         /// <summary>
         /// Executes tool.
         /// </summary>
@@ -27,12 +26,12 @@ namespace Platinum.VisualStudio
              */
             DirectoryInfo dir = new DirectoryInfo( Path.GetDirectoryName( args.FileName ) );
 
-            FileInfo[] files = dir.GetFiles( "*.csproj" );
+            FileInfo[] projects = dir.GetFiles( "*.csproj" );
 
-            if ( files.Length == 0 )
+            if ( projects.Length == 0 )
                 throw new ToolException( "No .csproj found in current directory." );
 
-            if ( files.Length > 1 )
+            if ( projects.Length > 1 )
                 throw new ToolException( "More than one .csproj found in current directory." );
 
 
@@ -42,10 +41,11 @@ namespace Platinum.VisualStudio
             List<string> sqlFiles = new List<string>();
 
             XmlDocument csproj = new XmlDocument();
-            csproj.Load( files[ 0 ].FullName );
+            csproj.Load( projects[ 0 ].FullName );
 
             XmlNamespaceManager manager = new XmlNamespaceManager( new NameTable() );
             manager.AddNamespace( "vs", "http://schemas.microsoft.com/developer/msbuild/2003" );
+            manager.AddNamespace( "pd", "urn:platinum/data/statements" );
 
             foreach ( XmlElement embedded in csproj.SelectNodes( " //vs:EmbeddedResource[ @Include ] ", manager ) )
             {
@@ -54,18 +54,41 @@ namespace Platinum.VisualStudio
                 if ( include.EndsWith( ".sql", StringComparison.InvariantCulture ) == false )
                     continue;
 
-                sqlFiles.Add( include );
+                string noPrefix = include.Substring( 0, include.Length - 4 );
+                string slashes = noPrefix.Replace( "\\", "/" );
+
+                sqlFiles.Add( slashes );
             }
 
 
             /*
-             * #1. Load XML document
+             * #3. Build -internal file.
              */
-            XmlDocument doc = X.Load( args.Content, "PlatinumDataStatements.xsd" );
+            XmlDocument idoc = new XmlDocument();
+            var root = idoc.Append( "statements-internal", NS );
+
+            foreach ( string relativePath in sqlFiles )
+            {
+                string[] segments = relativePath.Split( new char[] { '/' } );
+                var path = segments.Take( segments.Length - 1 );
+                var file = segments.Last();
+
+                var folder = Find( root, manager, path );
+
+                var xfile = folder.Append( "file", NS );
+                xfile.Attribute( "name", file )
+                     .Attribute( "resx", relativePath );
+            }
 
 
             /*
-             * #2. Build arguments
+             * #4. Load XML document
+             */
+            XmlDocument doc = X.Load( idoc.OuterXml, "PlatinumDataStatements.xsd" );
+
+
+            /*
+             * #5. Build arguments
              */
             FileInfo inputFile = new FileInfo( args.FileName );
             string rawName = inputFile.Name.Substring( 0, inputFile.Name.Length - inputFile.Extension.Length );
@@ -80,15 +103,51 @@ namespace Platinum.VisualStudio
 
 
             /*
-             * #3. Load transformation
+             * #6. Load transformation
              */
             XslCompiledTransform xslt = X.LoadXslt( "PlatinumDataStatements-ToCode.xslt" );
 
 
             /*
-             * #4. Apply transformation
+             * #7. Apply transformation
              */
             return X.ToText( xslt, xsltArgs, doc );
+        }
+
+
+        /// <summary />
+        private static XmlElement Find( XmlElement parent, XmlNamespaceManager manager, IEnumerable<string> path )
+        {
+            #region Validations
+
+            if ( parent == null )
+                throw new ArgumentNullException( nameof( parent ) );
+
+            if ( manager == null )
+                throw new ArgumentNullException( nameof( manager ) );
+
+            if ( path == null )
+                throw new ArgumentNullException( nameof( path ) );
+
+            #endregion
+
+            XmlElement folder = parent;
+            XmlElement scope = parent;
+
+            foreach ( var p in path )
+            {
+                folder = scope.SelectSingle( $" pd:add[ @name = '{ p }' ]", manager );
+
+                if ( folder == null )
+                {
+                    folder = scope.Prepend( "add", NS );
+                    folder.Attribute( "name", p );
+                }
+
+                scope = folder;
+            }
+
+            return folder;
         }
     }
 }

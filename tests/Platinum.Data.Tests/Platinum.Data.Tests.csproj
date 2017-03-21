@@ -104,10 +104,10 @@
     <EmbeddedResource Include="Sql\DbErrorArg.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Statements.xml">
-      <Generator>XsltTool</Generator>
+    <None Include="Statements.xml">
+      <Generator>PtDataStatementsTool</Generator>
       <LastGenOutput>Statements.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

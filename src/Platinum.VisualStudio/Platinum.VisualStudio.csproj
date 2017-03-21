@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="Framework\BaseTool.cs" />
     <Compile Include="Framework\IPlugin.cs" />
     <Compile Include="Framework\ITool.cs" />
@@ -88,7 +89,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-     <EmbeddedResource Include="Resources\PlatinumDataStatements-ToCode.xslt" />
+    <EmbeddedResource Include="Resources\PlatinumDataStatements-ToCode.xslt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\platinum.schema\PlatinumDataStatements.xsd">

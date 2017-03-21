@@ -123,6 +123,9 @@ namespace Platinum.VisualStudio.Command
                     if ( type.IsInterface == true )
                         continue;
 
+                    if ( type.IsAbstract == true )
+                        continue;
+
                     if ( interfaceType.IsAssignableFrom( type ) == true )
                     {
                         Console.WriteLine( "+ {0}", type.Name );
