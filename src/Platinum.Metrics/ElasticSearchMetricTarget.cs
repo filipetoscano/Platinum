@@ -177,6 +177,8 @@ namespace Platinum.Metrics
                 string measureName = logEvent.Message;
                 object measure = logEvent.Parameters[ 0 ];
 
+                logEvent.Properties[ "measureName" ] = measureName;
+
 
                 /*
                  * 

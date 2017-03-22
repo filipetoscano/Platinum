@@ -1,27 +1,25 @@
 ﻿using NLog;
 using System;
-using System.Dynamic;
 
 namespace Platinum.Metrics
 {
+    /// <summary>
+    /// Metric helper.
+    /// </summary>
     public class Metric
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
 
-        public static Meter Meter( string measureName )
-        {
-            #region Validations
-
-            if ( measureName == null )
-                throw new ArgumentNullException( nameof( measureName ) );
-
-            #endregion
-
-            return new Metrics.Meter( logger, measureName );
-        }
-
-
+        /// <summary>
+        /// Writes a time-series data-point.
+        /// </summary>
+        /// <typeparam name="T">Type of measure.</typeparam>
+        /// <param name="measure">Value of measure.</param>
+        /// <remarks>
+        /// Name of measure will be automatically derived from the (non
+        /// namespace-qualified) name of the CLR type.
+        /// </remarks>
         public static void Gauge<T>( T measure )
         {
             #region Validations
