@@ -327,7 +327,7 @@ namespace Platinum
             Match m = _reg.Match( value );
 
             if ( m.Success == false )
-                throw new ArgumentException( "Value is not a valid xsd:duration.", "value" );
+                throw new ArgumentException( "Value is not a valid xsd:duration.", nameof( value ) );
 
             int YY = 0, MM = 0, DD = 0, hh = 0, mm = 0;
             float secs = 0;

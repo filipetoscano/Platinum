@@ -4,7 +4,9 @@ using System.Globalization;
 
 namespace Platinum.Configuration
 {
-    /// <summary />
+    /// <summary>
+    /// Helper for quick/flexible access to application configuration file.
+    /// </summary>
     public static class AppConfiguration
     {
         /// <summary>
@@ -14,6 +16,10 @@ namespace Platinum.Configuration
         /// <typeparam name="T">Type of value which should be returned.</typeparam>
         /// <param name="key">Name of configuration key.</param>
         /// <returns>Type-cast value.</returns>
+        /// <exception cref="ConfigurationException">
+        /// Thrown if the key is not defined, or if the value in configuration
+        /// file cannot be represented as instance of type <see cref="T" />.
+        /// </exception>
         public static T Get<T>( string key )
         {
             #region Validations
@@ -113,6 +119,36 @@ namespace Platinum.Configuration
 
                 t = (T) o;
             }
+            else if ( tt == typeof( Duration ) )
+            {
+                Duration d;
+
+                try
+                {
+                    d = Duration.Parse( value );
+                }
+                catch ( Exception ex )
+                {
+                    throw new ConfigurationException( ER.Get_NotDuration, ex, key, value );
+                }
+
+                t = (T) ((object) d);
+            }
+            else if ( tt == typeof( TimeSpan ) )
+            {
+                TimeSpan ts;
+
+                try
+                {
+                    ts = TimeSpan.Parse( value, CultureInfo.InvariantCulture );
+                }
+                catch ( Exception ex )
+                {
+                    throw new ConfigurationException( ER.Get_NotTimeSpan, ex, key, value );
+                }
+
+                t = (T) ((object) ts);
+            }
             else
             {
                 try
@@ -137,6 +173,11 @@ namespace Platinum.Configuration
         /// <typeparam name="T"></typeparam>
         /// <param name="sectionName">The configuration section path and name.</param>
         /// <returns>The type-cast configuration section object.</returns>
+        /// <exception cref="ConfigurationException">
+        /// Thrown if: section is not defined, is invalid (the construction of the
+        /// configuration element failed) or whether the constructed configuration
+        /// element is not of the demanded/expected type.
+        /// </exception>
         public static T SectionGet<T>( string sectionName )
         {
             #region Validations
@@ -168,9 +209,51 @@ namespace Platinum.Configuration
 
 
         /// <summary>
+        /// Gets the <see cref="ConnectionStringSettings" /> for the given named
+        /// connection.
+        /// </summary>
+        /// <param name="name">
+        /// Name of the connection.
+        /// </param>
+        /// <returns>
+        /// Instance of <see cref="ConnectionStringSettings" />.
+        /// </returns>
+        /// <exception cref="ConfigurationException">
+        /// Thrown if the section could not be loaded, or if the connection
+        /// was not found.
+        /// </exception>
+        public static ConnectionStringSettings ConnectionGet( string name )
+        {
+            #region Validations
+
+            if ( name == null )
+                throw new ArgumentNullException( nameof( name ) );
+
+            #endregion
+
+            ConnectionStringSettings settings;
+
+            try
+            {
+                settings = ConfigurationManager.ConnectionStrings[ name ];
+            }
+            catch ( ConfigurationErrorsException ex )
+            {
+                throw new ConfigurationException( ER.ConnectionGet_Failed, ex );
+            }
+
+            if ( settings == null )
+                throw new ConfigurationException( ER.ConnectionGet_NotFound, name );
+
+            return settings;
+        }
+
+
+        /// <summary>
         /// Gets the ConnectionStringsSection data for the current
         /// application's default configuration.
         /// </summary>
+        [Obsolete( "Retrieve connection string settings through 'ConnectionGet' instead." )]
         public static ConnectionStringSettingsCollection ConnectionStrings
         {
             get { return ConfigurationManager.ConnectionStrings; }

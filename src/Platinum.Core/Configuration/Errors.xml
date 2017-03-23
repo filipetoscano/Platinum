@@ -38,6 +38,18 @@
         <arg name="Value" />
     </error>
 
+    <error id="Get_NotDuration" actor="~#Configuration" code="1006">
+        <description>Configuration key '{0}' is not a valid Duration, value is '{1}'.</description>
+        <arg name="Key" />
+        <arg name="Value" />
+    </error>
+
+    <error id="Get_NotTimeSpan" actor="~#Configuration" code="1007">
+        <description>Configuration key '{0}' is not a valid TimeSpan, value is '{1}'.</description>
+        <arg name="Key" />
+        <arg name="Value" />
+    </error>
+
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
@@ -61,6 +73,22 @@
     <error id="Section_Invalid" actor="~#Configuration" code="1103">
         <description>Section '{0}' is not configured correctly, please review inner exception for details.</description>
         <arg name="Section" />
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Connection/
+    ~ Errors related with connection string settings.
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="ConnectionGet_Failed" actor="~#Configuration" code="1201">
+        <description>Failed to obtain connection string settings.</description>
+    </error>
+
+    <error id="ConnectionGet_NotFound" actor="~#Configuration" code="1202">
+        <description>Connection '{0}' is not defined.</description>
+        <arg name="Name" />
     </error>
 
 </errors>
