@@ -16,6 +16,7 @@
     </metadata>
     <files>
         <file src="PlatinumConfigGen.xsd" target="content\PlatinumConfigGen.xsd" />
+        <file src="PlatinumDataStatements.xsd" target="content\PlatinumDataStatements.xsd" />
         <file src="PlatinumResxError.xsd" target="content\PlatinumResxError.xsd" />
         <file src="PlatinumResxException.xsd" target="content\PlatinumResxException.xsd" />
     </files>
