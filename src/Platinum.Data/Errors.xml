@@ -8,11 +8,6 @@
     ~ Connection
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Connection_NotFound" actor="~.Data.Configuration" code="1001">
-        <description>No settings for database '{0}' found.</description>
-        <arg name="Database" />
-    </error>
-
     <error id="Connection_NoProviderName" actor="~.Data.Configuration" code="1002">
         <description>Settings for database '{0}' have no defined provider.</description>
         <arg name="Database" />

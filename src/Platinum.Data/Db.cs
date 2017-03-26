@@ -23,10 +23,7 @@ namespace Platinum.Data
             /*
              * 
              */
-            var cs = AppConfiguration.ConnectionStrings[ name ];
-
-            if ( cs == null )
-                throw new DataException( ER.Connection_NotFound, name );
+            var cs = AppConfiguration.ConnectionGet( name );
 
             if ( string.IsNullOrEmpty( cs.ProviderName ) == true )
                 throw new DataException( ER.Connection_NoProviderName, name );
