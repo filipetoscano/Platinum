@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/actor ../Platinum.Schema/PlatinumResxError.xsd">
+    <actor base="{Application}" />
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Main
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Arguments_Invalid" actor="~.Client" code="11000">
+        <description>Invalid command line arguments.</description>
+    </error>
+
+    <error id="Tool_UnhandledException" actor="~.Internal" code="11001">
+        <description>Unhandled exception running tool.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ ConnectionString
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="ConnectionString_Empty" actor="~.Configuration" code="10000">
+        <description>Connection '{0}' has an empty connection string.</description>
+        <arg name="ConnectionName" />
+    </error>
+
+    <error id="ConnectionString_NotTransformed" actor="~.Configuration" code="10000">
+        <description>Connection '{0}' has an empty connection string.</description>
+        <arg name="ConnectionName" />
+    </error>
+
+    <error id="ConnectionString_Placeholder" actor="~.Configuration" code="10000">
+        <description>Connection '{0}' has an empty connection string.</description>
+        <arg name="ConnectionName" />
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Reset
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Reset_Run" actor="~" code="20000">
+        <description>Running 'reset' operation.</description>
+    </error>
+
+    <error id="Reset_Failed" actor="~" code="20001">
+        <description>Failed to perform reset.</description>
+    </error>
+
+    <error id="Reset_Production" actor="~" code="20002">
+        <description>Cannot run 'reset' command on Production database.</description>
+    </error>
+
+    <error id="Reset_QualityAssurance" actor="~" code="20003">
+        <description>Cannot run 'reset' command on Quality Assurance database.</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Schema
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Schema_Run" actor="~" code="21000">
+        <description>Running 'schema' operation.</description>
+    </error>
+
+    <error id="Schema_Failed" actor="~" code="21001">
+        <description>
+            <![CDATA[Failed to perform schema update. List of scripts was:
+{0}]]>
+        </description>
+        <arg name="ScriptList" />
+    </error>
+
+    <error id="Schema_Complete" actor="~" code="21002">
+        <description>
+            <![CDATA[Completed schema update. List of scripts was:
+{0}]]>
+        </description>
+        <arg name="ScriptList" />
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Data
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Data_Run" actor="~" code="21000">
+        <description>Running 'data' operation.</description>
+    </error>
+
+    <error id="Data_Failed" actor="~" code="21001">
+        <description>
+            <![CDATA[Failed to perform data update. List of scripts was:
+{0}]]>
+        </description>
+        <arg name="ScriptList" />
+    </error>
+
+    <error id="Data_Complete" actor="~" code="21002">
+        <description>
+            <![CDATA[Completed data update. List of scripts was:
+{0}]]>
+        </description>
+        <arg name="ScriptList" />
+    </error>
+
+</errors>

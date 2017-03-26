@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Logging.Tests", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Schema", "src\Platinum.Schema\Platinum.Schema.csproj", "{139B339D-CD0A-4EA8-883D-E0E865454A32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Database", "src\Platinum.Database\Platinum.Database.csproj", "{3DABF914-9791-47F0-8304-FE97E6AEA62D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{139B339D-CD0A-4EA8-883D-E0E865454A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +129,7 @@ Global
 		{16BA7DAE-4D7D-438B-BBC6-54A4E9C2C992} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 		{139B339D-CD0A-4EA8-883D-E0E865454A32} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
+		{3DABF914-9791-47F0-8304-FE97E6AEA62D} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
