@@ -6,6 +6,16 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ Validator
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="RuleSet_FieldNotFound" actor="{0}.{1}" code="9001">
+        <description>Rule set includes rule for field '{2}', which does not exist in '{3}'..</description>
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ Numeric
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -95,6 +105,10 @@
         <description>Field is required.</description>
     </error>
 
+    <error id="Forbidden" actor="{0}.{1}" code="1002">
+        <description>Field is forbidden.</description>
+    </error>
+
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
@@ -129,7 +143,7 @@
         <description>String includes characters which are not lower-case.</description>
     </error>
 
-    <error id="StringUpperCase_Invalid" actor="{0}.{1}" code="2004">
+    <error id="StringUpperCase_Invalid" actor="{0}.{1}" code="2005">
         <description>String includes characters which are not upper-case.</description>
     </error>
 

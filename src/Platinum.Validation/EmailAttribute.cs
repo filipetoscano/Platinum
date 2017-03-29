@@ -7,7 +7,11 @@ namespace Platinum.Validation
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class EmailAttribute : Attribute, IValidationRule
     {
+        /// <summary>
+        /// Pattern which is used to define an email address.
+        /// </summary>
         public const string Pattern = @"^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,24})$";
+
         private static Regex _email = new Regex( Pattern, RegexOptions.Compiled );
 
         /// <summary />

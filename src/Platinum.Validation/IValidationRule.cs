@@ -1,9 +1,13 @@
 ﻿namespace Platinum.Validation
 {
-    /// <summary />
+    /// <summary>
+    /// Property value validation rule.
+    /// </summary>
     public interface IValidationRule
     {
-        /// <summary />
+        /// <summary>
+        /// Validates a property.
+        /// </summary>
         void Validate( ValidationContext context, ValidationResult result, object value );
     }
 }

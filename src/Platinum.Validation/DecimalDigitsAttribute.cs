@@ -2,7 +2,9 @@
 
 namespace Platinum.Validation
 {
-    /// <summary />
+    /// <summary>
+    /// Asserts that a property value has a given number of decimal digits.
+    /// </summary>
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class DecimalDigitsAttribute : Attribute, IValidationRule
     {

@@ -2,7 +2,10 @@
 
 namespace Platinum.Validation
 {
-    /// <summary />
+    /// <summary>
+    /// Asserts that a string value has up to 'MaxLength' characters. If the string
+    /// is null, no validation will be run.
+    /// </summary>
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
     public class MaxLengthAttribute : Attribute, IValidationRule
     {
@@ -20,7 +23,9 @@ namespace Platinum.Validation
         }
 
 
-        /// <summary />
+        /// <summary>
+        /// Maximum length of a string.
+        /// </summary>
         public int MaxLength
         {
             get;
@@ -28,7 +33,9 @@ namespace Platinum.Validation
         }
 
 
-        /// <summary />
+        /// <summary>
+        /// Performs validation.
+        /// </summary>
         public void Validate( ValidationContext context, ValidationResult result, object value )
         {
             #region Validations

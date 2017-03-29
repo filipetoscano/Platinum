@@ -54,6 +54,7 @@
     <Compile Include="PtResxErrorTool.cs" />
     <Compile Include="PtResxExceptionTool.cs" />
     <Compile Include="PtDataStatementsTool.cs" />
+    <Compile Include="PtValidationRuleSetTool.cs" />
     <Compile Include="X.cs" />
     <Compile Include="XsltExtensionObject.cs" />
     <Compile Include="PtXsltTool.cs" />
@@ -96,6 +97,14 @@
       <Link>Resources\PlatinumDataStatements.xsd</Link>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PlatinumValidationRuleSet.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\PlatinumValidationRuleSet-ToCode.xslt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

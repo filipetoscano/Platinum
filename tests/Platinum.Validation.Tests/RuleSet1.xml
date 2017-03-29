@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?codebehind transformation="../../src/Platinum.VisualStudio/Resources/PlatinumValidationRuleSet-ToCode.xslt"?>
+<ruleSet xmlns="urn:platinum/validation">
+    <field name="Value1">
+        <required />
+        <length min="5" max="10" />
+    </field>
+
+    <field name="Value2">
+        <forbidden />
+    </field>
+
+    <field name="Value3">
+        <forbidden />
+    </field>
+</ruleSet>

@@ -52,9 +52,20 @@
   <ItemGroup>
     <Compile Include="EnumTests.cs" />
     <Compile Include="RuleModel.cs" />
+    <Compile Include="RuleSet1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RuleSet1.xml</DependentUpon>
+    </Compile>
+    <Compile Include="RuleSet2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RuleSet2.xml</DependentUpon>
+    </Compile>
     <Compile Include="ValueModel.cs" />
     <Compile Include="RegexModel.cs" />
     <Compile Include="RuleTests.cs" />
+    <Compile Include="RuleSetTests.cs" />
     <Compile Include="ValueTests.cs" />
     <Compile Include="StringLengthModel.cs" />
     <Compile Include="RegexTests.cs" />
@@ -81,6 +92,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="validation02.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RuleSet1.xml">
+      <Generator>PtXsltTool</Generator>
+      <LastGenOutput>RuleSet1.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RuleSet2.xml">
+      <Generator>PtXsltTool</Generator>
+      <LastGenOutput>RuleSet2.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

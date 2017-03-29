@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{64D1A3
 		src\Platinum.Metrics\Platinum.Metrics.nuspec = src\Platinum.Metrics\Platinum.Metrics.nuspec
 		src\Platinum.Mock\Platinum.Mock.nuspec = src\Platinum.Mock\Platinum.Mock.nuspec
 		src\Platinum.Schema\Platinum.Schema.nuspecx = src\Platinum.Schema\Platinum.Schema.nuspecx
+		src\Platinum.Validation.Javascript\Platinum.Validation.Javascript.nuspec = src\Platinum.Validation.Javascript\Platinum.Validation.Javascript.nuspec
 		src\Platinum.Validation\Platinum.Validation.nuspec = src\Platinum.Validation\Platinum.Validation.nuspec
 		README.md = README.md
 	EndProjectSection
@@ -48,6 +49,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Schema", "src\Platinum.Schema\Platinum.Schema.csproj", "{139B339D-CD0A-4EA8-883D-E0E865454A32}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Database", "src\Platinum.Database\Platinum.Database.csproj", "{3DABF914-9791-47F0-8304-FE97E6AEA62D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Validation.Javascript", "src\Platinum.Validation.Javascript\Platinum.Validation.Javascript.csproj", "{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +114,10 @@ Global
 		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DABF914-9791-47F0-8304-FE97E6AEA62D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -130,6 +137,7 @@ Global
 		{22D097DB-92A3-444C-8CCB-5EE86B8CF9F6} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 		{139B339D-CD0A-4EA8-883D-E0E865454A32} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{3DABF914-9791-47F0-8304-FE97E6AEA62D} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
+		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

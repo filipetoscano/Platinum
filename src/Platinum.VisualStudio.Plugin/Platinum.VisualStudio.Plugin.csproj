@@ -85,6 +85,7 @@
     <Compile Include="PtDataStatementsTool.cs" />
     <Compile Include="PtConfigGenTool.cs" />
     <Compile Include="PtResxErrorTool.cs" />
+    <Compile Include="PtValidationRuleSetTool.cs" />
     <Compile Include="PtResxExceptionTool.cs" />
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -18,7 +18,7 @@ namespace Platinum.Configuration
         /// <returns>Type-cast value.</returns>
         /// <exception cref="ConfigurationException">
         /// Thrown if the key is not defined, or if the value in configuration
-        /// file cannot be represented as instance of type <see cref="T" />.
+        /// file cannot be represented as instance of type T.
         /// </exception>
         public static T Get<T>( string key )
         {

@@ -45,11 +45,18 @@
     <Compile Include="..\GlobalVersion.cs">
       <Link>Properties\GlobalVersion.cs</Link>
     </Compile>
+    <Compile Include="Conditions\PropertyIsEqualCondition.cs" />
+    <Compile Include="Conditions\TrueCondition.cs" />
+    <Compile Include="ICondition.cs" />
+    <Compile Include="IValidationRuleSet.cs" />
     <Compile Include="Configuration.cs">
       <DependentUpon>Configuration.xml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Meta\FieldRule.cs" />
+    <Compile Include="Meta\FieldRuleSet.cs" />
+    <Compile Include="ForbiddenAttribute.cs" />
     <Compile Include="TotalDigitsAttribute.cs" />
     <Compile Include="DecimalDigitsAttribute.cs" />
     <Compile Include="EnumIsDefinedRule.cs" />
@@ -93,6 +100,7 @@
       <Generator>PtResxExceptionTool</Generator>
       <LastGenOutput>Exceptions.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Errors.xml">
