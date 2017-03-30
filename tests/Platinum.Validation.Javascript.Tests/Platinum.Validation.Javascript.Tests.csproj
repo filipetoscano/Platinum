@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DC9E2CA-179F-4450-AFEB-748DAD5CE7D0}</ProjectGuid>
+    <ProjectGuid>{589B2416-5388-4CFE-97BD-ACB5409C2F05}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Platinum.Validation.Tests</RootNamespace>
-    <AssemblyName>Platinum.Validation.Tests</AssemblyName>
+    <RootNamespace>Platinum.Validation.Javascript.Tests</RootNamespace>
+    <AssemblyName>Platinum.Validation.Javascript.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,10 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -54,54 +50,37 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="EnumTests.cs" />
-    <Compile Include="RuleModel.cs" />
-    <Compile Include="RuleSet1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RuleSet1.xml</DependentUpon>
-    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleSet3.cs">
       <DependentUpon>RuleSet3.xml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="RuleSet2.cs">
+      <DependentUpon>RuleSet2.xml</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RuleSet2.xml</DependentUpon>
     </Compile>
-    <Compile Include="ValueModel.cs" />
-    <Compile Include="RegexModel.cs" />
-    <Compile Include="RuleTests.cs" />
+    <Compile Include="RuleSet1.cs">
+      <DependentUpon>RuleSet1.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RuleSetTests.cs" />
-    <Compile Include="ValueTests.cs" />
-    <Compile Include="StringLengthModel.cs" />
-    <Compile Include="RegexTests.cs" />
-    <Compile Include="ValidationModel.cs" />
-    <Compile Include="StringLengthTests.cs" />
-    <Compile Include="ValidationTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Platinum.Core\Platinum.Core.csproj">
       <Project>{46ffe5b4-e434-4088-a2ec-96b617cad072}</Project>
       <Name>Platinum.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Platinum.Validation.Javascript\Platinum.Validation.Javascript.csproj">
+      <Project>{5dc474c7-1161-4c5f-b428-9cd99f15ebf2}</Project>
+      <Name>Platinum.Validation.Javascript</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Platinum.Validation\Platinum.Validation.csproj">
       <Project>{47e34426-b640-4e7d-9928-919df16ed4d3}</Project>
       <Name>Platinum.Validation</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="validation01.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="validation02.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="RuleSet1.xml">
@@ -110,15 +89,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="RuleSet2.xml">
-      <Generator>PtXsltTool</Generator>
-      <LastGenOutput>RuleSet2.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Function2.js" />
+    <EmbeddedResource Include="Function1.js" />
     <None Include="RuleSet3.xml">
       <Generator>PtXsltTool</Generator>
       <LastGenOutput>RuleSet3.cs</LastGenOutput>
+    </None>
+    <None Include="RuleSet2.xml">
+      <Generator>PtXsltTool</Generator>
+      <LastGenOutput>RuleSet2.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Choose>

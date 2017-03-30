@@ -6,18 +6,19 @@
 
     <field name="Value1">
         <summary>Description of rules.</summary>
-        <remarks>This is forbidden, because of reason.</remarks>
+        <remarks>Any applicable remarks.</remarks>
 
-        <forbidden />
-    </field>
-
-    <field name="Value2">
-        <if when="Value3" equals="OK">
+        <if when="Enum1" equals="EnumValue1">
             <required />
-            <length min="5" />
+            <length min="2" max="2" />
+        </if>
+        <if when="Enum1" equals="EnumValue2">
+            <required />
+            <length min="4" max="4" />
         </if>
         <else>
-            <required />
+            <forbidden />
         </else>
     </field>
+
 </ruleSet>

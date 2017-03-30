@@ -4,7 +4,7 @@ using System.Resources;
 using System.Runtime.InteropServices;
 
 // Assembly information
-[assembly: AssemblyTitle( "Validation Tests" )]
+[assembly: AssemblyTitle( "Validation Javascript Tests" )]
 [assembly: AssemblyDescription( "" )]
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "Transition" )]
@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 // Additional information
 [assembly: CLSCompliant( true )]
 [assembly: ComVisible( false )]
-[assembly: Guid( "3dc9e2ca-179f-4450-afeb-748dad5ce7d0" )]
+[assembly: Guid( "589b2416-5388-4cfe-97bd-acb5409c2f05" )]
 [assembly: NeutralResourcesLanguage( "en-GB" )]
 
 // Version information

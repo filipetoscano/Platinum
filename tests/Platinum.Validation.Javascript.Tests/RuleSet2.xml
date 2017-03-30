@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?codebehind transformation="../../src/Platinum.VisualStudio/Resources/PlatinumValidationRuleSet-ToCode.xslt"?>
+<ruleSet xmlns="urn:platinum/validation">
+    <field name="Value1">
+        <required />
+        <function name="Function2.js" />
+    </field>
+</ruleSet>

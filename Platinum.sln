@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Database", "src\Pl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Validation.Javascript", "src\Platinum.Validation.Javascript\Platinum.Validation.Javascript.csproj", "{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platinum.Validation.Javascript.Tests", "tests\Platinum.Validation.Javascript.Tests\Platinum.Validation.Javascript.Tests.csproj", "{589B2416-5388-4CFE-97BD-ACB5409C2F05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +120,10 @@ Global
 		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{589B2416-5388-4CFE-97BD-ACB5409C2F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{589B2416-5388-4CFE-97BD-ACB5409C2F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{589B2416-5388-4CFE-97BD-ACB5409C2F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{589B2416-5388-4CFE-97BD-ACB5409C2F05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{139B339D-CD0A-4EA8-883D-E0E865454A32} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{3DABF914-9791-47F0-8304-FE97E6AEA62D} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
 		{5DC474C7-1161-4C5F-B428-9CD99F15EBF2} = {0B4C9C65-061B-499D-9D7A-46A8CA412A20}
+		{589B2416-5388-4CFE-97BD-ACB5409C2F05} = {0B3CB3DB-554F-436C-8831-92CB8AA285F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45

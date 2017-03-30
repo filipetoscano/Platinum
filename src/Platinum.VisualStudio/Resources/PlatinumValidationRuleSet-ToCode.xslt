@@ -35,8 +35,14 @@ namespace </xsl:text>
         <xsl:value-of select=" $Namespace " />
         <xsl:text>
 {
-    /// &lt;summary /&gt;
-    public class </xsl:text>
+</xsl:text>
+        <xsl:call-template name="p:summary">
+            <xsl:with-param name="indent" select=" '    ' " />
+        </xsl:call-template>
+        <xsl:call-template name="p:remarks">
+            <xsl:with-param name="indent" select=" '    ' " />
+        </xsl:call-template>
+        <xsl:text>    public class </xsl:text>
         <xsl:value-of select=" $FileName " />
         <xsl:text> : IValidationRuleSet
     {
@@ -148,6 +154,9 @@ namespace </xsl:text>
         <xsl:text> */</xsl:text>
     </xsl:template>
 
+    <xsl:template match=" p:summary " mode="p:rule" />
+    <xsl:template match=" p:remarks " mode="p:rule" />
+
     <xsl:template match=" p:required " mode="p:rule">
         <xsl:text>
                             new RequiredAttribute(),</xsl:text>
@@ -161,6 +170,22 @@ namespace </xsl:text>
     <xsl:template match=" p:email " mode="p:rule">
         <xsl:text>
                             new EmailAttribute(),</xsl:text>
+    </xsl:template>
+
+    <xsl:template match=" p:function " mode="p:rule">
+        <xsl:text>
+                            new JavascriptFunctionAttribute( typeof( </xsl:text>
+        <xsl:value-of select=" $FileName " />
+        <xsl:text> ), "</xsl:text>
+        <xsl:value-of select=" @name " />
+        <xsl:text>" ),</xsl:text>
+    </xsl:template>
+
+    <xsl:template match=" p:regex " mode="p:rule">
+        <xsl:text>
+                            new RegularExpressionAttribute( @"</xsl:text>
+        <xsl:value-of select=" @pattern " />
+        <xsl:text>" ),</xsl:text>
     </xsl:template>
 
     <xsl:template match=" p:length " mode="p:rule">

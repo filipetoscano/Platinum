@@ -99,12 +99,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\PlatinumValidationRuleSet.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PlatinumValidationRuleSet-ToCode.xslt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\PlatinumValidationRuleSet-ToCode.xslt" />
+    <EmbeddedResource Include="..\platinum.schema\PlatinumValidationRuleSet.xsd">
+      <Link>Resources\PlatinumValidationRuleSet.xsd</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

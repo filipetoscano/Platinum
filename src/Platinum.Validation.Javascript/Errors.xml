@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/actor ../Platinum.Schema/PlatinumResxError.xsd">
+    <actor base="{Application}" />
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Errors
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Function_NotFound" actor="{0}.{1}" code="11001">
+        <description>Function '{2}' was not found.</description>
+    </error>
+
+    <error id="Function_Evaluate" actor="{0}.{1}" code="11002">
+        <description>Function '{2}' failed to evaluate.</description>
+    </error>
+
+    <error id="Function_Invalid" actor="{0}.{1}" code="11003">
+        <description>Value did not validate against '{2}'.</description>
+    </error>
+
+</errors>

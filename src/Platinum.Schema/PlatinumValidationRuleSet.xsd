@@ -22,33 +22,42 @@
         </xsd:annotation>
 
         <xsd:complexType>
-            <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                <xsd:element name="field">
+            <xsd:sequence>
+                <xsd:element name="summary" type="xsd:string" minOccurs="0" />
+                <xsd:element name="remarks" type="xsd:string" minOccurs="0" />
+
+                <xsd:element name="field" minOccurs="0" maxOccurs="unbounded">
                     <xsd:complexType>
-                        <xsd:choice minOccurs="0">
-                            <xsd:sequence>
-                                <xsd:element name="required" type="emptyRule" minOccurs="0" />
-                                <xsd:element name="forbidden" type="emptyRule" minOccurs="0" />
-                                <xsd:element name="email" type="emptyRule" minOccurs="0" />
-                                <xsd:element name="length" type="lengthRule" minOccurs="0" />
-                                <xsd:element name="regex" type="regexRule" minOccurs="0" />
-                            </xsd:sequence>
+                        <xsd:sequence>
+                            <xsd:element name="summary" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="remarks" type="xsd:string" minOccurs="0" />
 
-                            <xsd:sequence>
-                                <xsd:element name="if" maxOccurs="unbounded">
-                                    <xsd:complexType>
-                                        <xsd:complexContent>
-                                            <xsd:extension base="ruleList">
-                                                <xsd:attribute name="when" type="xsd:string" />
-                                                <xsd:attribute name="equals" type="xsd:string" />
-                                            </xsd:extension>
-                                        </xsd:complexContent>
-                                    </xsd:complexType>
-                                </xsd:element>
+                            <xsd:choice minOccurs="0">
+                                <xsd:sequence>
+                                    <xsd:element name="required" type="emptyRule" minOccurs="0" />
+                                    <xsd:element name="forbidden" type="emptyRule" minOccurs="0" />
+                                    <xsd:element name="email" type="emptyRule" minOccurs="0" />
+                                    <xsd:element name="length" type="lengthRule" minOccurs="0" />
+                                    <xsd:element name="regex" type="regexRule" minOccurs="0" />
+                                    <xsd:element name="function" type="functionRule" minOccurs="0" />
+                                </xsd:sequence>
 
-                                <xsd:element name="else" type="ruleList" minOccurs="0" />
-                            </xsd:sequence>
-                        </xsd:choice>
+                                <xsd:sequence>
+                                    <xsd:element name="if" maxOccurs="unbounded">
+                                        <xsd:complexType>
+                                            <xsd:complexContent>
+                                                <xsd:extension base="ruleList">
+                                                    <xsd:attribute name="when" type="xsd:string" />
+                                                    <xsd:attribute name="equals" type="xsd:string" />
+                                                </xsd:extension>
+                                            </xsd:complexContent>
+                                        </xsd:complexType>
+                                    </xsd:element>
+
+                                    <xsd:element name="else" type="ruleList" minOccurs="0" />
+                                </xsd:sequence>
+                            </xsd:choice>
+                        </xsd:sequence>
 
                         <xsd:attribute name="name" type="xsd:string" use="required" />
                     </xsd:complexType>
@@ -70,6 +79,7 @@
             <xsd:element name="email" type="emptyRule" minOccurs="0" />
             <xsd:element name="length" type="lengthRule" minOccurs="0" />
             <xsd:element name="regex" type="regexRule" minOccurs="0" />
+            <xsd:element name="function" type="functionRule" minOccurs="0" />
         </xsd:sequence>
     </xsd:complexType>
 
@@ -80,6 +90,14 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <xsd:complexType name="emptyRule" />
+
+    <xsd:complexType name="functionRule">
+        <xsd:attribute name="name" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation>Name of the embedded javascript resource, containing the file.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
 
     <xsd:complexType name="lengthRule">
         <xsd:attribute name="min" type="xsd:positiveInteger" use="optional" />
