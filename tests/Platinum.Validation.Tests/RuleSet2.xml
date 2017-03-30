@@ -18,6 +18,7 @@
         </if>
         <else>
             <required />
+            <length min="10" />
         </else>
     </field>
 </ruleSet>
