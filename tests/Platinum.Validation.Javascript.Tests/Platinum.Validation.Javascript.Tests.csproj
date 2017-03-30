@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RuleSet1.xml">
-      <Generator>PtXsltTool</Generator>
+      <Generator>PtValidationRuleSetTool</Generator>
       <LastGenOutput>RuleSet1.cs</LastGenOutput>
     </None>
   </ItemGroup>
@@ -92,11 +92,11 @@
     <EmbeddedResource Include="Function2.js" />
     <EmbeddedResource Include="Function1.js" />
     <None Include="RuleSet3.xml">
-      <Generator>PtXsltTool</Generator>
+      <Generator>PtValidationRuleSetTool</Generator>
       <LastGenOutput>RuleSet3.cs</LastGenOutput>
     </None>
     <None Include="RuleSet2.xml">
-      <Generator>PtXsltTool</Generator>
+      <Generator>PtValidationRuleSetTool</Generator>
       <LastGenOutput>RuleSet2.cs</LastGenOutput>
     </None>
   </ItemGroup>

@@ -105,19 +105,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RuleSet1.xml">
-      <Generator>PtXsltTool</Generator>
+      <Generator>PtValidationRuleSetTool</Generator>
       <LastGenOutput>RuleSet1.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="RuleSet2.xml">
-      <Generator>PtXsltTool</Generator>
+      <Generator>PtValidationRuleSetTool</Generator>
       <LastGenOutput>RuleSet2.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="RuleSet3.xml">
-      <Generator>PtXsltTool</Generator>
+      <Generator>PtValidationRuleSetTool</Generator>
       <LastGenOutput>RuleSet3.cs</LastGenOutput>
     </None>
   </ItemGroup>
