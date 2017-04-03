@@ -38,8 +38,8 @@
                                     <xsd:element name="forbidden" type="emptyRule" minOccurs="0" />
                                     <xsd:element name="email" type="emptyRule" minOccurs="0" />
                                     <xsd:element name="length" type="lengthRule" minOccurs="0" />
-                                    <xsd:element name="regex" type="regexRule" minOccurs="0" />
-                                    <xsd:element name="function" type="functionRule" minOccurs="0" />
+                                    <xsd:element name="regex" type="regexRule" minOccurs="0" maxOccurs="unbounded" />
+                                    <xsd:element name="function" type="functionRule" minOccurs="0" maxOccurs="unbounded" />
                                 </xsd:sequence>
 
                                 <xsd:sequence>
@@ -78,8 +78,8 @@
             <xsd:element name="forbidden" type="emptyRule" minOccurs="0" />
             <xsd:element name="email" type="emptyRule" minOccurs="0" />
             <xsd:element name="length" type="lengthRule" minOccurs="0" />
-            <xsd:element name="regex" type="regexRule" minOccurs="0" />
-            <xsd:element name="function" type="functionRule" minOccurs="0" />
+            <xsd:element name="regex" type="regexRule" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="function" type="functionRule" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
     </xsd:complexType>
 
