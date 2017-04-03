@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
+using System.Text;
 
 namespace Platinum
 {
@@ -125,6 +127,29 @@ namespace Platinum
             info.AddValue( "Exceptions", _exceptions );
 
             base.GetObjectData( info, context );
+        }
+
+
+        /// <summary>
+        /// Override the default implementation of .ToString(), so that all
+        /// relevant information is available in the string representation.
+        /// </summary>
+        /// <returns>String representation of error.</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            int counter = 0;
+
+            foreach ( ActorException iex in this )
+            {
+                if ( counter > 0 )
+                    sb.Append( "\n\n" );
+
+                sb.AppendFormat( CultureInfo.InvariantCulture, "--- Inner exception #{0}\n", counter++ );
+                sb.Append( iex.ToString() );
+            }
+
+            return sb.ToString();
         }
     }
 }
