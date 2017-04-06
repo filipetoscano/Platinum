@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?codebehind transformation="../../src/Platinum.VisualStudio/Resources/PlatinumValidationRuleSet-ToCode.xslt"?>
+<ruleSet xmlns="urn:platinum/validation">
+    <summary>Description of rule set.</summary>
+    <remarks>Remarks on this rule set.</remarks>
+
+    <field name="Value1">
+        <regex pattern="^\d+$" />
+        <regex pattern="^\d{3,}$" />
+    </field>
+
+
+    <field name="Value2">
+        <regex name="AllDigits" pattern="^\d+$" />
+        <regex pattern="^\d{3,}$" />
+    </field>
+
+
+    <field name="Value3">
+        <regex name="AllDigits" pattern="^\d+$" />
+        <regex name="AtLeastThree" pattern="^\d{3,}$" />
+    </field>
+
+</ruleSet>

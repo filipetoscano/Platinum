@@ -177,15 +177,41 @@ namespace </xsl:text>
                             new JavascriptFunctionAttribute( typeof( </xsl:text>
         <xsl:value-of select=" $FileName " />
         <xsl:text> ), "</xsl:text>
-        <xsl:value-of select=" @name " />
-        <xsl:text>" ),</xsl:text>
+        <xsl:value-of select=" @resx " />
+        <xsl:text>" )</xsl:text>
+
+        <xsl:if test=" @name ">
+            <xsl:text> { Name = "</xsl:text>
+            <xsl:value-of select=" @name " />
+            <xsl:text>" }</xsl:text>
+        </xsl:if>
+        
+        <xsl:text>,</xsl:text>
     </xsl:template>
 
     <xsl:template match=" p:regex " mode="p:rule">
         <xsl:text>
                             new RegularExpressionAttribute( @"</xsl:text>
         <xsl:value-of select=" @pattern " />
-        <xsl:text>" ),</xsl:text>
+        <xsl:text>" )</xsl:text>
+
+        <xsl:if test=" @name or @flex = 'true' ">
+            <xsl:text> {</xsl:text>
+
+            <xsl:if test=" @name ">
+                <xsl:text> Name = "</xsl:text>
+                <xsl:value-of select=" @name " />
+                <xsl:text>",</xsl:text>
+            </xsl:if>
+
+            <xsl:if test=" @flex = 'true' ">
+                <xsl:text> Flex = true,</xsl:text>
+            </xsl:if>
+
+            <xsl:text> }</xsl:text>
+        </xsl:if>
+
+        <xsl:text>,</xsl:text>
     </xsl:template>
 
     <xsl:template match=" p:length " mode="p:rule">

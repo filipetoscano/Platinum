@@ -50,7 +50,7 @@ namespace Platinum.Validation.Javascript.Tests
         /// RuleSet #1: Value isn't ok, because string is too small.
         /// </summary>
         [TestMethod]
-        public void Function_Invalid()
+        public void Function_Invalid1()
         {
             var req = new RuleSetClass();
             req.Value1 = "123";
@@ -62,6 +62,27 @@ namespace Platinum.Validation.Javascript.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Function_Invalid", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
+        }
+
+
+        /// <summary>
+        /// RuleSet #1: Value isn't ok, because string is too small.
+        /// </summary>
+        [TestMethod]
+        public void Function_Invalid2()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "32123";
+            req.Value2 = null;
+            req.Value3 = null;
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet1>( req );
+
+            Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 1, vr.Errors.Count );
+            Assert.AreEqual( "Function_Invalid", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -81,6 +102,7 @@ namespace Platinum.Validation.Javascript.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Function_Evaluate", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -100,6 +122,7 @@ namespace Platinum.Validation.Javascript.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Function_NotFound", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
     }
 }

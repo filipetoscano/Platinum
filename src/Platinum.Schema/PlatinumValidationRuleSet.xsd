@@ -64,6 +64,11 @@
                 </xsd:element>
             </xsd:sequence>
         </xsd:complexType>
+
+        <xsd:unique name="uqFieldName">
+            <xsd:selector xpath=" y:field " />
+            <xsd:field xpath=" @name " />
+        </xsd:unique>
     </xsd:element>
 
 
@@ -92,20 +97,57 @@
     <xsd:complexType name="emptyRule" />
 
     <xsd:complexType name="functionRule">
-        <xsd:attribute name="name" type="xsd:string" use="required">
+        <xsd:attribute name="name" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>Name of the function rule.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+        <xsd:attribute name="resx" type="xsd:string" use="required">
             <xsd:annotation>
                 <xsd:documentation>Name of the embedded javascript resource, containing the file.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
     </xsd:complexType>
 
+
     <xsd:complexType name="lengthRule">
-        <xsd:attribute name="min" type="xsd:positiveInteger" use="optional" />
-        <xsd:attribute name="max" type="xsd:positiveInteger" use="optional" />
+        <xsd:attribute name="min" type="xsd:positiveInteger" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>Minimum number of characters that the string must have.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+        <xsd:attribute name="max" type="xsd:positiveInteger" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>Maximum number of characters that the string may have.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
     </xsd:complexType>
 
+
     <xsd:complexType name="regexRule">
-        <xsd:attribute name="pattern" type="xsd:string" use="required" />
+        <xsd:attribute name="name" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>Name of the regex rule, in case there are multiple rules.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+        <xsd:attribute name="pattern" type="xsd:string" use="required">
+            <xsd:annotation>
+                <xsd:documentation>Regular expression pattern which must be matched.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+
+        <xsd:attribute name="flex" type="xsd:boolean" use="optional" default="false">
+            <xsd:annotation>
+                <xsd:documentation>
+                    When set to true, allows the regex to NOT start with ^ and end with $.
+                    Otherwise, it MUST! This is done to prevent developers for mis-using
+                    regular expressions!
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
     </xsd:complexType>
 
 </xsd:schema>

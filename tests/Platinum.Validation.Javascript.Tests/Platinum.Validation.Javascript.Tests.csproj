@@ -84,21 +84,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RuleSet1.xml">
-      <Generator>PtValidationRuleSetTool</Generator>
+      <Generator>PtXsltTool</Generator>
       <LastGenOutput>RuleSet1.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Function2.js" />
-    <EmbeddedResource Include="Function1.js" />
+    <EmbeddedResource Include="Function1a.js" />
     <None Include="RuleSet3.xml">
-      <Generator>PtValidationRuleSetTool</Generator>
+      <Generator>PtXsltTool</Generator>
       <LastGenOutput>RuleSet3.cs</LastGenOutput>
     </None>
     <None Include="RuleSet2.xml">
-      <Generator>PtValidationRuleSetTool</Generator>
+      <Generator>PtXsltTool</Generator>
       <LastGenOutput>RuleSet2.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Function1b.js" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -2,14 +2,14 @@
 {
     public class RegexClass
     {
-        [RegularExpression( @"\d+" )]
+        [RegularExpression( @"^\d+$" )]
         public string Value { get; set; }
     }
 
 
     public class RegexBrokenClass
     {
-        [RegularExpression( @"\X+" )]
+        [RegularExpression( @"^\X+$" )]
         public string Value { get; set; }
     }
 }

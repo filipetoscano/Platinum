@@ -1,4 +1,5 @@
 ﻿using Jurassic;
+using Platinum.Validation.Javascript;
 using System;
 using System.IO;
 using JER = Platinum.Validation.Javascript.ER;
@@ -10,20 +11,20 @@ namespace Platinum.Validation
     public class JavascriptFunctionAttribute : Attribute, IValidationRule
     {
         /// <summary />
-        public JavascriptFunctionAttribute( Type baseType, string functionName )
+        public JavascriptFunctionAttribute( Type baseType, string resourceName )
         {
             #region Validations
 
             if ( baseType == null )
                 throw new ArgumentNullException( nameof( baseType ) );
 
-            if ( functionName == null )
-                throw new ArgumentNullException( nameof( functionName ) );
+            if ( resourceName == null )
+                throw new ArgumentNullException( nameof( resourceName ) );
 
             #endregion
 
             this.BaseType = baseType;
-            this.FunctionName = functionName;
+            this.ResourceName = resourceName;
         }
 
 
@@ -36,7 +37,15 @@ namespace Platinum.Validation
 
 
         /// <summary />
-        public string FunctionName
+        public string Name
+        {
+            get;
+            set;
+        }
+
+
+        /// <summary />
+        public string ResourceName
         {
             get;
             private set;
@@ -46,7 +55,7 @@ namespace Platinum.Validation
         /// <summary />
         public string GetFunctionCode()
         {
-            Stream mrs = this.BaseType.Assembly.GetManifestResourceStream( this.BaseType, this.FunctionName );
+            Stream mrs = this.BaseType.Assembly.GetManifestResourceStream( this.BaseType, this.ResourceName );
 
             if ( mrs == null )
                 return null;
@@ -83,7 +92,7 @@ namespace Platinum.Validation
 
             if ( function == null )
             {
-                ValidationException vex = new ValidationException( JER.Function_NotFound, context.Path, context.Property, this.FunctionName );
+                var vex = new JavascriptValidationException( JER.Function_NotFound, context.Path, context.Property, this.ResourceName );
                 result.AddError( vex );
 
                 return;
@@ -102,7 +111,7 @@ namespace Platinum.Validation
             }
             catch ( JavaScriptException ex )
             {
-                ValidationException vex = new ValidationException( JER.Function_Evaluate, ex, context.Path, context.Property, this.FunctionName );
+                var vex = new JavascriptValidationException( JER.Function_Evaluate, ex, context.Path, context.Property, this.ResourceName );
                 result.AddError( vex );
 
                 return;
@@ -116,7 +125,7 @@ namespace Platinum.Validation
 
             if ( checkOk == false )
             {
-                ValidationException vex = new ValidationException( JER.Function_Invalid, context.Path, context.Property, this.FunctionName );
+                var vex = new JavascriptValidationException( JER.Function_Invalid, context.Path, context.Property, this.ResourceName );
                 result.AddError( vex );
             }
         }

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<?codebehind transformation="../../src/Platinum.VisualStudio/Resources/PlatinumValidationRuleSet-ToCode.xslt"?>
 <ruleSet xmlns="urn:platinum/validation">
     <field name="Value1">
-        <function name="Function1.js" />
+        <function name="F1" resx="Function1a.js" />
+        <function name="F2" resx="Function1b.js" />
     </field>
 </ruleSet>

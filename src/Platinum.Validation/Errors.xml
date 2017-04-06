@@ -85,13 +85,23 @@
     ~ RegularExpression
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="RegularExpression_Invalid" actor="{0}.{1}" code="3001">
+    <error id="RegularExpression_Invalid" actor="{0}.{1}.Development" code="3001">
         <description>Regular expression '{2}' is invalid.</description>
         <arg name="Pattern" />
     </error>
 
     <error id="RegularExpression" actor="{0}.{1}" code="3002">
         <description>Field does not match against expression '{2}'.</description>
+        <arg name="Pattern" />
+    </error>
+
+    <error id="RegularExpression_Strict_NotStart" actor="{0}.{1}.Development" code="3003">
+        <description>Regular expression '{2}' must start with ^: if you need it, then set @flex = true.</description>
+        <arg name="Pattern" />
+    </error>
+
+    <error id="RegularExpression_Strict_NotEnd" actor="{0}.{1}.Development" code="3004">
+        <description>Regular expression '{2}' must end with $: if you need it, then set @flex = true.</description>
         <arg name="Pattern" />
     </error>
 

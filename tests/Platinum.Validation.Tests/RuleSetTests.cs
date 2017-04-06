@@ -34,22 +34,6 @@ namespace Platinum.Validation.Tests
         /// RuleSet #1: Ok.
         /// </summary>
         [TestMethod]
-        public void RuleSet_JsonSerializer()
-        {
-            var rs = Activator.Create<RuleSet1>();
-
-            string json = JsonConvert.SerializeObject( rs );
-
-            // TODO: proper assertion for result
-
-            Assert.IsTrue( json.Length > 0 );
-        }
-
-
-        /// <summary>
-        /// RuleSet #1: Ok.
-        /// </summary>
-        [TestMethod]
         public void RuleSet1_Ok()
         {
             var req = new RuleSetClass();
@@ -79,11 +63,12 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "StringLength_Min", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
         /// <summary>
-        /// RuleSet #1: Not Ok, because too short.
+        /// RuleSet #1: Not Ok, because field is forbidden.
         /// </summary>
         [TestMethod]
         public void RuleSet1_Forbidden()
@@ -98,6 +83,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Forbidden", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value2", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -115,6 +101,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "StringLength_Max", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -151,6 +138,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Forbidden", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -171,6 +159,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "StringLength_Min", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value2", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -191,6 +180,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "StringLength_Min", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value2", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -225,6 +215,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "StringLength_Max", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -259,6 +250,7 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "StringLength_Max", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -293,6 +285,65 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Forbidden", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
+        }
+
+
+        /// <summary>
+        /// RuleSet #4: Ok.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet4_Ok()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "111";
+            req.Value2 = "222";
+            req.Value3 = "333";
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet4>( req );
+
+            Assert.AreEqual( true, vr.IsValid );
+        }
+
+
+        /// <summary>
+        /// RuleSet #4: Ok.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet4_Fail1()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "111";
+            req.Value2 = "222";
+            req.Value3 = "3";
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet4>( req );
+
+            Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 1, vr.Errors.Count );
+            Assert.AreEqual( "RegularExpression", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value3", vr.Errors[ 0 ].Actor );
+        }
+
+
+        /// <summary>
+        /// RuleSet #5: Ok.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet5_Ok()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "111";
+            req.Value2 = "XX222XX";
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet5>( req );
+
+            Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 2, vr.Errors.Count );
+            Assert.AreEqual( "RegularExpression_Strict_NotStart", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1.Development", vr.Errors[ 0 ].Actor );
+            Assert.AreEqual( "RegularExpression_Strict_NotEnd", vr.Errors[ 1 ].Message );
+            Assert.AreEqual( ".Value1.Development", vr.Errors[ 1 ].Actor );
         }
     }
 }

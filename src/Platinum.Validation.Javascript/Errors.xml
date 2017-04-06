@@ -9,11 +9,11 @@
     ~ Errors
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Function_NotFound" actor="{0}.{1}" code="11001">
+    <error id="Function_NotFound" actor="{0}.{1}.Development" code="11001">
         <description>Function '{2}' was not found.</description>
     </error>
 
-    <error id="Function_Evaluate" actor="{0}.{1}" code="11002">
+    <error id="Function_Evaluate" actor="{0}.{1}.Development" code="11002">
         <description>Function '{2}' failed to evaluate.</description>
     </error>
 

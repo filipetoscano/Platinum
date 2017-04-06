@@ -23,6 +23,16 @@ namespace Platinum.Validation
 
 
         /// <summary>
+        /// Gets a name for the given regular expression.
+        /// </summary>
+        public string Name
+        {
+            get;
+            set;
+        }
+
+
+        /// <summary>
         /// Gets the regular expression which must be matched.
         /// </summary>
         public string Pattern
@@ -30,6 +40,17 @@ namespace Platinum.Validation
             get;
             private set;
         }
+
+
+        /// <summary>
+        /// If set to true, the regular expression does not have to start with ^ and end
+        /// with $. Otherwise, it MUST fully emcompass the string value.
+        /// </summary>
+        public bool Flex
+        {
+            get;
+            set;
+        } = false;
 
 
         /// <summary />
@@ -67,6 +88,28 @@ namespace Platinum.Validation
              * 
              */
             Regex regex;
+
+            if ( this.Flex == false )
+            {
+                bool strictError = false;
+
+                if ( this.Pattern.StartsWith( "^" ) == false )
+                {
+                    ValidationException vex = new ValidationException( ER.RegularExpression_Strict_NotStart, context.Path, context.Property, this.Pattern );
+                    result.AddError( vex );
+                    strictError = true;
+                }
+
+                if ( this.Pattern.EndsWith( "$" ) == false )
+                {
+                    ValidationException vex = new ValidationException( ER.RegularExpression_Strict_NotEnd, context.Path, context.Property, this.Pattern );
+                    result.AddError( vex );
+                    strictError = true;
+                }
+
+                if ( strictError == true )
+                    return;
+            }
 
             try
             {
