@@ -9,7 +9,7 @@ namespace Platinum.VisualStudio.Plugin
     /// Generate SQL statement loader, to support Platinum.Data functionality.
     /// </summary>
     [ComVisible( true )]
-    [Guid( "70cb7841-beb1-4c9a-90d2-f55c94ab3f08" )]
+    [Guid( "26a9b3bd-62e9-4145-9cfb-10a700295fa2" )]
     [CodeGeneratorRegistration( typeof( PtDataStatementsTool ), "SQL statements tool", vsContextGuids.vsContextGuidVCSProject, GeneratesDesignTimeSource = true )]
     [ProvideObject( typeof( PtDataStatementsTool ) )]
     public class PtDataStatementsTool : BasePlugin<VisualStudio.PtDataStatementsTool>

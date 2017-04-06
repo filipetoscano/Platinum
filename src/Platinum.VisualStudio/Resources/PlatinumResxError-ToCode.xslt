@@ -33,6 +33,16 @@ namespace </xsl:text>
 
         <xsl:text>
     }
+
+
+    /// &lt;summary /&gt;
+    public static class EV
+    {</xsl:text>
+
+        <xsl:apply-templates select=" p:event " />
+
+        <xsl:text>
+    }
 }
 
 /* eof */
@@ -45,7 +55,7 @@ namespace </xsl:text>
     ~ p:error/
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <xsl:template match=" p:error ">
+    <xsl:template match=" p:error | p:event ">
         <xsl:if test=" position() > 1 ">
             <xsl:text>
 </xsl:text>

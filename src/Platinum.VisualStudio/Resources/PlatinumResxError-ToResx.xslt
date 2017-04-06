@@ -74,12 +74,12 @@
                 <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
             </resheader>
 
-            <xsl:apply-templates select=" p:error " />
+            <xsl:apply-templates select=" p:error | p:event " />
         </root>
     </xsl:template>
 
 
-    <xsl:template match=" p:error ">
+    <xsl:template match=" p:error | p:event ">
         <data name="{ @id }_Actor">
             <value>
                 <xsl:choose>
