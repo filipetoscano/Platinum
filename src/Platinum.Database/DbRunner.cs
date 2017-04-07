@@ -130,7 +130,7 @@ namespace Platinum.Database
                 if ( environment == "STAGE" || environment == "QUA" )
                     throw new DatabaseToolException( ER.Reset_QualityAssurance );
 
-                var content = Assembly.GetExecutingAssembly().LoadEmbeddedResource( typeof( DbRunner ), "Utils.DatabaseReset.sql" );
+                var content = Assembly.GetExecutingAssembly().LoadEmbeddedResource( typeof( DbRunner ), "Scripts.DatabaseReset.sql" );
                 var script = new SqlScript( "DatabaseReset.sql", content );
 
                 var resetter = DeployChanges.To
