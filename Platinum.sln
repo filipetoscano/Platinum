@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{64D1A3
 		automation.proj = automation.proj
 		src\Platinum.Core\Platinum.Core.nuspec = src\Platinum.Core\Platinum.Core.nuspec
 		src\Platinum.Data\Platinum.Data.nuspec = src\Platinum.Data\Platinum.Data.nuspec
+		src\Platinum.Database\Platinum.Database.nuspec = src\Platinum.Database\Platinum.Database.nuspec
 		src\Platinum.Logging\Platinum.Logging.nuspec = src\Platinum.Logging\Platinum.Logging.nuspec
 		src\Platinum.Metrics\Platinum.Metrics.nuspec = src\Platinum.Metrics\Platinum.Metrics.nuspec
 		src\Platinum.Mock\Platinum.Mock.nuspec = src\Platinum.Mock\Platinum.Mock.nuspec
