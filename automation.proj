@@ -106,7 +106,8 @@
         <Copy SourceFiles="src\Platinum.VisualStudio.Command\bin\Release\ptvscmd.exe"       DestinationFolder="bin" />
 
         <!-- Plugin -->
-        <Copy SourceFiles="src\Platinum.VisualStudio.Plugin\bin\Release\Platinum.VisualStudio.Plugin.vsix" DestinationFolder="build" />
+        <Copy SourceFiles="src\Platinum.VisualStudio.Plugin\bin\Release\Platinum.VisualStudio.Plugin.vsix"
+              DestinationFiles="build\Platinum.VisualStudio.Plugin.$(version).vsix" />
     </Target>
 
 </Project>
