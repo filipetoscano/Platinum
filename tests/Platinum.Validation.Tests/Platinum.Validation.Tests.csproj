@@ -86,12 +86,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RuleSet2.xml</DependentUpon>
     </Compile>
-    <Compile Include="ValueInListModels.cs" />
+    <Compile Include="InListModels.cs" />
     <Compile Include="ValueModel.cs" />
     <Compile Include="RegexModel.cs" />
     <Compile Include="RuleTests.cs" />
     <Compile Include="RuleSetTests.cs" />
-    <Compile Include="ValueInListTests.cs" />
+    <Compile Include="InListTests.cs" />
     <Compile Include="ValueTests.cs" />
     <Compile Include="StringLengthModel.cs" />
     <Compile Include="RegexTests.cs" />

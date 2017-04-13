@@ -3,14 +3,14 @@
     /// <summary>
     /// Value in list support for strings.
     /// </summary>
-    public class ValueInList1
+    public class InList1
     {
-        [ValueInList( "One Two" )]
+        [InList( "One Two" )]
         public string Value { get; set; }
     }
 
 
-    public enum ValueInListEnum
+    public enum InListEnum
     {
         One,
         Two,
@@ -23,9 +23,9 @@
     /// <summary>
     /// Value in list support for enums
     /// </summary>
-    public class ValueInList2
+    public class InList2
     {
-        [ValueInList( "One,Two", "," )]
-        public ValueInListEnum Value { get; set; }
+        [InList( "One,Two", "," )]
+        public InListEnum Value { get; set; }
     }
 }

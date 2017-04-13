@@ -50,6 +50,17 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ InList
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="InList_Invalid" actor="{0}.{1}" code="8001">
+        <description>Value is not in expected list of values: '{2}'.</description>
+        <arg name="Values" />
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ MaxValue
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -155,17 +166,6 @@
 
     <error id="StringUpperCase_Invalid" actor="{0}.{1}" code="2005">
         <description>String includes characters which are not upper-case.</description>
-    </error>
-
-
-    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    ~
-    ~ ValueInList
-    ~
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="ValueInList_Invalid" actor="{0}.{1}" code="8001">
-        <description>Value is not in expected list of values: '{2}'.</description>
-        <arg name="Values" />
     </error>
 
 </errors>

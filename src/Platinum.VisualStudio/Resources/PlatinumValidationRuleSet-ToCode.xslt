@@ -232,7 +232,7 @@ namespace </xsl:text>
 
     <xsl:template match=" p:in " mode="p:rule">
         <xsl:text>
-                            new ValueInListAttribute( "</xsl:text>
+                            new InListAttribute( "</xsl:text>
         <xsl:value-of select=" @list " />
         <xsl:text>", "</xsl:text>
         <xsl:choose>

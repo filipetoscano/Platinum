@@ -6,10 +6,10 @@ namespace Platinum.Validation
 {
     /// <summary />
     [AttributeUsage( AttributeTargets.Property, AllowMultiple = false )]
-    public class ValueInListAttribute : Attribute, IValidationRule
+    public class InListAttribute : Attribute, IValidationRule
     {
         /// <summary />
-        public ValueInListAttribute( string values, string separator = " " )
+        public InListAttribute( string values, string separator = " " )
         {
             #region Validations
 
@@ -68,7 +68,7 @@ namespace Platinum.Validation
              */
             if ( this.Values.Contains( sv ) == false )
             {
-                ValidationException vex = new ValidationException( ER.ValueInList_Invalid, context.Path, context.Property, string.Join( ",", this.Values ) );
+                ValidationException vex = new ValidationException( ER.InList_Invalid, context.Path, context.Property, string.Join( ",", this.Values ) );
                 result.AddError( vex );
             }
         }

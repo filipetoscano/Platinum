@@ -377,9 +377,9 @@ namespace Platinum.Validation.Tests
 
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 2, vr.Errors.Count );
-            Assert.AreEqual( "ValueInList_Invalid", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( "InList_Invalid", vr.Errors[ 0 ].Message );
             Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
-            Assert.AreEqual( "ValueInList_Invalid", vr.Errors[ 1 ].Message );
+            Assert.AreEqual( "InList_Invalid", vr.Errors[ 1 ].Message );
             Assert.AreEqual( ".Value2", vr.Errors[ 1 ].Actor );
         }
     }
