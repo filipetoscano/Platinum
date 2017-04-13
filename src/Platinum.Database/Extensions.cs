@@ -26,6 +26,9 @@ namespace Platinum.Database
 
             var stream = assembly.GetManifestResourceStream( type, resourceName );
 
+            if ( stream == null )
+                throw new DatabaseToolException( ER.Resource_Missing_Relative, assembly.FullName, type.Name, resourceName );
+
             using ( StreamReader sr = new StreamReader( stream, Encoding.UTF8 ) )
             {
                 return sr.ReadToEnd();
@@ -47,6 +50,9 @@ namespace Platinum.Database
             #endregion
 
             var stream = assembly.GetManifestResourceStream( resourceName );
+
+            if ( stream == null )
+                throw new DatabaseToolException( ER.Resource_Missing_Full, assembly.FullName, resourceName );
 
             using ( StreamReader sr = new StreamReader( stream, Encoding.UTF8 ) )
             {

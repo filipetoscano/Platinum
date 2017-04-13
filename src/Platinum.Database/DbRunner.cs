@@ -122,7 +122,7 @@ namespace Platinum.Database
              */
             if ( operation.HasFlag( DbOperation.Reset ) == true )
             {
-                logger.Info<AuditEventException>( ER.Reset_Run );
+                Audit.Event( EV.Reset_Start );
 
                 if ( environment == "PROD" || environment == "PRD" )
                     throw new DatabaseToolException( ER.Reset_Production );
@@ -144,10 +144,14 @@ namespace Platinum.Database
 
                 if ( result.Successful == false )
                 {
-                    DatabaseToolException dte = new DatabaseToolException( ER.Reset_Failed, result.Error );
+                    DatabaseToolException dte = new DatabaseToolException( EV.Reset_Failed, result.Error );
+                    Audit.Event( dte );
 
-                    logger.Fatal( dte );
                     return dte.Code;
+                }
+                else
+                {
+                    Audit.Event( EV.Reset_Complete );
                 }
             }
 
@@ -157,7 +161,7 @@ namespace Platinum.Database
              */
             if ( operation.HasFlag( DbOperation.Schema ) == true )
             {
-                logger.Info<AuditEventException>( ER.Schema_Run );
+                Audit.Event( EV.Schema_Start );
 
                 string resxPrefix = baseNamespace + ".Schema.";
 
@@ -168,18 +172,18 @@ namespace Platinum.Database
                     .Build();
 
                 var result = upgrader.PerformUpgrade();
-                string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name ) );
+                string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name.Substring( resxPrefix.Length ) ) );
 
                 if ( result.Successful == false )
                 {
-                    DatabaseToolException dte = new DatabaseToolException( ER.Schema_Failed, result.Error, scriptList );
+                    DatabaseToolException dte = new DatabaseToolException( EV.Schema_Failed, result.Error, scriptList );
+                    Audit.Event( dte );
 
-                    logger.Fatal( dte );
                     return dte.Code;
                 }
-                else
+                else if ( result.Scripts.Count() > 0 )
                 {
-                    logger.Info<AuditEventException>( ER.Schema_Complete, scriptList );
+                    Audit.Event( EV.Schema_Complete, scriptList );
                 }
             }
 
@@ -189,7 +193,7 @@ namespace Platinum.Database
              */
             if ( operation.HasFlag( DbOperation.Data ) == true )
             {
-                logger.Info<AuditEventException>( ER.Data_Run );
+                // Audit.Event( ER.Data_Start );
             }
 
             return 0;

@@ -41,22 +41,45 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ Resource
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Resource_Missing_Relative" actor="~.Internal" code="12000">
+        <description>Resource '{1}.{2}' was not found in assembly '{0}'.</description>
+        <arg name="Assembly" />
+        <arg name="Type" />
+        <arg name="Resource" />
+    </error>
+
+    <error id="Resource_Missing_Full" actor="~.Internal" code="12001">
+        <description>Resource '{1}' was not found in assembly '{0}'.</description>
+        <arg name="Assembly" />
+        <arg name="Resource" />
+    </error>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ Reset
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Reset_Run" actor="~" code="20000">
+    <event id="Reset_Start" actor="~" code="20000">
         <description>Running 'reset' operation.</description>
-    </error>
+    </event>
 
-    <error id="Reset_Failed" actor="~" code="20001">
+    <event id="Reset_Complete" actor="~" code="20001">
+        <description>Running 'reset' operation.</description>
+    </event>
+
+    <event id="Reset_Failed" actor="~" code="20002">
         <description>Failed to perform reset.</description>
-    </error>
+    </event>
 
-    <error id="Reset_Production" actor="~" code="20002">
+    <error id="Reset_Production" actor="~" code="20003">
         <description>Cannot run 'reset' command on Production database.</description>
     </error>
 
-    <error id="Reset_QualityAssurance" actor="~" code="20003">
+    <error id="Reset_QualityAssurance" actor="~" code="20004">
         <description>Cannot run 'reset' command on Quality Assurance database.</description>
     </error>
 
@@ -66,25 +89,19 @@
     ~ Schema
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Schema_Run" actor="~" code="21000">
+    <event id="Schema_Start" actor="~" code="21000">
         <description>Running 'schema' operation.</description>
-    </error>
+    </event>
 
-    <error id="Schema_Failed" actor="~" code="21001">
-        <description>
-            <![CDATA[Failed to perform schema update. List of scripts was:
-{0}]]>
-        </description>
+    <event id="Schema_Complete" actor="~" code="21001">
+        <description>Completed schema update. List of scripts was: {0}</description>
         <arg name="ScriptList" />
-    </error>
+    </event>
 
-    <error id="Schema_Complete" actor="~" code="21002">
-        <description>
-            <![CDATA[Completed schema update. List of scripts was:
-{0}]]>
-        </description>
+    <event id="Schema_Failed" actor="~" code="21002">
+        <description>Failed to perform schema update. List of scripts was: {0}</description>
         <arg name="ScriptList" />
-    </error>
+    </event>
 
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,24 +109,18 @@
     ~ Data
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Data_Run" actor="~" code="21000">
+    <event id="Data_Start" actor="~" code="21000">
         <description>Running 'data' operation.</description>
-    </error>
+    </event>
 
-    <error id="Data_Failed" actor="~" code="21001">
-        <description>
-            <![CDATA[Failed to perform data update. List of scripts was:
-{0}]]>
-        </description>
+    <event id="Data_Complete" actor="~" code="21001">
+        <description>Completed data update. List of scripts was: {0}</description>
         <arg name="ScriptList" />
-    </error>
+    </event>
 
-    <error id="Data_Complete" actor="~" code="21002">
-        <description>
-            <![CDATA[Completed data update. List of scripts was:
-{0}]]>
-        </description>
+    <event id="Data_Failed" actor="~" code="21002">
+        <description>Failed to perform data update. List of scripts was: {0}</description>
         <arg name="ScriptList" />
-    </error>
+    </event>
 
 </errors>

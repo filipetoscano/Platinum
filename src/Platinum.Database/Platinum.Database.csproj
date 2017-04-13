@@ -52,6 +52,7 @@
     <Compile Include="..\GlobalVersion.cs">
       <Link>Properties\GlobalVersion.cs</Link>
     </Compile>
+    <Compile Include="Audit.cs" />
     <Compile Include="DbOperation.cs" />
     <Compile Include="DbRunner.cs" />
     <Compile Include="Errors.cs">
@@ -97,7 +98,7 @@
     <EmbeddedResource Include="ER.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\DatabaseReset.sql" />
+    <EmbeddedResource Include="Scripts\DatabaseReset.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
