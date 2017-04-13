@@ -61,6 +61,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RuleSet1.xml</DependentUpon>
     </Compile>
+    <Compile Include="RuleSet6.cs">
+      <DependentUpon>RuleSet6.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RuleSet5.cs">
       <DependentUpon>RuleSet5.xml</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -81,10 +86,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RuleSet2.xml</DependentUpon>
     </Compile>
+    <Compile Include="ValueInListModels.cs" />
     <Compile Include="ValueModel.cs" />
     <Compile Include="RegexModel.cs" />
     <Compile Include="RuleTests.cs" />
     <Compile Include="RuleSetTests.cs" />
+    <Compile Include="ValueInListTests.cs" />
     <Compile Include="ValueTests.cs" />
     <Compile Include="StringLengthModel.cs" />
     <Compile Include="RegexTests.cs" />
@@ -141,6 +148,12 @@
     <None Include="RuleSet5.xml">
       <Generator>PtXsltTool</Generator>
       <LastGenOutput>RuleSet5.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RuleSet6.xml">
+      <Generator>PtXsltTool</Generator>
+      <LastGenOutput>RuleSet6.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Choose>

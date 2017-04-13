@@ -102,7 +102,7 @@ namespace Platinum.Validation.Javascript.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Function_Evaluate", vr.Errors[ 0 ].Message );
-            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
+            Assert.AreEqual( ".Value1.Development", vr.Errors[ 0 ].Actor );
         }
 
 
@@ -122,7 +122,7 @@ namespace Platinum.Validation.Javascript.Tests
             Assert.AreEqual( false, vr.IsValid );
             Assert.AreEqual( 1, vr.Errors.Count );
             Assert.AreEqual( "Function_NotFound", vr.Errors[ 0 ].Message );
-            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
+            Assert.AreEqual( ".Value1.Development", vr.Errors[ 0 ].Actor );
         }
     }
 }

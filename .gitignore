@@ -27,6 +27,7 @@ tests/Platinum.Validation.Tests/RuleSet2.cs
 tests/Platinum.Validation.Tests/RuleSet3.cs
 tests/Platinum.Validation.Tests/RuleSet4.cs
 tests/Platinum.Validation.Tests/RuleSet5.cs
+tests/Platinum.Validation.Tests/RuleSet6.cs
 tests/Platinum.Validation.Javascript.Tests/RuleSet1.cs
 tests/Platinum.Validation.Javascript.Tests/RuleSet2.cs
 tests/Platinum.Validation.Javascript.Tests/RuleSet3.cs

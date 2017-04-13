@@ -228,7 +228,22 @@ namespace </xsl:text>
             <xsl:value-of select=" @max " />
             <xsl:text> ),</xsl:text>
         </xsl:if>
+    </xsl:template>
 
+    <xsl:template match=" p:in " mode="p:rule">
+        <xsl:text>
+                            new ValueInListAttribute( "</xsl:text>
+        <xsl:value-of select=" @list " />
+        <xsl:text>", "</xsl:text>
+        <xsl:choose>
+            <xsl:when test=" not( @separator ) ">
+                <xsl:text> </xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select=" @separator " />
+            </xsl:otherwise>
+        </xsl:choose>
+        <xsl:text>" ),</xsl:text>
     </xsl:template>
 
 

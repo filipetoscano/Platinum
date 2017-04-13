@@ -345,5 +345,42 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( "RegularExpression_Strict_NotEnd", vr.Errors[ 1 ].Message );
             Assert.AreEqual( ".Value1.Development", vr.Errors[ 1 ].Actor );
         }
+
+
+        /// <summary>
+        /// RuleSet #6: Ok.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet6_Ok()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "One";
+            req.Value2 = "TWO";
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet6>( req );
+
+            Assert.AreEqual( true, vr.IsValid );
+        }
+
+
+        /// <summary>
+        /// RuleSet #6: Ok.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet6_Fail()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "ONE";
+            req.Value2 = "2";
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet6>( req );
+
+            Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 2, vr.Errors.Count );
+            Assert.AreEqual( "ValueInList_Invalid", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
+            Assert.AreEqual( "ValueInList_Invalid", vr.Errors[ 1 ].Message );
+            Assert.AreEqual( ".Value2", vr.Errors[ 1 ].Actor );
+        }
     }
 }

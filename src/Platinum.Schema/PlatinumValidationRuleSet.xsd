@@ -38,6 +38,7 @@
                                     <xsd:element name="forbidden" type="emptyRule" minOccurs="0" />
                                     <xsd:element name="email" type="emptyRule" minOccurs="0" />
                                     <xsd:element name="length" type="lengthRule" minOccurs="0" />
+                                    <xsd:element name="in" type="inListRule" minOccurs="0" />
                                     <xsd:element name="regex" type="regexRule" minOccurs="0" maxOccurs="unbounded" />
                                     <xsd:element name="function" type="functionRule" minOccurs="0" maxOccurs="unbounded" />
                                 </xsd:sequence>
@@ -83,6 +84,7 @@
             <xsd:element name="forbidden" type="emptyRule" minOccurs="0" />
             <xsd:element name="email" type="emptyRule" minOccurs="0" />
             <xsd:element name="length" type="lengthRule" minOccurs="0" />
+            <xsd:element name="in" type="inListRule" minOccurs="0" />
             <xsd:element name="regex" type="regexRule" minOccurs="0" maxOccurs="unbounded" />
             <xsd:element name="function" type="functionRule" minOccurs="0" maxOccurs="unbounded" />
         </xsd:sequence>
@@ -95,6 +97,7 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <xsd:complexType name="emptyRule" />
+
 
     <xsd:complexType name="functionRule">
         <xsd:attribute name="name" type="xsd:string" use="optional">
@@ -121,6 +124,15 @@
         <xsd:attribute name="max" type="xsd:positiveInteger" use="optional">
             <xsd:annotation>
                 <xsd:documentation>Maximum number of characters that the string may have.</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="inListRule">
+        <xsd:attribute name="list" type="xsd:string" use="optional">
+            <xsd:annotation>
+                <xsd:documentation>Space seperated list of values which are allowed.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
     </xsd:complexType>

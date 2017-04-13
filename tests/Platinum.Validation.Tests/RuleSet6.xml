@@ -3,12 +3,12 @@
 <ruleSet xmlns="urn:platinum/validation">
 
     <field name="Value1">
-        <regex pattern="\d{3,}" />
+        <in list="One 1" />
     </field>
 
 
     <field name="Value2">
-        <regex pattern="\d{3,}" flex="true" />
+        <in list="Two TWO" />
     </field>
 
 </ruleSet>
