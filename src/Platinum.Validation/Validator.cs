@@ -1,6 +1,5 @@
 ﻿using Platinum.Reflection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace Platinum.Validation
@@ -33,7 +32,10 @@ namespace Platinum.Validation
         public static ValidationResult Validate<T, T1>( T obj )
             where T1 : IValidationRuleSet
         {
-            return ValidateRuleSet<T>( new Type[ 1 ] { typeof( T1 ) }, obj );
+            RuleSet rs = new RuleSet();
+            rs.Add<T1>();
+
+            return Validate<T>( rs, obj );
         }
 
 
@@ -42,19 +44,38 @@ namespace Platinum.Validation
             where T1 : IValidationRuleSet
             where T2 : IValidationRuleSet
         {
-            return ValidateRuleSet<T>( new Type[ 2 ] { typeof( T1 ), typeof( T2 ) }, obj );
+            RuleSet rs = new RuleSet();
+            rs.Add<T1>();
+            rs.Add<T2>();
+
+            return Validate<T>( rs, obj );
+        }
+
+
+        /// <summary />
+        public static ValidationResult Validate<T, T1, T2, T3>( T obj )
+            where T1 : IValidationRuleSet
+            where T2 : IValidationRuleSet
+            where T3 : IValidationRuleSet
+        {
+            RuleSet rs = new RuleSet();
+            rs.Add<T1>();
+            rs.Add<T2>();
+            rs.Add<T3>();
+
+            return Validate<T>( rs, obj );
         }
 
 
         /// <summary>
-        /// Validate rule sets.
+        /// Validate against consolidated rule set.
         /// </summary>
-        public static ValidationResult ValidateRuleSet<T>( Type[] ruleSets, T obj )
+        public static ValidationResult Validate<T>( RuleSet ruleSet, T obj )
         {
             #region Validations
 
-            if ( ruleSets == null )
-                throw new ArgumentNullException( nameof( ruleSets ) );
+            if ( ruleSet == null )
+                throw new ArgumentNullException( nameof( ruleSet ) );
 
             if ( obj == null )
                 throw new ArgumentNullException( nameof( obj ) );
@@ -70,28 +91,9 @@ namespace Platinum.Validation
             /*
              * 
              */
-            Dictionary<string, FieldRule> fieldRules = new Dictionary<string, FieldRule>();
-
-            foreach ( var type in ruleSets )
-            {
-                var rs = Activator.Create<IValidationRuleSet>( type );
-
-                foreach ( var r in rs.Fields )
-                {
-                    if ( fieldRules.ContainsKey( r.Name ) == true )
-                        fieldRules[ r.Name ] = r;
-                    else
-                        fieldRules.Add( r.Name, r );
-                }
-            }
-
-
-            /*
-             * 
-             */
             Type t = typeof( T );
 
-            foreach ( var field in fieldRules )
+            foreach ( var field in ruleSet.FieldRules )
             {
                 context.Path = null;
                 context.Property = field.Key;

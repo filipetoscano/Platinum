@@ -58,6 +58,7 @@
     <Compile Include="Meta\FieldRuleSet.cs" />
     <Compile Include="ForbiddenAttribute.cs" />
     <Compile Include="InListAttribute.cs" />
+    <Compile Include="RuleSet.cs" />
     <Compile Include="TotalDigitsAttribute.cs" />
     <Compile Include="DecimalDigitsAttribute.cs" />
     <Compile Include="EnumIsDefinedRule.cs" />

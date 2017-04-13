@@ -382,5 +382,84 @@ namespace Platinum.Validation.Tests
             Assert.AreEqual( "InList_Invalid", vr.Errors[ 1 ].Message );
             Assert.AreEqual( ".Value2", vr.Errors[ 1 ].Actor );
         }
+
+
+        /// <summary>
+        /// RuleSet #1 + #2 + #3: Name is built correctly.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet_RS123_Ok()
+        {
+            var rs = new RuleSet();
+            rs.Add<RuleSet1>();
+            rs.Add<RuleSet2>();
+            rs.Add<RuleSet3>();
+
+            Assert.AreEqual( "RuleSet3>RuleSet2>RuleSet1", rs.Name );
+        }
+
+
+        /// <summary>
+        /// RuleSet #1 + #6: Ok / style #1
+        /// </summary>
+        [TestMethod]
+        public void RuleSet_RS16_Ok1()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "One";
+            req.Value2 = "Two";
+            req.Value3 = null;
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet1, RuleSet6>( req );
+
+            Assert.AreEqual( true, vr.IsValid );
+        }
+
+
+        /// <summary>
+        /// RuleSet #1 + #6: Ok / style #2
+        /// </summary>
+        [TestMethod]
+        public void RuleSet_RS16_Ok2()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "One";
+            req.Value2 = "Two";
+            req.Value3 = null;
+
+            var rs = new RuleSet();
+            rs.Add<RuleSet1>();
+            rs.Add<RuleSet6>();
+
+            Assert.AreEqual( "RuleSet6>RuleSet1", rs.Name );
+
+            var vr = Validator.Validate( rs, req );
+
+            Assert.AreEqual( true, vr.IsValid );
+        }
+
+
+        /// <summary>
+        /// RuleSet #1 + #6: Fail.
+        /// </summary>
+        [TestMethod]
+        public void RuleSet_RS16_Fail()
+        {
+            var req = new RuleSetClass();
+            req.Value1 = "ONE";
+            req.Value2 = "2";
+            req.Value3 = "required";
+
+            var vr = Validator.Validate<RuleSetClass, RuleSet1, RuleSet6>( req );
+
+            Assert.AreEqual( false, vr.IsValid );
+            Assert.AreEqual( 3, vr.Errors.Count );
+            Assert.AreEqual( "InList_Invalid", vr.Errors[ 0 ].Message );
+            Assert.AreEqual( ".Value1", vr.Errors[ 0 ].Actor );
+            Assert.AreEqual( "InList_Invalid", vr.Errors[ 1 ].Message );
+            Assert.AreEqual( ".Value2", vr.Errors[ 1 ].Actor );
+            Assert.AreEqual( "Forbidden", vr.Errors[ 2 ].Message );
+            Assert.AreEqual( ".Value3", vr.Errors[ 2 ].Actor );
+        }
     }
 }
