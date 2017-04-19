@@ -8,17 +8,22 @@
     ~ Connection
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Connection_NoProviderName" actor="~.Data.Configuration" code="1002">
+    <error id="Connection_NoProviderName" actor="~.Data.{0}.Configuration" code="1002">
         <description>Settings for database '{0}' have no defined provider.</description>
         <arg name="Database" />
     </error>
 
-    <error id="Connection_NoConnection" actor="~.Data.Configuration" code="1003">
+    <error id="Connection_NoConnection" actor="~.Data.{0}.Configuration" code="1003">
         <description>Settings for database '{0}' have no defined connection string.</description>
         <arg name="Database" />
     </error>
 
-    <error id="Connection_NoFactory" actor="~.Data.Configuration" code="1004">
+    <error id="Connection_NoFactory" actor="~.Data.{0}.Configuration" code="1004">
+        <description>Settings for database '{0}' have no defined factory.</description>
+        <arg name="Database" />
+    </error>
+
+    <error id="Connection_ConnectionString" actor="~.Data.{0}.Configuration" code="1005">
         <description>Settings for database '{0}' have no defined factory.</description>
         <arg name="Database" />
     </error>
@@ -69,19 +74,19 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="ExecuteNonQuery" actor="~.Data.{0}" code="4001">
-        <description>Command '{0}'/'{1}' failed.</description>
+        <description>Command '{0}/{1}' failed.</description>
         <arg name="Database" />
         <arg name="Command" />
     </error>
 
     <error id="ExecuteScalar" actor="~.Data.{0}" code="4002">
-        <description>Command '{0}'/'{1}' failed.</description>
+        <description>Command '{0}/{1}' failed.</description>
         <arg name="Database" />
         <arg name="Command" />
     </error>
 
     <error id="ExecuteDbDataReader" actor="~.Data.{0}" code="4003">
-        <description>Command '{0}'/'{1}' failed.</description>
+        <description>Command '{0}/{1}' failed.</description>
         <arg name="Database" />
         <arg name="Command" />
     </error>

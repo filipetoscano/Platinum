@@ -46,7 +46,15 @@ namespace Platinum.Data
              */
             DbConnection conn = factory.CreateConnection();
             DataConnection db = new DataConnection( name, conn );
-            db.ConnectionString = cs.ConnectionString;
+
+            try
+            {
+                db.ConnectionString = cs.ConnectionString;
+            }
+            catch ( ArgumentException ex )
+            {
+                throw new DataException( ER.Connection_ConnectionString, ex, name );
+            }
 
             return db;
         }
