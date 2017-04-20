@@ -10,7 +10,7 @@ namespace Platinum.Validation
         /// <summary>
         /// Pattern which is used to define an email address.
         /// </summary>
-        public const string Pattern = @"^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,24})$";
+        public const string Pattern = @"^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:(?!.{256})(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)$";
 
         private static Regex _email = new Regex( Pattern, RegexOptions.Compiled );
 
