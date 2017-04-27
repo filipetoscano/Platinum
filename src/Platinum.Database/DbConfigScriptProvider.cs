@@ -132,7 +132,7 @@ namespace Platinum.Database
              */
             try
             {
-                // Directory.Delete( tmp, true );
+                Directory.Delete( tmp, true );
             }
             catch ( Exception ex )
             {
