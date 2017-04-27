@@ -63,10 +63,6 @@
     ~ Reset
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <event id="Reset_Start" actor="~" code="20000">
-        <description>Running 'reset' operation.</description>
-    </event>
-
     <event id="Reset_Complete" actor="~" code="20001">
         <description>Running 'reset' operation.</description>
     </event>
@@ -89,18 +85,14 @@
     ~ Schema
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <event id="Schema_Start" actor="~" code="21000">
-        <description>Running 'schema' operation.</description>
-    </event>
-
-    <event id="Schema_Complete" actor="~" code="21001">
-        <description>Completed schema update. List of scripts was: {0}</description>
-        <arg name="ScriptList" />
+    <event id="Schema_Executed" actor="~" code="21001">
+        <description>Ran schema script '{0}'.</description>
+        <arg name="ScriptName" />
     </event>
 
     <event id="Schema_Failed" actor="~" code="21002">
-        <description>Failed to perform schema update. List of scripts was: {0}</description>
-        <arg name="ScriptList" />
+        <description>Failed to execute schema script '{0}'.</description>
+        <arg name="ScriptName" />
     </event>
 
 
@@ -109,18 +101,32 @@
     ~ Data
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <event id="Data_Start" actor="~" code="21000">
-        <description>Running 'data' operation.</description>
+    <event id="Data_Executed" actor="~" code="21003">
+        <description>Ran data script '{0}'.</description>
+        <arg name="ScriptName" />
     </event>
 
-    <event id="Data_Complete" actor="~" code="21001">
-        <description>Completed data update. List of scripts was: {0}</description>
-        <arg name="ScriptList" />
+    <event id="Data_Failed" actor="~" code="21004">
+        <description>Failed to execute data script '{0}'.</description>
+        <arg name="ScriptName" />
     </event>
 
-    <event id="Data_Failed" actor="~" code="21002">
-        <description>Failed to perform data update. List of scripts was: {0}</description>
-        <arg name="ScriptList" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ CustomData
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <event id="CustomData_Executed" actor="~" code="21005">
+        <description>Ran data script '{1}'.</description>
+        <arg name="Provider" />
+        <arg name="ScriptName" />
+    </event>
+
+    <event id="CustomData_Failed" actor="~" code="21006">
+        <description>Failed to execute data script '{1}'.</description>
+        <arg name="Provider" />
+        <arg name="ScriptName" />
     </event>
 
 </errors>

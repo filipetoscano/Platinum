@@ -1,4 +1,5 @@
 ﻿using DbUp.Builder;
+using DbUp.Engine;
 using DbUp.Engine.Transactions;
 using System;
 using System.IO;
@@ -69,6 +70,20 @@ namespace Platinum.Database
             builder.Configure( c => c.Journal = new DataJournal( () => c.ConnectionManager, () => c.Log, schema, table ) );
 
             return builder;
+        }
+
+
+        /// <summary />
+        internal static string ErrorScript( this DatabaseUpgradeResult result )
+        {
+            #region Validations
+
+            if ( result == null )
+                throw new ArgumentNullException( nameof( result ) );
+
+            #endregion
+
+            return (string) result.Error.Data[ "Error occurred in script: " ];
         }
     }
 }

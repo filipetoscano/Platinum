@@ -141,7 +141,7 @@ namespace Platinum.Database
              */
             if ( operation.HasFlag( DbOperation.Reset ) == true )
             {
-                Audit.Event( EV.Reset_Start );
+                logger.Debug( "Resetting database." );
 
                 if ( environment == "PROD" || environment == "PRD" || environment == "PRE" )
                     throw new DatabaseToolException( ER.Reset_Production );
@@ -180,7 +180,7 @@ namespace Platinum.Database
              */
             if ( operation.HasFlag( DbOperation.Schema ) == true )
             {
-                Audit.Event( EV.Schema_Start );
+                logger.Debug( "Running schema files." );
 
                 string resxPrefix = baseNamespace + ".Schema.";
 
@@ -191,18 +191,22 @@ namespace Platinum.Database
                     .Build();
 
                 var result = upgrader.PerformUpgrade();
-                string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name.Substring( resxPrefix.Length ) ) );
+
+                if ( result.Scripts.Count() > 0 )
+                {
+                    foreach ( var script in result.Scripts )
+                    {
+                        Audit.Event( EV.Schema_Executed, script.Name );
+                    }
+                }
 
                 if ( result.Successful == false )
                 {
-                    DatabaseToolException dte = new DatabaseToolException( EV.Schema_Failed, result.Error, scriptList );
+                    string scriptName = result.ErrorScript();
+                    DatabaseToolException dte = new DatabaseToolException( EV.Schema_Failed, result.Error, scriptName );
                     Audit.Event( dte );
 
                     return dte.Code;
-                }
-                else if ( result.Scripts.Count() > 0 )
-                {
-                    Audit.Event( EV.Schema_Complete, scriptList );
                 }
             }
 
@@ -212,7 +216,7 @@ namespace Platinum.Database
              */
             if ( operation.HasFlag( DbOperation.Data ) == true )
             {
-                Audit.Event( EV.Data_Start );
+                logger.Debug( "Running data files." );
 
                 string resxPrefix = baseNamespace + ".Data.";
 
@@ -228,16 +232,21 @@ namespace Platinum.Database
                 var result = upgrader.PerformUpgrade();
                 string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name ) );
 
+                if ( result.Scripts.Count() > 0 )
+                {
+                    foreach ( var script in result.Scripts )
+                    {
+                        Audit.Event( EV.Data_Executed, script.Name );
+                    }
+                }
+
                 if ( result.Successful == false )
                 {
-                    DatabaseToolException dte = new DatabaseToolException( EV.Data_Failed, result.Error, scriptList );
+                    string scriptName = result.ErrorScript();
+                    DatabaseToolException dte = new DatabaseToolException( EV.Data_Failed, result.Error, scriptName );
                     Audit.Event( dte );
 
                     return dte.Code;
-                }
-                else if ( result.Scripts.Count() > 0 )
-                {
-                    Audit.Event( EV.Data_Complete, scriptList );
                 }
             }
 
@@ -249,6 +258,9 @@ namespace Platinum.Database
             {
                 foreach ( var provider in custom )
                 {
+                    string providerType = provider.GetType().FullName;
+                    logger.Debug( "Running '{0}'.", providerType );
+
                     var upgrader = DeployChanges.To
                         .SqlDatabase( cs.ConnectionString )
                         .WithScripts( provider )
@@ -259,16 +271,21 @@ namespace Platinum.Database
                     var result = upgrader.PerformUpgrade();
                     string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name ) );
 
+                    if ( result.Scripts.Count() > 0 )
+                    {
+                        foreach ( var script in result.Scripts )
+                        {
+                            Audit.Event( EV.CustomData_Executed, providerType, script.Name );
+                        }
+                    }
+
                     if ( result.Successful == false )
                     {
-                        DatabaseToolException dte = new DatabaseToolException( EV.Data_Failed, result.Error, scriptList );
+                        string scriptName = result.ErrorScript();
+                        DatabaseToolException dte = new DatabaseToolException( EV.CustomData_Failed, result.Error, providerType, scriptName );
                         Audit.Event( dte );
 
                         return dte.Code;
-                    }
-                    else if ( result.Scripts.Count() > 0 )
-                    {
-                        Audit.Event( EV.Data_Complete, scriptList );
                     }
                 }
             }
