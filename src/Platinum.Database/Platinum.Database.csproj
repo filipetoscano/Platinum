@@ -53,6 +53,8 @@
       <Link>Properties\GlobalVersion.cs</Link>
     </Compile>
     <Compile Include="Audit.cs" />
+    <Compile Include="DataSqlScript.cs" />
+    <Compile Include="DbConfigScriptProvider.cs" />
     <Compile Include="DbOperation.cs" />
     <Compile Include="DbRunner.cs" />
     <Compile Include="Errors.cs">
@@ -66,6 +68,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Extensions.cs" />
+    <Compile Include="DataJournal.cs" />
     <Compile Include="NLogLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

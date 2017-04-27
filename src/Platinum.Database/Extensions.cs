@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DbUp.Builder;
+using DbUp.Engine.Transactions;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -58,6 +60,15 @@ namespace Platinum.Database
             {
                 return sr.ReadToEnd();
             }
+        }
+
+
+        /// <summary />
+        internal static UpgradeEngineBuilder JournalToData( this UpgradeEngineBuilder builder, string schema, string table )
+        {
+            builder.Configure( c => c.Journal = new DataJournal( () => c.ConnectionManager, () => c.Log, schema, table ) );
+
+            return builder;
         }
     }
 }

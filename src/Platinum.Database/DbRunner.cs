@@ -4,6 +4,7 @@ using DbUp.Helpers;
 using Platinum.Configuration;
 using Platinum.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -12,6 +13,21 @@ namespace Platinum.Database
     /// <summary />
     public class DbRunner
     {
+        private List<IScriptProvider> _data = new List<IScriptProvider>();
+
+
+        /// <summary>
+        /// Adds an additional (specific) data provider.
+        /// </summary>
+        /// <typeparam name="T">Typf of script provider.</typeparam>
+        public void AddDataProvider<T>() where T : IScriptProvider
+        {
+            T instance = Activator.Create<T>();
+
+            _data.Add( instance );
+        }
+
+
         /// <summary />
         public int Run( string[] args )
         {
@@ -48,7 +64,7 @@ namespace Platinum.Database
 
             try
             {
-                exitCode = Run( assembly, logger, operation );
+                exitCode = Run( assembly, logger, operation, _data );
             }
             catch ( ActorException ex )
             {
@@ -68,7 +84,7 @@ namespace Platinum.Database
 
 
         /// <summary />
-        private static int Run( Assembly assembly, Logger logger, DbOperation operation )
+        private static int Run( Assembly assembly, Logger logger, DbOperation operation, List<IScriptProvider> custom )
         {
             #region Validations
 
@@ -77,6 +93,9 @@ namespace Platinum.Database
 
             if ( logger == null )
                 throw new ArgumentNullException( nameof( logger ) );
+
+            if ( custom == null )
+                throw new ArgumentNullException( nameof( custom ) );
 
             #endregion
 
@@ -124,7 +143,7 @@ namespace Platinum.Database
             {
                 Audit.Event( EV.Reset_Start );
 
-                if ( environment == "PROD" || environment == "PRD" )
+                if ( environment == "PROD" || environment == "PRD" || environment == "PRE" )
                     throw new DatabaseToolException( ER.Reset_Production );
 
                 if ( environment == "STAGE" || environment == "QUA" )
@@ -189,11 +208,69 @@ namespace Platinum.Database
 
 
             /*
-             * 
+             * Data
              */
             if ( operation.HasFlag( DbOperation.Data ) == true )
             {
-                // Audit.Event( ER.Data_Start );
+                Audit.Event( EV.Data_Start );
+
+                string resxPrefix = baseNamespace + ".Data.";
+
+                var db = DeployChanges.To;
+
+                var upgrader = DeployChanges.To
+                    .SqlDatabase( cs.ConnectionString )
+                    .WithScripts( new DbConfigScriptProvider( assembly, resxPrefix, environment ) )
+                    .LogTo( appLogger )
+                    .JournalToData( "dbo", "DataVersions" )
+                    .Build();
+
+                var result = upgrader.PerformUpgrade();
+                string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name ) );
+
+                if ( result.Successful == false )
+                {
+                    DatabaseToolException dte = new DatabaseToolException( EV.Data_Failed, result.Error, scriptList );
+                    Audit.Event( dte );
+
+                    return dte.Code;
+                }
+                else if ( result.Scripts.Count() > 0 )
+                {
+                    Audit.Event( EV.Data_Complete, scriptList );
+                }
+            }
+
+
+            /*
+             * Custom data
+             */
+            if ( operation.HasFlag( DbOperation.Data ) == true && custom.Count() > 0 )
+            {
+                foreach ( var provider in custom )
+                {
+                    var upgrader = DeployChanges.To
+                        .SqlDatabase( cs.ConnectionString )
+                        .WithScripts( provider )
+                        .LogTo( appLogger )
+                        .JournalToData( "dbo", "DataVersions" )
+                        .Build();
+
+                    var result = upgrader.PerformUpgrade();
+                    string scriptList = string.Join( "\n", result.Scripts.Select( x => x.Name ) );
+
+                    if ( result.Successful == false )
+                    {
+                        DatabaseToolException dte = new DatabaseToolException( EV.Data_Failed, result.Error, scriptList );
+                        Audit.Event( dte );
+
+                        return dte.Code;
+                    }
+                    else if ( result.Scripts.Count() > 0 )
+                    {
+                        Audit.Event( EV.Data_Complete, scriptList );
+                    }
+                }
             }
 
             return 0;
