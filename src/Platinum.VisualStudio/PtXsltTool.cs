@@ -168,7 +168,7 @@ namespace Platinum.VisualStudio
             string[] parts = schema.Value.Replace( "\n", " " ).Replace( "\r", "" ).Split( new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries );
 
             if ( (parts.Length % 2) != 0 )
-                throw new ToolException( "invalid valid in xsi:schemaLocation" );
+                throw new ToolException( "invalid value in xsi:schemaLocation" );
 
             for ( int i = 0; i < parts.Length; i += 2 )
             {
