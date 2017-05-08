@@ -116,6 +116,29 @@ namespace Platinum.Database
 
 
             /*
+             * Extract dbconfig to same temporary directory.
+             */
+            var embedded = new List<string>();
+            embedded.Add( "dbconfig.exe" );
+            embedded.Add( "dbconfig.exe.config" );
+            embedded.Add( "Yttrium.Core.dll" );
+
+            foreach ( var resx in embedded )
+            {
+                logger.Debug( "Extracting: '{0}'", resx );
+
+                using ( var fs = File.Create( Path.Combine( tmp, resx ) ) )
+                {
+                    using ( var stream = typeof( DbConfigScriptProvider ).Assembly.GetManifestResourceStream( typeof( DbConfigScriptProvider ), "Tools." + resx ) )
+                    {
+                        stream.Seek( 0, SeekOrigin.Begin );
+                        stream.CopyTo( fs );
+                    }
+                }
+            }
+
+
+            /*
              * 
              */
             foreach ( var file in dir.GetFiles( "*.xml", SearchOption.TopDirectoryOnly ).OrderBy( x => x.Name ) )
@@ -181,7 +204,7 @@ namespace Platinum.Database
             /*
              * 
              */
-            string exePath = @"C:\programs\bin\dbconfig.exe";
+            string exePath = Path.Combine( file.DirectoryName, "dbconfig.exe" );
             string sqlFile = Path.Combine( file.DirectoryName, Path.GetFileNameWithoutExtension( file.Name ) + ".sql" );
 
 

@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <EmbeddedResource Include="Tools\dbconfig.exe.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Platinum.Core\Platinum.Core.csproj">
@@ -102,6 +103,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\DatabaseReset.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tools\dbconfig.exe" />
+    <EmbeddedResource Include="Tools\Yttrium.Core.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
