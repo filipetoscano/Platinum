@@ -212,6 +212,80 @@ namespace Platinum.Database
 
 
             /*
+             * Procedures
+             */
+            if ( operation.HasFlag( DbOperation.Schema ) == true )
+            {
+                logger.Debug( "Running procedure files." );
+
+                string resxPrefix = baseNamespace + ".Procedures.";
+
+                var upgrader = DeployChanges.To
+                    .SqlDatabase( cs.ConnectionString )
+                    .WithScripts( new DirectScriptProvider( assembly, resxPrefix ) )
+                    .LogTo( appLogger )
+                    .JournalToData( "dbo", "DataVersions" )
+                    .Build();
+
+                var result = upgrader.PerformUpgrade();
+
+                if ( result.Scripts.Count() > 0 )
+                {
+                    foreach ( var script in result.Scripts )
+                    {
+                        Audit.Event( EV.Procedure_Executed, script.Name );
+                    }
+                }
+
+                if ( result.Successful == false )
+                {
+                    string scriptName = result.ErrorScript();
+                    DatabaseToolException dte = new DatabaseToolException( EV.Procedure_Failed, result.Error, scriptName );
+                    Audit.Event( dte );
+
+                    return dte.Code;
+                }
+            }
+
+
+            /*
+             * Views
+             */
+            if ( operation.HasFlag( DbOperation.Schema ) == true )
+            {
+                logger.Debug( "Running views files." );
+
+                string resxPrefix = baseNamespace + ".Views.";
+
+                var upgrader = DeployChanges.To
+                    .SqlDatabase( cs.ConnectionString )
+                    .WithScripts( new DirectScriptProvider( assembly, resxPrefix ) )
+                    .LogTo( appLogger )
+                    .JournalToData( "dbo", "DataVersions" )
+                    .Build();
+
+                var result = upgrader.PerformUpgrade();
+
+                if ( result.Scripts.Count() > 0 )
+                {
+                    foreach ( var script in result.Scripts )
+                    {
+                        Audit.Event( EV.View_Executed, script.Name );
+                    }
+                }
+
+                if ( result.Successful == false )
+                {
+                    string scriptName = result.ErrorScript();
+                    DatabaseToolException dte = new DatabaseToolException( EV.View_Failed, result.Error, scriptName );
+                    Audit.Event( dte );
+
+                    return dte.Code;
+                }
+            }
+
+
+            /*
              * Data
              */
             if ( operation.HasFlag( DbOperation.Data ) == true )

@@ -57,6 +57,7 @@
     <Compile Include="DbConfigScriptProvider.cs" />
     <Compile Include="DbOperation.cs" />
     <Compile Include="DbRunner.cs" />
+    <Compile Include="DirectScriptProvider.cs" />
     <Compile Include="Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -98,6 +98,38 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
+    ~ Procedure
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <event id="Procedure_Executed" actor="~" code="21007">
+        <description>Ran procedure script '{0}'.</description>
+        <arg name="ScriptName" />
+    </event>
+
+    <event id="Procedure_Failed" actor="~" code="21008">
+        <description>Failed to execute procedure script '{0}'.</description>
+        <arg name="ScriptName" />
+    </event>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ View
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <event id="View_Executed" actor="~" code="21009">
+        <description>Ran view script '{0}'.</description>
+        <arg name="ScriptName" />
+    </event>
+
+    <event id="View_Failed" actor="~" code="21010">
+        <description>Failed to execute view script '{0}'.</description>
+        <arg name="ScriptName" />
+    </event>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
     ~ Data
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
