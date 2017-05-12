@@ -74,6 +74,8 @@
     <Compile Include="Algorithm\Luhn.cs" />
     <Compile Include="Algorithm\NumericEncoder.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="PreciseDateTime.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="CommitIdAttribute.cs" />
     <Compile Include="Configuration\Errors.cs">
       <DependentUpon>Errors.xml</DependentUpon>
@@ -150,7 +152,7 @@
     <Compile Include="ObjectDumper.cs" />
     <Compile Include="Reflection\AppDomainExtensions.cs" />
     <Compile Include="Reflection\EntryAssemblyAttribute.cs" />
-    <Compile Include="Reflection\AssemblyExtensions.cs" />
+    <Compile Include="Reflection\EntryAssembly.cs" />
     <Compile Include="Reflection\TypeExtensions.cs" />
     <Compile Include="Reflection\AppDomainUtils.cs" />
     <Compile Include="Resolver\Configuration-Partial.cs" />
