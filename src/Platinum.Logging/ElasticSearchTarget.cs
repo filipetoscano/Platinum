@@ -172,6 +172,9 @@ namespace Festo.Logging
                         document.Add( "actor", ae.Actor );
                         document.Add( "code", ae.Code );
                         document.Add( "exception", ae.ToString() );
+
+                        foreach ( string key in ae.Data.Keys )
+                            document.Add( SafeKey( "exd_", key ), ae.Data[ key ] );
                     }
                     else
                     {
@@ -187,6 +190,20 @@ namespace Festo.Logging
             }
 
             return payload;
+        }
+
+
+        /// <summary />
+        private static string SafeKey( string prefix, string key )
+        {
+            #region Validations
+
+            if ( key == null )
+                throw new ArgumentNullException( nameof( key ) );
+
+            #endregion
+
+            return prefix + key.Replace( ".", "_" );
         }
     }
 }
