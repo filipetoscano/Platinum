@@ -62,6 +62,16 @@
     <Compile Include="DurationTest.cs" />
     <Compile Include="DateTimeTest.cs" />
     <Compile Include="DbErrorTest.cs" />
+    <Compile Include="Errors.cs">
+      <DependentUpon>Errors.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Exceptions.cs">
+      <DependentUpon>Exceptions.xml</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="OpenFailTest.cs" />
     <Compile Include="NoServerTest.cs" />
     <Compile Include="BasicTest.cs" />
@@ -87,6 +97,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ER.resx" />
     <EmbeddedResource Include="Sql\Multi2.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +120,21 @@
       <Generator>PtDataStatementsTool</Generator>
       <LastGenOutput>Statements.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Exceptions.xml">
+      <Generator>PtResxExceptionTool</Generator>
+      <LastGenOutput>Exceptions.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Errors.xml">
+      <Generator>PtResxErrorTool</Generator>
+      <LastGenOutput>Errors.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sql\DbErrorMissingError.sql" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

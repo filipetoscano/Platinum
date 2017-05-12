@@ -9,7 +9,10 @@ namespace Platinum.Data
     /// <summary />
     public static class Db
     {
-        /// <summary />
+        /// <summary>
+        /// Returns a new (non-open) connection, that has been configured
+        /// in the application file with @name.
+        /// </summary>
         public static DataConnection Connection( string name )
         {
             #region Validations
@@ -60,7 +63,16 @@ namespace Platinum.Data
         }
 
 
-        /// <summary />
+        /// <summary>
+        /// Loads a statement that has been embedded into the calling assembly.
+        /// </summary>
+        /// <remarks>
+        /// This method will also perform the following actions:
+        /// - Ignore all content before the --// marker. This allows SQL files to
+        ///   be locally executable as well as by Dapper;
+        /// - Injects some metadata at the top of the statement, which will then
+        ///   be picked up by the DataCommand instance.
+        /// </remarks>
         public static string Command( string commandName )
         {
             #region Validations
@@ -74,12 +86,15 @@ namespace Platinum.Data
              * 
              */
             Assembly assembly = Assembly.GetCallingAssembly();
-            string fqName = assembly.FullName.Split( ',' )[ 0 ] + "." + commandName.Replace( "/", "." );
+
+            string assemblyName = assembly.FullName.Split( ',' )[ 0 ];
+            string fqName = assemblyName + "." + commandName.Replace( "/", "." );
+
             string resourceName = fqName + ".sql";
             Stream stream = assembly.GetManifestResourceStream( resourceName );
 
             if ( stream == null )
-                throw new DataException( ER.Command_CommandNotFound, commandName, assembly.FullName, resourceName );
+                throw new DataException( ER.Command_CommandNotFound, commandName, assemblyName, resourceName );
 
             /*
              * 
@@ -95,7 +110,7 @@ namespace Platinum.Data
             /*
              * 
              */
-            string prefix = $"/*# { fqName } #*/";
+            string prefix = $"/*# { assemblyName }#{ commandName } #*/";
 
 
             /*

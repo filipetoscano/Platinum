@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<errors xmlns="urn:platinum/actor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:platinum/actor ../../src/Platinum.Schema/PlatinumResxError.xsd">
+    <actor base="{Application}" />
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ Connection
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="Sql_DbError_ErrorPlain" actor="~" code="1001">
+        <description>Error string.</description>
+    </error>
+
+    <error id="Sql_DbErrorArg_ErrorWithArgs" actor="~" code="1002">
+        <description>Error with arguments: Arg1='{0}', Arg2='{1}'.</description>
+        <arg name="Arg1" />
+        <arg name="Arg2" />
+    </error>
+
+</errors>

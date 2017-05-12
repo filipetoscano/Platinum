@@ -18,6 +18,10 @@ namespace Platinum.Data.Tests
             { get { return Db.Command( "Sql/DbErrorArg" ); } }
 
             /// <summary />
+            internal static string DbErrorMissingError
+            { get { return Db.Command( "Sql/DbErrorMissingError" ); } }
+
+            /// <summary />
             internal static string Multi1
             { get { return Db.Command( "Sql/Multi1" ); } }
 

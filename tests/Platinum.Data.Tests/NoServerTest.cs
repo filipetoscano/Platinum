@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Common;
 using System.Threading.Tasks;
 using Q = Platinum.Data.Tests.Statements.Sql;
+using DER = Platinum.Data.ER;
 
 namespace Platinum.Data.Tests
 {
@@ -26,7 +27,7 @@ namespace Platinum.Data.Tests
             }
             catch ( DataException ex )
             {
-                Assert.AreEqual( ex.Message, ER.Open_ConnectFailed );
+                Assert.AreEqual( ex.Message, DER.Open_ConnectFailed );
             }
         }
 
@@ -46,7 +47,7 @@ namespace Platinum.Data.Tests
             }
             catch ( DataException ex )
             {
-                Assert.AreEqual( ex.Message, ER.Open_ConnectFailed );
+                Assert.AreEqual( ex.Message, DER.Open_ConnectFailed );
             }
         }
     }

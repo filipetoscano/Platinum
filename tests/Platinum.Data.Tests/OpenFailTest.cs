@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Common;
 using System.Threading.Tasks;
+using DER = Platinum.Data.ER;
 using Q = Platinum.Data.Tests.Statements.Sql;
 
 namespace Platinum.Data.Tests
@@ -26,7 +27,7 @@ namespace Platinum.Data.Tests
             }
             catch ( DataException ex )
             {
-                Assert.AreEqual( ER.Open_LoginFailed, ex.Message );
+                Assert.AreEqual( DER.Open_LoginFailed, ex.Message );
                 Assert.IsTrue( ex.Data[ "DbState" ] != null );
 
                 byte dbState = (byte) ex.Data[ "DbState" ];
@@ -52,7 +53,7 @@ namespace Platinum.Data.Tests
             }
             catch ( DataException ex )
             {
-                Assert.AreEqual( ER.Open_LoginFailed, ex.Message );
+                Assert.AreEqual( DER.Open_LoginFailed, ex.Message );
                 Assert.IsTrue( ex.Data[ "DbState" ] != null );
 
                 byte dbState = (byte) ex.Data[ "DbState" ];

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data.Common;
 using System.Threading.Tasks;
 using Q = Platinum.Data.Tests.Statements.Sql;
+using DER = Platinum.Data.ER;
+using System;
 
 namespace Platinum.Data.Tests
 {
@@ -23,23 +25,16 @@ namespace Platinum.Data.Tests
 
                 Assert.Fail( "Expected exception" );
             }
-            catch ( DbException )
-            {
-                Assert.Fail( "Expected ActorException" );
-            }
             catch ( ActorException ex )
             {
-                if ( ex.Message == ER.ExecuteNonQuery )
-                {
-                    Assert.Fail( "Expected custom error from DB" );
-                }
-                else
-                {
-                    Assert.IsTrue( ex.Actor != null );
-                    Assert.IsTrue( ex.Code > 0 );
-                    Assert.IsTrue( ex.Description != null );
-                    Assert.IsTrue( ex.Message != null );
-                }
+                Assert.AreEqual( ER.Sql_DbError_ErrorPlain, ex.Message );
+                Assert.AreEqual( App.Name, ex.Actor );
+                Assert.AreEqual( 1001, ex.Code );
+                Assert.AreEqual( 0, ex.Data.Keys.Count );
+            }
+            catch ( Exception )
+            {
+                Assert.Fail( "Expected actor exception" );
             }
         }
 
@@ -58,23 +53,16 @@ namespace Platinum.Data.Tests
 
                 Assert.Fail( "Expected exception" );
             }
-            catch ( DbException )
-            {
-                Assert.Fail( "Expected ActorException" );
-            }
             catch ( ActorException ex )
             {
-                if ( ex.Message == ER.ExecuteScalar )
-                {
-                    Assert.Fail( "Expected custom error from DB" );
-                }
-                else
-                {
-                    Assert.IsTrue( ex.Actor != null );
-                    Assert.IsTrue( ex.Code > 0 );
-                    Assert.IsTrue( ex.Description != null );
-                    Assert.IsTrue( ex.Message != null );
-                }
+                Assert.AreEqual( ER.Sql_DbError_ErrorPlain, ex.Message );
+                Assert.AreEqual( App.Name, ex.Actor );
+                Assert.AreEqual( 1001, ex.Code );
+                Assert.AreEqual( 0, ex.Data.Keys.Count );
+            }
+            catch ( Exception )
+            {
+                Assert.Fail( "Expected actor exception" );
             }
         }
 
@@ -93,23 +81,72 @@ namespace Platinum.Data.Tests
 
                 Assert.Fail( "Expected exception" );
             }
-            catch ( DbException )
+            catch ( ActorException ex )
             {
-                Assert.Fail( "Expected ActorException" );
+                Assert.AreEqual( ER.Sql_DbError_ErrorPlain, ex.Message );
+                Assert.AreEqual( App.Name, ex.Actor );
+                Assert.AreEqual( 1001, ex.Code );
+                Assert.AreEqual( 0, ex.Data.Keys.Count );
+            }
+            catch ( Exception )
+            {
+                Assert.Fail( "Expected actor exception" );
+            }
+        }
+
+
+        /// <summary>
+        /// What if the exception has argument placeholders?
+        /// </summary>
+        [TestMethod]
+        public async Task QueryAsyncWithArgs()
+        {
+            try
+            {
+                DataConnection conn = Db.Connection( "TestDb" );
+
+                var rows = await conn.QueryAsync<dynamic>( Q.DbErrorArg, new { } );
+
+                Assert.Fail( "Expected exception" );
             }
             catch ( ActorException ex )
             {
-                if ( ex.Message == ER.ExecuteDbDataReader )
-                {
-                    Assert.Fail( "Expected custom error from DB" );
-                }
-                else
-                {
-                    Assert.IsTrue( ex.Actor != null );
-                    Assert.IsTrue( ex.Code > 0 );
-                    Assert.IsTrue( ex.Description != null );
-                    Assert.IsTrue( ex.Message != null );
-                }
+                Assert.AreEqual( ER.Sql_DbErrorArg_ErrorWithArgs, ex.Message );
+                Assert.AreEqual( App.Name, ex.Actor );
+                Assert.AreEqual( 1002, ex.Code );
+                Assert.AreEqual( 2, ex.Data.Keys.Count );
+                Assert.AreEqual( "32", ex.Data[ "Arg2" ] );
+            }
+            catch ( Exception )
+            {
+                Assert.Fail( "Expected actor exception" );
+            }
+        }
+
+
+        /// <summary>
+        /// What if the exception isn't declared?
+        /// </summary>
+        [TestMethod]
+        public async Task QueryAsyncMissingError()
+        {
+            try
+            {
+                DataConnection conn = Db.Connection( "TestDb" );
+
+                var rows = await conn.QueryAsync<dynamic>( Q.DbErrorMissingError, new { } );
+
+                Assert.Fail( "Expected exception" );
+            }
+            catch ( ActorException ex )
+            {
+                Assert.AreEqual( "Sql_DbErrorMissingError_MissingError", ex.Message );
+                Assert.AreEqual( 1100, ex.Code );
+                Assert.AreEqual( "Platinum.Data.Tests.DataDbException#Impl", ex.Actor );
+            }
+            catch ( Exception )
+            {
+                Assert.Fail( "Expected actor exception" );
             }
         }
     }

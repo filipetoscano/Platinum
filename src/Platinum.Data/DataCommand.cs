@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Platinum.Data
 {
@@ -13,6 +15,7 @@ namespace Platinum.Data
     {
         private string _conn;
         private string _name;
+        private string _assembly;
         private DbCommand _command;
 
 
@@ -34,8 +37,8 @@ namespace Platinum.Data
             #endregion
 
             _conn = connection;
-            _name = PeekCommandName( command.CommandText );
             _command = command;
+            PeekCommandName();
         }
 
 
@@ -67,31 +70,54 @@ namespace Platinum.Data
 
             set
             {
-                _name = PeekCommandName( value );
                 _command.CommandText = value;
+                PeekCommandName();
             }
         }
 
 
         /// <summary>
-        /// Extracts the command-name from the command-text.
+        /// Extracts the command-name and assembly from the command-text.
+        /// </summary>
+        private void PeekCommandName()
+        {
+            var tuple = PeekCommandName( _command.CommandText );
+
+            if ( tuple == null )
+            {
+                _name = null;
+                _assembly = null;
+            }
+            else
+            {
+                _name = tuple.Item1;
+                _assembly = tuple.Item2;
+            }
+        }
+
+
+        /// <summary />
+        private static Regex _regex = new Regex( @"^/\*# (?<assembly>.*?)#(?<command>.*?) #\*/" );
+
+
+        /// <summary>
+        /// Extracts the command-name and assembly from the command-text.
         /// </summary>
         /// <param name="commandText">Command text.</param>
-        /// <returns>Logical name of the command.</returns>
-        private static string PeekCommandName( string commandText )
+        private static Tuple<string, string> PeekCommandName( string commandText )
         {
             if ( string.IsNullOrEmpty( commandText ) == true )
-                return "(undef)";
+                return null;
 
-            if ( commandText.StartsWith( "/*#", StringComparison.Ordinal ) == false )
-                return "(undef)";
+            Match m = _regex.Match( commandText );
 
-            int ix = commandText.IndexOf( " #*/", StringComparison.Ordinal );
+            if ( m.Success == false )
+                return null;
 
-            if ( ix == -1 )
-                return "(undef)";
+            string assembly = m.Groups[ "assembly" ].Value;
+            string command = m.Groups[ "command" ].Value;
 
-            return commandText.Substring( 4, ix - 4 );
+            return new Tuple<string, string>( command, assembly );
         }
 
 
@@ -192,7 +218,10 @@ namespace Platinum.Data
             }
             catch ( DbException ex )
             {
-                throw new DataException( ER.ExecuteNonQuery, ex, _conn, _name );
+                if ( IsActorException( ex ) == true )
+                    throw ParseActorException( ex );
+                else
+                    throw new DataException( ER.ExecuteNonQuery, ex, _conn, _name );
             }
         }
 
@@ -212,7 +241,10 @@ namespace Platinum.Data
             }
             catch ( DbException ex )
             {
-                throw new DataException( ER.ExecuteScalar, ex, _conn, _name );
+                if ( IsActorException( ex ) == true )
+                    throw ParseActorException( ex );
+                else
+                    throw new DataException( ER.ExecuteScalar, ex, _conn, _name );
             }
         }
 
@@ -234,8 +266,112 @@ namespace Platinum.Data
             }
             catch ( DbException ex )
             {
-                throw new DataException( ER.ExecuteDbDataReader, ex, _conn, _name );
+                if ( IsActorException( ex ) == true )
+                    throw ParseActorException( ex );
+                else
+                    throw new DataException( ER.ExecuteDbDataReader, ex, _conn, _name );
             }
+        }
+
+
+        /// <summary>
+        /// Gets whether the data/driver error corresponds to an actor exception,
+        /// raised directly from the database.
+        /// </summary>
+        /// <param name="exception">
+        /// Data exception.
+        /// </param>
+        /// <returns>
+        /// True if yes, False otherwise.
+        /// </returns>
+        private static bool IsActorException( DbException exception )
+        {
+            #region Validations
+
+            if ( exception == null )
+                throw new ArgumentNullException( nameof( exception ) );
+
+            #endregion
+
+            return exception.Message.StartsWith( "Æ" );
+        }
+
+
+        /// <summary>
+        /// Parses an actor exception.
+        /// </summary>
+        /// <param name="exception">
+        /// Raw data/driver exception.
+        /// </param>
+        /// <returns>
+        /// Parsed actor exception.
+        /// </returns>
+        private ActorException ParseActorException( DbException exception )
+        {
+            #region Validations
+
+            if ( exception == null )
+                throw new ArgumentNullException( nameof( exception ) );
+
+            #endregion
+
+            if ( _assembly == null )
+                throw new DataException( ER.ParseException_NoMetadata, _conn, this.CommandText );
+
+
+            var assembly = AppDomain.CurrentDomain.GetAssemblies()
+                .Where( x => x.FullName.StartsWith( _assembly + "," ) ).SingleOrDefault();
+
+            if ( assembly == null )
+                throw new DataException( ER.ParseException_AssemblyNotFound, _assembly );
+
+
+            var exceptionType = assembly.GetExportedTypes()
+                .Where( x => x.Name == "DataDbException" ).SingleOrDefault();
+
+            if ( exceptionType == null )
+                throw new DataException( ER.ParseException_ExceptionTypeNotFound, _assembly );
+
+
+            /*
+             * 
+             */
+            string[] parts = exception.Message.Substring( 1 ).Split( new string[] { " Æ" }, StringSplitOptions.None );
+
+            object[] args = new object[ parts.Length + 1 ];
+            //args[ 0 ] = _name.Replace( "/", "_" ) + "_" + p[ 0 ];
+            args[ 0 ] = parts[ 0 ];
+            args[ 1 ] = exception;
+
+            Array.Copy( parts, 1, args, 2, parts.Length - 1 );
+
+            object obj;
+
+            try
+            {
+                obj = System.Activator.CreateInstance( exceptionType, args );
+            }
+            catch ( Exception ex )
+            {
+                throw new DataException( ER.ParseException_CreateFailed, ex, _assembly, exceptionType.FullName );
+            }
+
+
+            /*
+             * 
+             */
+            ActorException aex;
+
+            try
+            {
+                aex = (ActorException) obj;
+            }
+            catch ( InvalidCastException ex )
+            {
+                throw new DataException( ER.ParseException_NotActorException, ex, _assembly, exceptionType.FullName );
+            }
+
+            return aex;
         }
 
 

@@ -92,4 +92,38 @@
         <arg name="Command" />
     </error>
 
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~
+    ~ ParseException
+    ~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <error id="ParseException_NoMetadata" actor="~.Data.Internal" code="5001">
+        <description>Command did not include metadata: was it retrieved through Db.Command utility?</description>
+        <arg name="Database" />
+        <arg name="Statement" />
+    </error>
+
+    <error id="ParseException_AssemblyNotFound" actor="~.Data.Internal" code="5002">
+        <description>Assembly '{0}' was not found in the current application domain.</description>
+        <arg name="Assembly" />
+    </error>
+
+    <error id="ParseException_ExceptionTypeNotFound" actor="~.Data.Internal" code="5003">
+        <description>Type 'DbException' was not found in the assembly '{1}'.</description>
+        <arg name="Assembly" />
+    </error>
+
+    <error id="ParseException_CreateFailed" actor="~.Data.Internal" code="5004">
+        <description>Failed to create instance of type '{1}' (from assembly '{0}').</description>
+        <arg name="Assembly" />
+        <arg name="ExceptionType" />
+    </error>
+
+    <error id="ParseException_NotActorException" actor="~.Data.Internal" code="5005">
+        <description>Type '{1}' was not an ActorException, as expected (from assembly '{0}').</description>
+        <arg name="Assembly" />
+        <arg name="ExceptionType" />
+    </error>
+
 </errors>

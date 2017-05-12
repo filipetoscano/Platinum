@@ -1,6 +1,6 @@
 ﻿
 begin try
-    raiserror( N'AE:UserNotFound', 16, 1 );
+    exec RaiseActorError 'Sql_DbError_ErrorPlain';
 end try
 begin catch
     throw;
