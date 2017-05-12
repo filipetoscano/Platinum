@@ -136,7 +136,14 @@ namespace Platinum.Data
                         throw new DataException( ER.Open_ConnectFailed, this.Name );
 
                     case 18456:
-                        throw new DataException( ER.Open_LoginFailed, this.Name );
+                        /*
+                         * Read more information about 18456 states here:
+                         * http://sqlblog.com/blogs/aaron_bertrand/archive/2011/01/14/sql-server-v-next-denali-additional-states-for-error-18456.aspx
+                         * 
+                         * Sadly, Express doesn't seem to return any of these better errors.
+                         * The value of ex.State is always 1 :-(
+                         */
+                        throw new DataException( ER.Open_LoginFailed, ex, this.Name, ex.State );
 
                     case 4060:
                         throw new DataException( ER.Open_DatabaseInvalid, this.Name );

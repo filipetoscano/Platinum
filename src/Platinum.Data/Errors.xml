@@ -40,8 +40,9 @@
     </error>
 
     <error id="Open_LoginFailed" actor="~.Data.{0}" code="2002">
-        <description>Failed to connect to '{0}', invalid login.</description>
+        <description>Failed to connect to '{0}', invalid login (state='{1}').</description>
         <arg name="Database" />
+        <arg name="DbState" />
     </error>
 
     <error id="Open_DatabaseInvalid" actor="~.Data.{0}" code="2003">
