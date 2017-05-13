@@ -20,19 +20,19 @@ begin
 
     declare @errorMessage nvarchar(400);
 
-    set @errorMessage = N'Æ' + @errorId;
+    set @errorMessage = N'Ã†' + @errorId;
 
     if ( @arg1 is not null )
-        set @errorMessage = @errorMessage + N' Æ' + @arg1;
+        set @errorMessage = @errorMessage + N' Ã†' + @arg1;
 
     if ( @arg2 is not null )
-        set @errorMessage = @errorMessage + N' Æ' + @arg2;
+        set @errorMessage = @errorMessage + N' Ã†' + @arg2;
 
     if ( @arg3 is not null )
-        set @errorMessage = @errorMessage + N' Æ' + @arg3;
+        set @errorMessage = @errorMessage + N' Ã†' + @arg3;
 
     if ( @arg4 is not null )
-        set @errorMessage = @errorMessage + N' Æ' + @arg4;
+        set @errorMessage = @errorMessage + N' Ã†' + @arg4;
 
     raiserror( @errorMessage, 16, 1 );
 end;
