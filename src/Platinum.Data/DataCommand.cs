@@ -326,11 +326,16 @@ namespace Platinum.Data
                 throw new DataException( ER.ParseException_AssemblyNotFound, _assembly );
 
 
+            /*
+             * 
+             */
+            const string exceptionName = "DataDbException";
+
             var exceptionType = assembly.GetExportedTypes()
-                .Where( x => x.Name == "DataDbException" ).SingleOrDefault();
+                .Where( x => x.Name == exceptionName ).SingleOrDefault();
 
             if ( exceptionType == null )
-                throw new DataException( ER.ParseException_ExceptionTypeNotFound, _assembly );
+                throw new DataException( ER.ParseException_ExceptionTypeNotFound, _assembly, exceptionName );
 
 
             /*

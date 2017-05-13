@@ -110,8 +110,9 @@
     </error>
 
     <error id="ParseException_ExceptionTypeNotFound" actor="~.Data.Internal" code="5003">
-        <description>Type 'DbException' was not found in the assembly '{1}'.</description>
+        <description>Type '{1}' was not found in the assembly '{0}'.</description>
         <arg name="Assembly" />
+        <arg name="ExceptionType" />
     </error>
 
     <error id="ParseException_CreateFailed" actor="~.Data.Internal" code="5004">
