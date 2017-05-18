@@ -1,2 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<xml />
+<errors xmlns="urn:platinum/actor">
+    <actor base="Platypus" />
+
+    <error id="Smoke" actor="~" code="1001" level="Fatal">
+        <description>Smoke test</description>
+    </error>
+</errors>
