@@ -3,6 +3,10 @@ using System;
 
 namespace NLog
 {
+    /// <summary>
+    /// Platinum extensions to NLog, so that it directly supports writing of an
+    /// <see cref="ActorException" />.
+    /// </summary>
     public static class LoggerExtensions
     {
         /// <summary>

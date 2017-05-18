@@ -33,7 +33,7 @@ namespace Platinum.Logging
 
 
         /// <summary>
-        /// Publishes an instance of exception <see cref="T" /> with the given event
+        /// Publishes an instance of exception <typeparamref name="T"/> with the given event
         /// identifier as an audit event.
         /// </summary>
         /// <param name="eventId">
@@ -63,7 +63,7 @@ namespace Platinum.Logging
 
 
         /// <summary>
-        /// Publishes an instance of exception <see cref="T" /> with the given event
+        /// Publishes an instance of exception <typeparamref name="T"/> with the given event
         /// identifier as an audit event.
         /// </summary>
         /// <param name="eventId">
@@ -96,7 +96,7 @@ namespace Platinum.Logging
 
 
         /// <summary>
-        /// Publishes an instance of exception <see cref="T" /> with the given event
+        /// Publishes an instance of exception <typeparamref name="T"/> with the given event
         /// identifier as an audit event.
         /// </summary>
         /// <param name="eventId">
@@ -129,7 +129,7 @@ namespace Platinum.Logging
 
 
         /// <summary>
-        /// Publishes an instance of exception <see cref="T" /> with the given event
+        /// Publishes an instance of exception <typeparamref name="T"/> with the given event
         /// identifier as an audit event.
         /// </summary>
         /// <param name="eventId">
