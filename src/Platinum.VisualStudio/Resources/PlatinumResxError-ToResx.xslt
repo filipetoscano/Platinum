@@ -115,6 +115,13 @@
                 </value>
             </data>
         </xsl:if>
+        <xsl:if test=" @level ">
+            <data name="{ @id }_Level">
+                <value>
+                    <xsl:value-of select=" @level " />
+                </value>
+            </data>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>

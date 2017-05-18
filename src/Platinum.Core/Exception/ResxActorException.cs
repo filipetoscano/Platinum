@@ -158,6 +158,15 @@ namespace Platinum
 
 
             /*
+             *
+             */
+            string level = rm.GetString( code + "_Level" );
+
+            if ( string.IsNullOrEmpty( level ) == false )
+                this.Data[ "Pt.Level" ] = level;
+
+
+            /*
              * .Code
              */
             int ncode;

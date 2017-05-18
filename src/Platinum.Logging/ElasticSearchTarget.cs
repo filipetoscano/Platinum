@@ -167,18 +167,28 @@ namespace Festo.Logging
                     {
                         ActorException ae = (ActorException) logEvent.Exception;
 
-                        document[ "message" ] = ae.Description;
+                        if ( logEvent.Message == null )
+                            document[ "message" ] = ae.Description;
+
                         document.Add( "exid", ae.Message );
                         document.Add( "actor", ae.Actor );
                         document.Add( "code", ae.Code );
                         document.Add( "exception", ae.ToString() );
 
                         foreach ( string key in ae.Data.Keys )
+                        {
+                            if ( key.StartsWith( "Pt." ) == true )
+                                continue;
+
                             document.Add( SafeKey( "exd_", key ), ae.Data[ key ] );
+                        }
                     }
                     else
                     {
                         document.Add( "exception", logEvent.Exception.ToString() );
+
+                        foreach ( string key in logEvent.Exception.Data.Keys )
+                            document.Add( SafeKey( "exd_", key ), logEvent.Exception.Data[ key ] );
                     }
                 }
 
