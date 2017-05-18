@@ -1,6 +1,6 @@
 ﻿using DbUp.Engine;
 using DbUp.Engine.Transactions;
-using Platinum.Logging;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

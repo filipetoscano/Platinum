@@ -4,12 +4,11 @@ using NLog.Common;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-using Platinum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Festo.Logging
+namespace Platinum.Logging
 {
     /// <summary>
     /// Target which publishes log events to ElasticSearch in a structured
@@ -163,14 +162,17 @@ namespace Festo.Logging
 
                 if ( logEvent.Exception != null )
                 {
+                    if ( logEvent.Exception.Data.Contains( "Pt.Level" ) == true )
+                        document[ "level" ] = logEvent.Exception.Data[ "Pt.Level" ];
+
+
                     if ( logEvent.Exception is ActorException )
                     {
                         ActorException ae = (ActorException) logEvent.Exception;
 
-                        if ( logEvent.Message == null )
+                        if ( logEvent.Message == "{0}" )
                             document[ "message" ] = ae.Description;
 
-                        document.Add( "exid", ae.Message );
                         document.Add( "actor", ae.Actor );
                         document.Add( "code", ae.Code );
                         document.Add( "exception", ae.ToString() );

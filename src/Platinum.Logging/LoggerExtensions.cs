@@ -1,9 +1,33 @@
-﻿using System;
+﻿using Platinum;
+using System;
 
-namespace Platinum.Logging
+namespace NLog
 {
     public static class LoggerExtensions
     {
+        /// <summary>
+        /// Writes the exception. If the exception does not have a specified
+        /// log level, will write at Warn.
+        /// </summary>
+        /// <param name="logger">
+        /// Instance of NLog logger.
+        /// </param>
+        /// <param name="exception">
+        /// An exception to be logged.
+        /// </param>
+        public static void Log( this Logger logger, ActorException exception )
+        {
+            #region Validations
+
+            if ( exception == null )
+                throw new ArgumentNullException( nameof( exception ) );
+
+            #endregion
+
+            logger.Warn( exception, null );
+        }
+
+
         /// <summary>
         /// Writes the exception at the Fatal level.
         /// </summary>
@@ -13,7 +37,7 @@ namespace Platinum.Logging
         /// <param name="exception">
         /// An exception to be logged.
         /// </param>
-        public static void Fatal( this NLog.Logger logger, ActorException exception )
+        public static void Fatal( this Logger logger, ActorException exception )
         {
             #region Validations
 
@@ -35,7 +59,7 @@ namespace Platinum.Logging
         /// <param name="exception">
         /// An exception to be logged.
         /// </param>
-        public static void Error( this NLog.Logger logger, ActorException exception )
+        public static void Error( this Logger logger, ActorException exception )
         {
             #region Validations
 
@@ -57,7 +81,7 @@ namespace Platinum.Logging
         /// <param name="exception">
         /// An exception to be logged.
         /// </param>
-        public static void Warn( this NLog.Logger logger, ActorException exception )
+        public static void Warn( this Logger logger, ActorException exception )
         {
             #region Validations
 
@@ -79,7 +103,7 @@ namespace Platinum.Logging
         /// <param name="exception">
         /// An exception to be logged.
         /// </param>
-        public static void Info( this NLog.Logger logger, ActorException exception )
+        public static void Info( this Logger logger, ActorException exception )
         {
             #region Validations
 

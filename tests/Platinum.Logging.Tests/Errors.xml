@@ -8,20 +8,35 @@
     ~ Event for Auditor
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <error id="Event_NoArguments" actor="~.Tests" code="1001">
-        <description>Without arguments.</description>
-    </error>
+    <event id="NoArguments" actor="~.Tests" code="1001">
+        <description>Event_NoArguments: Without arguments.</description>
+    </event>
 
-    <error id="Event_OneArgument" actor="~.Tests" code="1002">
-        <description>With a single argument '{0}'.</description>
+    <event id="OneArgument" actor="~.Tests" code="1002">
+        <description>Event_OneArgument: With a single argument '{0}'.</description>
         <arg name="Arg1" />
-    </error>
+    </event>
 
-    <error id="Event_TwoArguments" actor="~.Tests" code="1003">
-        <description>With two arguments: '{0}' and '{1}'.</description>
+    <event id="TwoArguments" actor="~.Tests" code="1003">
+        <description>Event_TwoArguments: With two arguments: '{0}' and '{1}'.</description>
         <arg name="Arg1" />
         <arg name="Arg2" />
-    </error>
+    </event>
+
+    <event id="Fatal" actor="~.Tests" code="1004" level="Fatal">
+        <description>Event_Fatal: Log level = Fatal.</description>
+    </event>
+
+    <event id="Exception" actor="~.Tests" code="1005" level="Error">
+        <description>Event_Exception: Log level = Error and has inner exception.</description>
+    </event>
+
+    <event id="ExceptionAndArguments" actor="~.Tests" code="1006">
+        <description>Event_ExceptionAndArguments: With two arguments: '{0}' and '{1}', and has inner exception.</description>
+        <arg name="Arg1" />
+        <arg name="Arg2" />
+    </event>
+
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~
@@ -29,7 +44,7 @@
     ~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <error id="Exception_NoArguments" actor="~.Tests" code="2001">
-        <description>Without arguments.</description>
+        <description>Error_ActorException: Without arguments.</description>
     </error>
 
 </errors>

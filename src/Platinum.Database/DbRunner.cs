@@ -1,8 +1,8 @@
 ﻿using DbUp;
 using DbUp.Engine;
 using DbUp.Helpers;
+using NLog;
 using Platinum.Configuration;
-using Platinum.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

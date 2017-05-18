@@ -58,10 +58,7 @@
     </Compile>
     <Compile Include="Auditor.cs" />
     <Compile Include="ElasticSearchTarget.cs" />
-    <Compile Include="Logger.Debug.cs" />
     <Compile Include="LoggerExtensions.cs" />
-    <Compile Include="LogManager.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

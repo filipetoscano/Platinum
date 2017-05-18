@@ -1,5 +1,5 @@
 ﻿using DbUp.Engine.Output;
-using Platinum.Logging;
+using NLog;
 using System;
 
 namespace Platinum.Database
@@ -36,7 +36,7 @@ namespace Platinum.Database
         /// <param name="args">Arguments to format.</param>
         public void WriteError( string format, params object[] args )
         {
-            logger.Raw.Fatal( format, args );
+            logger.Fatal( format, args );
         }
 
 
@@ -47,7 +47,7 @@ namespace Platinum.Database
         /// <param name="args">Arguments to format.</param>
         public void WriteWarning( string format, params object[] args )
         {
-            logger.Raw.Warn( format, args );
+            logger.Warn( format, args );
         }
 
 
@@ -58,7 +58,7 @@ namespace Platinum.Database
         /// <param name="args">Arguments to format.</param>
         public void WriteInformation( string format, params object[] args )
         {
-            logger.Raw.Info( format, args );
+            logger.Info( format, args );
         }
     }
 }
