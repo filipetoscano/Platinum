@@ -67,15 +67,15 @@
         <description>Running 'reset' operation.</description>
     </event>
 
-    <event id="Reset_Failed" actor="~" code="20002">
+    <event id="Reset_Failed" actor="~" code="20002" level="Error">
         <description>Failed to perform reset.</description>
     </event>
 
-    <error id="Reset_Production" actor="~" code="20003">
+    <error id="Reset_Production" actor="~" code="20003" level="Fatal">
         <description>Cannot run 'reset' command on Production database.</description>
     </error>
 
-    <error id="Reset_QualityAssurance" actor="~" code="20004">
+    <error id="Reset_QualityAssurance" actor="~" code="20004" level="Fatal">
         <description>Cannot run 'reset' command on Quality Assurance database.</description>
     </error>
 
@@ -90,7 +90,7 @@
         <arg name="ScriptName" />
     </event>
 
-    <event id="Schema_Failed" actor="~" code="21002">
+    <event id="Schema_Failed" actor="~" code="21002" level="Error">
         <description>Failed to execute schema script '{0}'.</description>
         <arg name="ScriptName" />
     </event>
@@ -106,7 +106,7 @@
         <arg name="ScriptName" />
     </event>
 
-    <event id="Procedure_Failed" actor="~" code="21008">
+    <event id="Procedure_Failed" actor="~" code="21008" level="Error">
         <description>Failed to execute procedure script '{0}'.</description>
         <arg name="ScriptName" />
     </event>
@@ -122,7 +122,7 @@
         <arg name="ScriptName" />
     </event>
 
-    <event id="View_Failed" actor="~" code="21010">
+    <event id="View_Failed" actor="~" code="21010" level="Error">
         <description>Failed to execute view script '{0}'.</description>
         <arg name="ScriptName" />
     </event>
@@ -138,7 +138,7 @@
         <arg name="ScriptName" />
     </event>
 
-    <event id="Data_Failed" actor="~" code="21004">
+    <event id="Data_Failed" actor="~" code="21004" level="Error">
         <description>Failed to execute data script '{0}'.</description>
         <arg name="ScriptName" />
     </event>
@@ -155,7 +155,7 @@
         <arg name="ScriptName" />
     </event>
 
-    <event id="CustomData_Failed" actor="~" code="21006">
+    <event id="CustomData_Failed" actor="~" code="21006" level="Error">
         <description>Failed to execute data script '{1}'.</description>
         <arg name="Provider" />
         <arg name="ScriptName" />
