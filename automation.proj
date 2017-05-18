@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="help">
     <PropertyGroup>
-        <version>1.4.7.0</version>
+        <Version>1.4.8.0</Version>
 
         <nugetSource>http://localhost:5000/</nugetSource>
         <nugetPushKey></nugetPushKey>
@@ -14,6 +14,11 @@
     ~ 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     <Target Name="help">
+        <Message Text="Platinum, Available targets:" />
+        <Message Text="* clean     Ensures a clean slate by removing all previous output." />
+        <Message Text="* build     Compiles a 'Release' build of the solution and NuGet packages." />
+        <Message Text="* push      Publishes NuGet packages onto a directory." />
+        <Message Text="* build-vs  Compiles the Visual Studio plugin." />
     </Target>
 
 
@@ -30,29 +35,50 @@
 
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~ 
+    ~ deps/
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="deps">
+        <Exec Command=" nuget restore Platinum.sln " />
+        <Exec Command=" bin\ptvscmd.exe --solution=Platinum.sln " />
+    </Target>
+    
+    
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
+    ~ _version/
+    ~ Emits version information to global file, which is used by all
+    ~ projects.
+    ~ 
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <Target Name="_version">
+        <PropertyGroup>
+            <versionInfo>[assembly: System.Reflection.AssemblyVersion( "$(Version)" )]</versionInfo>
+        </PropertyGroup>
+
+        <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
+    </Target>
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ~ 
     ~ build/
     ~ Compile and produce the nuget packages.
     ~ 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <Target Name="build">
+    <Target Name="build" DependsOnTargets="deps;_version">
         <PropertyGroup>
-            <versionInfo>[assembly: System.Reflection.AssemblyVersion( "$(version)" )]</versionInfo>
             <nugetArgs> -OutputDirectory ..\..\build -IncludeReferencedProjects -Prop Configuration=Release </nugetArgs>
         </PropertyGroup>
-
-        <WriteLinesToFile Overwrite="true" File="src\GlobalVersion.cs" Lines="$(versionInfo)" />
-
-        <!-- Deps -->
-        <Exec Command=" nuget restore Platinum.sln " />
-        <Exec Command=" bin\ptvscmd.exe --solution=Platinum.sln " />
 
         <!-- Compile -->
         <MSBuild Projects="Platinum.sln" Properties="Configuration=Release" />
 
+        <!-- Specific versioning -->
         <Copy SourceFiles="src\Platinum.Schema\Platinum.Schema.nuspecx" DestinationFiles="src\Platinum.Schema\Platinum.Schema.nuspec" />
         <XmlPoke XmlInputPath="src\Platinum.Schema\Platinum.Schema.nuspec"
                  Query="/package/metadata/version"
-                 Value="$(version)" />
+                 Value="$(Version)" />
 
         <!-- Packing -->
         <MakeDir Directories="build" />
@@ -91,12 +117,20 @@
     <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~ 
     ~ build-vs/
-    ~ Build the Visual Studio plugin.
+    ~ Build the Visual Studio plugin. Will also automatically update
+    ~ our local copy of the binaries :-)
     ~ 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-    <Target Name="build-vs">
+    <Target Name="build-vs" DependsOnTargets="_version">
         <!-- Deps -->
         <Exec Command=" nuget restore Platinum.VisualStudio.sln " />
+
+        <!-- Specific versioning -->
+        <XmlPoke Namespaces="&lt;Namespace Prefix='vs' Uri='http://schemas.microsoft.com/developer/vsx-schema/2011' /&gt;"
+                 Query=" /vs:PackageManifest/vs:Metadata/vs:Identity/@Version "
+                 XmlInputPath="src\Platinum.VisualStudio.Plugin\source.extension.vsixmanifest"
+                 Value="$(Version)" />
+        <Exec Command=" bin\xmltidy.exe src\Platinum.VisualStudio.Plugin\source.extension.vsixmanifest " />
 
         <!-- Compile -->
         <MSBuild Projects="Platinum.VisualStudio.sln" Properties="Configuration=Release" />

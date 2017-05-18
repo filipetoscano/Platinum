@@ -12,5 +12,3 @@ using System.Resources;
 
 [assembly: AssemblyDelaySign( false )]
 [assembly: NeutralResourcesLanguageAttribute( "en-US" )]
-
-[assembly: AssemblyVersion( "1.0.0.0" )]

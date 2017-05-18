@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalVersion.cs">
+      <Link>Properties\GlobalVersion.cs</Link>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Framework\BaseTool.cs" />
     <Compile Include="Framework\IPlugin.cs" />
