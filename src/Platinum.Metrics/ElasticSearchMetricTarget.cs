@@ -10,6 +10,9 @@ using System.Linq;
 
 namespace Platinum.Metrics
 {
+    /// <summary>
+    /// Writes metric events to Elastic Search.
+    /// </summary>
     [Target( "Metrics" )]
     public class ElasticSearchMetricTarget : TargetWithLayout
     {
@@ -83,7 +86,7 @@ namespace Platinum.Metrics
         /// <summary>
         /// Writes a batch of events to ElasticSearch.
         /// </summary>
-        /// <param name="logEvent">NLog Event.</param>
+        /// <param name="logEvents">NLog events.</param>
         protected override void Write( AsyncLogEventInfo[] logEvents )
         {
             SendBatch( logEvents );

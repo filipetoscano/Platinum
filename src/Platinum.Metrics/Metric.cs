@@ -20,7 +20,7 @@ namespace Platinum.Metrics
         /// Name of measure will be automatically derived from the (non
         /// namespace-qualified) name of the CLR type.
         /// </remarks>
-        public static void Gauge<T>( T measure )
+        public static void Write<T>( T measure )
         {
             #region Validations
 
