@@ -101,14 +101,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Configuration\Configuration.xml">
-      <Generator>YConfigGenTool</Generator>
+      <Generator>PtConfigGenTool</Generator>
       <LastGenOutput>Configuration.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="ExceptionFwk\Errors.xml">
-      <Generator>YResxErrorTool</Generator>
+      <Generator>PtResxErrorTool</Generator>
       <LastGenOutput>Errors.cs</LastGenOutput>
     </None>
   </ItemGroup>
