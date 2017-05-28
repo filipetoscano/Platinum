@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ExceptionFwk\Exceptions.xml">
-      <Generator>YResxExceptionTool</Generator>
+      <Generator>PtResxExceptionTool</Generator>
       <LastGenOutput>Exceptions.cs</LastGenOutput>
     </None>
   </ItemGroup>
